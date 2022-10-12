@@ -1,0 +1,579 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Scenes/Prefabs/Car.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Sprites/Track_Backgrounds/Hungary.jpg" type="Texture" id=2]
+[ext_resource path="res://Scripts/TurnData.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/TrackData.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/SmartHUDLabel.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/CameraController.gd" type="Script" id=6]
+
+[sub_resource type="Curve2D" id=1]
+bake_interval = 2.0
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -2304, 902, 0, 0, 0, 0, -2305, -1592, 0, 0, 0, 0, -2305, -2533, 0, 0, 0, 0, -2302, -2634, 0, 0, 0, 0, -2293, -2699, 0, 0, 0, 0, -2278, -2757, 0, 0, 0, 0, -2248, -2804, 0, 0, 0, 0, -2205, -2830, 0, 0, 0, 0, -2151, -2835, 0, 0, 0, 0, -2096, -2821, 0, 0, 0, 0, -2028, -2782, 0, 0, 0, 0, -1953, -2731, 0, 0, 0, 0, -1890, -2679, 0, 0, 0, 0, -1829, -2607, 0, 0, 0, 0, -1790, -2530, 0, 0, 0, 0, -1699, -2302, 0, 0, 0, 0, -1667, -2113, 0, 0, 0, 0, -1654, -1902, 0, 0, 0, 0, -1652, -1590, 0, 0, 0, 0, -1668, -1243, 0, 0, 0, 0, -1685, -941, 0, 0, 0, 0, -1672, -801, 0, 0, 0, 0, -1640, -689, 0, 0, 0, 0, -1595, -602, 0, 0, 0, 0, -1528, -542, 0, 0, 0, 0, -1442, -524, 0, 0, 0, 0, -1336, -527, 0, 0, 0, 0, -1251, -557, 0, 0, 0, 0, -1182, -620, 0, 0, 0, 0, -1140, -688, 0, 0, 0, 0, -996, -1060, 0, 0, 0, 0, -910, -1196, 0, 0, 0, 0, -845, -1261, 0, 0, 0, 0, -771, -1298, 0, 0, 0, 0, -116, -1349, 0, 0, 0, 0, 1062, -1636, 0, 0, 0, 0, 1255, -1661, 0, 0, 0, 0, 1376, -1690, 0, 0, 0, 0, 1473, -1739, 0, 0, 0, 0, 1549, -1807, 0, 0, 0, 0, 2010, -2324, 0, 0, 0, 0, 2109, -2381, 0, 0, 0, 0, 2237, -2397, 0, 0, 0, 0, 2344, -2372, 0, 0, 0, 0, 2418, -2321, 0, 0, 0, 0, 2468, -2249, 0, 0, 0, 0, 2496, -2153, 0, 0, 0, 0, 2549, -1648, 0, 0, 0, 0, 2584, -1234, 0, 0, 0, 0, 2583, -1187, 0, 0, 0, 0, 2580, -1156, 0, 0, 0, 0, 2571, -1130, 0, 0, 0, 0, 2558, -1108, 0, 0, 0, 0, 2531, -1092, 0, 0, 0, 0, 2498, -1078, 0, 0, 0, 0, 2460, -1066, 0, 0, 0, 0, 2412, -1061, 0, 0, 0, 0, 2357, -1059, 0, 0, 0, 0, 2314, -1049, 0, 0, 0, 0, 2276, -1035, 0, 0, 0, 0, 2247, -1013, 0, 0, 0, 0, 2220, -980, 0, 0, 0, 0, 2185, -924, 0, 0, 0, 0, 1951, -628, 0, 0, 0, 0, 1890, -547, 0, 0, 0, 0, 1845, -471, 0, 0, 0, 0, 1815, -416, 0, 0, 0, 0, 1800, -362, 0, 0, 0, 0, 1800, -310, 0, 0, 0, 0, 1805, -270, 0, 0, 0, 0, 1813, -232, 0, 0, 0, 0, 1836, -167, 0, 0, 0, 0, 1865, -95, 0, 0, 0, 0, 2073, 389, 0, 0, 0, 0, 2081, 419, 0, 0, 0, 0, 2082, 448, 0, 0, 0, 0, 2082, 476, 0, 0, 0, 0, 2075, 504, 0, 0, 0, 0, 2062, 529, 0, 0, 0, 0, 2041, 552, 0, 0, 0, 0, 2014, 575, 0, 0, 0, 0, 1976, 598, 0, 0, 0, 0, 1191, 891, 0, 0, 0, 0, 1091, 941, 0, 0, 0, 0, 990, 1043, 0, 0, 0, 0, 911, 1172, 0, 0, 0, 0, 881, 1258, 0, 0, 0, 0, 825, 1696, 0, 0, 0, 0, 795, 1800, 0, 0, 0, 0, 753, 1866, 0, 0, 0, 0, 693, 1912, 0, 0, 0, 0, 605, 1930, 0, 0, 0, 0, 331, 1924, 0, 0, 0, 0, -902, 1822, 0, 0, 0, 0, -1030, 1773, 0, 0, 0, 0, -1129, 1711, 0, 0, 0, 0, -1200, 1639, 0, 0, 0, 0, -1225, 1553, 0, 0, 0, 0, -1216, 1460, 0, 0, 0, 0, -1105, 1087, 0, 0, 0, 0, -1087, 979, 0, 0, 0, 0, -1061, 829, 0, 0, 0, 0, -1038, 616, 0, 0, 0, 0, -1040, 378, 0, 0, 0, 0, -1067, 264, 0, 0, 0, 0, -1125, 159, 0, 0, 0, 0, -1229, 85, 0, 0, 0, 0, -1350, 51, 0, 0, 0, 0, -1486, 61, 0, 0, 0, 0, -1558, 99, 0, 0, 0, 0, -1601, 169, 0, 0, 0, 0, -1642, 311, 0, 0, 0, 0, -1667, 516, 0, 0, 0, 0, -1684, 773, 0, 0, 0, 0, -1684, 1216, 0, 0, 0, 0, -1691, 1335, 0, 0, 0, 0, -1697, 1432, 0, 0, 0, 0, -1724, 1543, 0, 0, 0, 0, -1800, 1632, 0, 0, 0, 0, -1908, 1691, 0, 0, 0, 0, -2042, 1706, 0, 0, 0, 0, -2175, 1678, 0, 0, 0, 0, -2269, 1602, 0, 0, 0, 0, -2303, 1475, 0, 0, 0, 0, -2304, 902 )
+}
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -1691, 1335, 0, 0, 0, 0, -1747, 1463, 0, 0, 0, 0, -1817, 1511, 0, 0, 0, 0, -1882, 1549, 0, 0, 0, 0, -1968, 1569, 0, 0, 0, 0, -2028, 1573, 0, 0, 0, 0, -2085, 1563, 0, 0, 0, 0, -2114, 1540, 0, 0, 0, 0, -2129, 1502, 0, 0, 0, 0, -2135, 1451, 0, 0, 0, 0, -2127, -884, 0, 0, 0, 0, -2135, -942, 0, 0, 0, 0, -2153, -1007, 0, 0, 0, 0, -2169, -1057, 0, 0, 0, 0, -2204, -1135, 0, 0, 0, 0, -2246, -1245, 0, 0, 0, 0, -2287, -1386, 0, 0, 0, 0, -2305, -1592 )
+}
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 77.5, 32.75 )
+
+[sub_resource type="RectangleShape2D" id=4]
+
+[sub_resource type="RectangleShape2D" id=6]
+
+[sub_resource type="RectangleShape2D" id=5]
+
+[node name="StartYourEngines" type="Node2D"]
+
+[node name="ReferenceSprite" type="Sprite" parent="."]
+scale = Vector2( 5, 5 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="InRaceCamera" type="Camera2D" parent="."]
+position = Vector2( -1, 0 )
+current = true
+zoom = Vector2( 5, 5 )
+limit_left = -7000
+limit_top = -7000
+limit_right = 7000
+limit_bottom = 7000
+limit_smoothed = true
+smoothing_enabled = true
+smoothing_speed = 10.0
+script = ExtResource( 6 )
+
+[node name="Track" type="Path2D" parent="."]
+curve = SubResource( 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="PitLane" type="Path2D" parent="Track"]
+curve = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="PitEntrance" type="Area2D" parent="Track/PitLane"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/PitLane/PitEntrance"]
+position = Vector2( -1693.5, 1367 )
+shape = SubResource( 3 )
+
+[node name="PitExit" type="Area2D" parent="Track/PitLane"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/PitLane/PitExit"]
+position = Vector2( -2306, -1595 )
+shape = SubResource( 3 )
+
+[node name="TrackLocations" type="Node2D" parent="Track"]
+
+[node name="FinishLine" type="Area2D" parent="Track/TrackLocations"]
+position = Vector2( -2227, 908 )
+scale = Vector2( 11, 0.76 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/FinishLine"]
+position = Vector2( -7.00002, 2 )
+shape = SubResource( 4 )
+
+[node name="Turn01" type="Node2D" parent="Track/TrackLocations"]
+position = Vector2( -627, 0 )
+script = ExtResource( 3 )
+minimumSpeed = 85
+
+[node name="Decelerate" type="Area2D" parent="Track/TrackLocations/Turn01"]
+position = Vector2( -1679, -2224 )
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn01/Decelerate"]
+shape = SubResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Accelerate" type="Area2D" parent="Track/TrackLocations/Turn01"]
+position = Vector2( -1563, -2828 )
+rotation = 1.13446
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn01/Accelerate"]
+shape = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Turn02" type="Node2D" parent="Track/TrackLocations"]
+position = Vector2( -570, 0 )
+script = ExtResource( 3 )
+minimumSpeed = 140
+
+[node name="Decelerate" type="Area2D" parent="Track/TrackLocations/Turn02"]
+position = Vector2( -1111, -1027 )
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn02/Decelerate"]
+shape = SubResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Accelerate" type="Area2D" parent="Track/TrackLocations/Turn02"]
+position = Vector2( -792, -525 )
+rotation = -1.54156
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn02/Accelerate"]
+shape = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Turn03" type="Node2D" parent="Track/TrackLocations"]
+position = Vector2( -505, 0 )
+script = ExtResource( 3 )
+minimumSpeed = 105
+
+[node name="Decelerate" type="Area2D" parent="Track/TrackLocations/Turn03"]
+position = Vector2( -487, -1069 )
+rotation = 0.396243
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn03/Decelerate"]
+shape = SubResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Accelerate" type="Area2D" parent="Track/TrackLocations/Turn03"]
+position = Vector2( -315, -1263 )
+rotation = 0.645208
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn03/Accelerate"]
+shape = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Turn04" type="Node2D" parent="Track/TrackLocations"]
+position = Vector2( -443, 0 )
+script = ExtResource( 3 )
+minimumSpeed = 230
+
+[node name="Decelerate" type="Area2D" parent="Track/TrackLocations/Turn04"]
+position = Vector2( 1624, -1653 )
+rotation = 1.30344
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn04/Decelerate"]
+shape = SubResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Accelerate" type="Area2D" parent="Track/TrackLocations/Turn04"]
+position = Vector2( 1861, -1712 )
+rotation = 1.21665
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn04/Accelerate"]
+shape = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Turn05" type="Node2D" parent="Track/TrackLocations"]
+position = Vector2( -385, 0 )
+script = ExtResource( 3 )
+minimumSpeed = 140
+
+[node name="Decelerate" type="Area2D" parent="Track/TrackLocations/Turn05"]
+position = Vector2( 2240, -2155 )
+rotation = 0.752783
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn05/Decelerate"]
+shape = SubResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Accelerate" type="Area2D" parent="Track/TrackLocations/Turn05"]
+position = Vector2( 2743, -2358 )
+rotation = 2.00779
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn05/Accelerate"]
+shape = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Turn06" type="Node2D" parent="Track/TrackLocations"]
+position = Vector2( -329, 0 )
+script = ExtResource( 3 )
+minimumSpeed = 120
+
+[node name="Decelerate" type="Area2D" parent="Track/TrackLocations/Turn06"]
+position = Vector2( 2890, -1489 )
+rotation = -0.0405374
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn06/Decelerate"]
+shape = SubResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Accelerate" type="Area2D" parent="Track/TrackLocations/Turn06"]
+position = Vector2( 2834, -1083 )
+rotation = -2.15724
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn06/Accelerate"]
+shape = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Turn07" type="Node2D" parent="Track/TrackLocations"]
+position = Vector2( -270, 0 )
+script = ExtResource( 3 )
+minimumSpeed = 140
+
+[node name="Decelerate" type="Area2D" parent="Track/TrackLocations/Turn07"]
+position = Vector2( 2649, -1059 )
+rotation = 1.19899
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn07/Decelerate"]
+shape = SubResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Accelerate" type="Area2D" parent="Track/TrackLocations/Turn07"]
+position = Vector2( 2529, -1019 )
+rotation = 1.08524
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn07/Accelerate"]
+shape = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Turn08" type="Node2D" parent="Track/TrackLocations"]
+position = Vector2( -222, 0 )
+script = ExtResource( 3 )
+minimumSpeed = 160
+
+[node name="Decelerate" type="Area2D" parent="Track/TrackLocations/Turn08"]
+position = Vector2( 2082, -501 )
+rotation = 0.394835
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn08/Decelerate"]
+shape = SubResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Accelerate" type="Area2D" parent="Track/TrackLocations/Turn08"]
+position = Vector2( 2024, -326 )
+rotation = 0.103421
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn08/Accelerate"]
+shape = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Turn09" type="Node2D" parent="Track/TrackLocations"]
+position = Vector2( -163, 0 )
+script = ExtResource( 3 )
+minimumSpeed = 125
+
+[node name="Decelerate" type="Area2D" parent="Track/TrackLocations/Turn09"]
+position = Vector2( 2185, 274 )
+rotation = -0.350643
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn09/Decelerate"]
+shape = SubResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Accelerate" type="Area2D" parent="Track/TrackLocations/Turn09"]
+position = Vector2( 2219, 532 )
+rotation = 0.421011
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn09/Accelerate"]
+shape = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Turn10" type="Node2D" parent="Track/TrackLocations"]
+position = Vector2( -112, 0 )
+script = ExtResource( 3 )
+minimumSpeed = 200
+
+[node name="Decelerate" type="Area2D" parent="Track/TrackLocations/Turn10"]
+position = Vector2( 1225, 937 )
+rotation = -2.21304
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn10/Decelerate"]
+shape = SubResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Accelerate" type="Area2D" parent="Track/TrackLocations/Turn10"]
+position = Vector2( 1076, 1087 )
+rotation = 0.632691
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn10/Accelerate"]
+shape = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Turn11" type="Node2D" parent="Track/TrackLocations"]
+position = Vector2( -55, 0 )
+script = ExtResource( 3 )
+minimumSpeed = 120
+
+[node name="Decelerate" type="Area2D" parent="Track/TrackLocations/Turn11"]
+position = Vector2( 901, 1540 )
+rotation = 0.194163
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn11/Decelerate"]
+shape = SubResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Accelerate" type="Area2D" parent="Track/TrackLocations/Turn11"]
+position = Vector2( 673, 1929 )
+rotation = 1.34588
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn11/Accelerate"]
+shape = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Turn12" type="Node2D" parent="Track/TrackLocations"]
+script = ExtResource( 3 )
+minimumSpeed = 140
+
+[node name="Decelerate" type="Area2D" parent="Track/TrackLocations/Turn12"]
+position = Vector2( -717, 1835 )
+rotation = -1.47686
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn12/Decelerate"]
+shape = SubResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Accelerate" type="Area2D" parent="Track/TrackLocations/Turn12"]
+position = Vector2( -853, 2307 )
+rotation = 2.71685
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn12/Accelerate"]
+shape = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Turn13" type="Node2D" parent="Track/TrackLocations"]
+position = Vector2( 58, 0 )
+script = ExtResource( 3 )
+minimumSpeed = 110
+
+[node name="Decelerate" type="Area2D" parent="Track/TrackLocations/Turn13"]
+position = Vector2( -1101, 434 )
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn13/Decelerate"]
+shape = SubResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Accelerate" type="Area2D" parent="Track/TrackLocations/Turn13"]
+position = Vector2( -1636, 159 )
+rotation = -2.62425
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn13/Accelerate"]
+shape = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Turn14" type="Node2D" parent="Track/TrackLocations"]
+position = Vector2( 109, 0 )
+script = ExtResource( 3 )
+minimumSpeed = 155
+
+[node name="Decelerate" type="Area2D" parent="Track/TrackLocations/Turn14"]
+position = Vector2( -1799, 1119 )
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn14/Decelerate"]
+shape = SubResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Accelerate" type="Area2D" parent="Track/TrackLocations/Turn14"]
+position = Vector2( -2262, 1687 )
+rotation = -1.1125
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/Turn14/Accelerate"]
+shape = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Car" parent="Track" instance=ExtResource( 1 )]
+position = Vector2( -2304, 902 )
+rotation = -1.57116
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Timer" type="Timer" parent="CanvasLayer"]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="CallToPit" type="Button" parent="CanvasLayer"]
+margin_left = 40.0
+margin_top = 115.0
+margin_right = 113.0
+margin_bottom = 135.0
+text = "Call to Pit"
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+margin_left = 37.0
+margin_top = 51.0
+margin_right = 237.0
+margin_bottom = 80.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 193.0
+margin_bottom = 22.0
+text = "Speed: ..."
+fit_content_height = true
+script = ExtResource( 5 )
+title = "Speed: "
+defaultValue = "..."
+
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer"]
+margin_left = 37.0
+margin_top = 81.0
+margin_right = 237.0
+margin_bottom = 110.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/PanelContainer2"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 193.0
+margin_bottom = 22.0
+text = "Pitting Intent: False"
+fit_content_height = true
+script = ExtResource( 5 )
+title = "Pitting Intent: "
+defaultValue = "False"
+
+[connection signal="area_entered" from="Track/PitLane/PitEntrance" to="Track" method="_on_PitEntrance_area_entered" flags=3]
+[connection signal="area_entered" from="Track/PitLane/PitExit" to="Track" method="_on_PitExit_area_entered" flags=3]
+[connection signal="accelerate" from="Track/TrackLocations/Turn01" to="Track/Car" method="_on_Turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn01" to="Track/Car" method="_on_Turn_decelerate"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn01/Decelerate" to="Track/TrackLocations/Turn01" method="_on_Decelerate_area_entered"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn01/Accelerate" to="Track/TrackLocations/Turn01" method="_on_Accelerate_area_entered"]
+[connection signal="accelerate" from="Track/TrackLocations/Turn02" to="Track/Car" method="_on_Turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn02" to="Track/Car" method="_on_Turn_decelerate"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn02/Decelerate" to="Track/TrackLocations/Turn02" method="_on_Decelerate_area_entered"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn02/Accelerate" to="Track/TrackLocations/Turn02" method="_on_Accelerate_area_entered"]
+[connection signal="accelerate" from="Track/TrackLocations/Turn03" to="Track/Car" method="_on_Turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn03" to="Track/Car" method="_on_Turn_decelerate"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn03/Decelerate" to="Track/TrackLocations/Turn03" method="_on_Decelerate_area_entered"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn03/Accelerate" to="Track/TrackLocations/Turn03" method="_on_Accelerate_area_entered"]
+[connection signal="accelerate" from="Track/TrackLocations/Turn04" to="Track/Car" method="_on_Turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn04" to="Track/Car" method="_on_Turn_decelerate"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn04/Decelerate" to="Track/TrackLocations/Turn04" method="_on_Decelerate_area_entered"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn04/Accelerate" to="Track/TrackLocations/Turn04" method="_on_Accelerate_area_entered"]
+[connection signal="accelerate" from="Track/TrackLocations/Turn05" to="Track/Car" method="_on_Turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn05" to="Track/Car" method="_on_Turn_decelerate"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn05/Decelerate" to="Track/TrackLocations/Turn05" method="_on_Decelerate_area_entered"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn05/Accelerate" to="Track/TrackLocations/Turn05" method="_on_Accelerate_area_entered"]
+[connection signal="accelerate" from="Track/TrackLocations/Turn06" to="Track/Car" method="_on_Turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn06" to="Track/Car" method="_on_Turn_decelerate"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn06/Decelerate" to="Track/TrackLocations/Turn06" method="_on_Decelerate_area_entered"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn06/Accelerate" to="Track/TrackLocations/Turn06" method="_on_Accelerate_area_entered"]
+[connection signal="accelerate" from="Track/TrackLocations/Turn07" to="Track/Car" method="_on_Turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn07" to="Track/Car" method="_on_Turn_decelerate"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn07/Decelerate" to="Track/TrackLocations/Turn07" method="_on_Decelerate_area_entered"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn07/Accelerate" to="Track/TrackLocations/Turn07" method="_on_Accelerate_area_entered"]
+[connection signal="accelerate" from="Track/TrackLocations/Turn08" to="Track/Car" method="_on_Turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn08" to="Track/Car" method="_on_Turn_decelerate"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn08/Decelerate" to="Track/TrackLocations/Turn08" method="_on_Decelerate_area_entered"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn08/Accelerate" to="Track/TrackLocations/Turn08" method="_on_Accelerate_area_entered"]
+[connection signal="accelerate" from="Track/TrackLocations/Turn09" to="Track/Car" method="_on_Turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn09" to="Track/Car" method="_on_Turn_decelerate"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn09/Decelerate" to="Track/TrackLocations/Turn09" method="_on_Decelerate_area_entered"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn09/Accelerate" to="Track/TrackLocations/Turn09" method="_on_Accelerate_area_entered"]
+[connection signal="accelerate" from="Track/TrackLocations/Turn10" to="Track/Car" method="_on_Turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn10" to="Track/Car" method="_on_Turn_decelerate"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn10/Decelerate" to="Track/TrackLocations/Turn10" method="_on_Decelerate_area_entered"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn10/Accelerate" to="Track/TrackLocations/Turn10" method="_on_Accelerate_area_entered"]
+[connection signal="accelerate" from="Track/TrackLocations/Turn11" to="Track/Car" method="_on_Turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn11" to="Track/Car" method="_on_Turn_decelerate"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn11/Decelerate" to="Track/TrackLocations/Turn11" method="_on_Decelerate_area_entered"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn11/Accelerate" to="Track/TrackLocations/Turn11" method="_on_Accelerate_area_entered"]
+[connection signal="accelerate" from="Track/TrackLocations/Turn12" to="Track/Car" method="_on_Turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn12" to="Track/Car" method="_on_Turn_decelerate"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn12/Decelerate" to="Track/TrackLocations/Turn12" method="_on_Decelerate_area_entered"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn12/Accelerate" to="Track/TrackLocations/Turn12" method="_on_Accelerate_area_entered"]
+[connection signal="accelerate" from="Track/TrackLocations/Turn13" to="Track/Car" method="_on_Turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn13" to="Track/Car" method="_on_Turn_decelerate"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn13/Decelerate" to="Track/TrackLocations/Turn13" method="_on_Decelerate_area_entered"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn13/Accelerate" to="Track/TrackLocations/Turn13" method="_on_Accelerate_area_entered"]
+[connection signal="accelerate" from="Track/TrackLocations/Turn14" to="Track/Car" method="_on_Turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn14" to="Track/Car" method="_on_Turn_decelerate"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn14/Decelerate" to="Track/TrackLocations/Turn14" method="_on_Decelerate_area_entered"]
+[connection signal="area_entered" from="Track/TrackLocations/Turn14/Accelerate" to="Track/TrackLocations/Turn14" method="_on_Accelerate_area_entered"]
+[connection signal="PittingIntent" from="Track/Car" to="CanvasLayer/PanelContainer2/RichTextLabel" method="_on_Update"]
+[connection signal="SpeedUpdate" from="Track/Car" to="CanvasLayer/PanelContainer/RichTextLabel" method="_on_Update"]
+[connection signal="timeout" from="CanvasLayer/Timer" to="Track/Car" method="_on_Race_Start"]
+[connection signal="pressed" from="CanvasLayer/CallToPit" to="Track/Car" method="_on_CallToPit_pressed"]

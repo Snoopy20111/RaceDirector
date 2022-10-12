@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/TurnData.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=6]
+
+[sub_resource type="RectangleShape2D" id=5]
+
+[node name="Turn01" type="Node2D"]
+script = ExtResource( 1 )
+minimumSpeed = 105
+
+[node name="Decelerate" type="Area2D" parent="."]
+position = Vector2( 0, 100 )
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decelerate"]
+shape = SubResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Accelerate" type="Area2D" parent="."]
+position = Vector2( 0, -100 )
+scale = Vector2( 11, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Accelerate"]
+shape = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[connection signal="area_entered" from="Decelerate" to="." method="_on_Decelerate_area_entered"]
+[connection signal="area_entered" from="Accelerate" to="." method="_on_Accelerate_area_entered"]

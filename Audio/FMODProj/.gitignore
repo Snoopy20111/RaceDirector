@@ -1,0 +1,4 @@
+### FMOD Studio Gitignore ###
+
+.unsaved/
+.user/
