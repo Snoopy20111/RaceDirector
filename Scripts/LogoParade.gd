@@ -61,4 +61,5 @@ func _on_FreezeTimer_timeout():
 	fade_value = myEnums.FADE_STATE.OUT
 
 func _on_EndTimer_timeout():
-	emit_signal("LogoParade_Death")
+	SceneManager.change_scene("res://Scenes/Tracks/StartYourEngines.tscn")
+	pass

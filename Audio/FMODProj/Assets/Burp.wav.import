@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Burp.wav-f863ae2e734128869e71135954259a93.sample"
+
+[deps]
+
+source_file="res://Audio/FMODProj/Assets/Burp.wav"
+dest_files=[ "res://.import/Burp.wav-f863ae2e734128869e71135954259a93.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

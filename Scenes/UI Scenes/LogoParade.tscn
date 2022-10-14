@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scripts/LogoParade.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Logos/LH_LogoSequence/LH_LogoSequence.tres" type="SpriteFrames" id=2]
-[ext_resource path="res://Scripts/AutoResize_ColorRect.gd" type="Script" id=3]
+[ext_resource path="res://Sprites/Logos/LH_LogoSequence/LH_LogoSequence.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://Scripts/AutoResize_ColorRect.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/LogoParade.gd" type="Script" id=3]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 follow_viewport_enable = true
@@ -12,7 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 1 )
+script = ExtResource( 3 )
 
 [node name="StartTimer" type="Timer" parent="LogoParade"]
 wait_time = 0.3
@@ -35,7 +35,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0, 0, 0, 1 )
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 
 [node name="CenterContainer" type="CenterContainer" parent="LogoParade"]
 anchor_left = 0.5
@@ -54,7 +54,7 @@ size_flags_vertical = 2
 
 [node name="LogoAnim" type="AnimatedSprite" parent="LogoParade/CenterContainer"]
 position = Vector2( 1000, 500 )
-frames = ExtResource( 2 )
+frames = ExtResource( 1 )
 
 [connection signal="timeout" from="LogoParade/StartTimer" to="LogoParade" method="_on_StartTimer_timeout"]
 [connection signal="timeout" from="LogoParade/FreezeTimer" to="LogoParade" method="_on_FreezeTimer_timeout"]

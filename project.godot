@@ -52,6 +52,7 @@ config/icon="res://Sprites/icon.png"
 
 SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 Fmod="*res://addons/fmod/Fmod.tscn"
+GameManager="*res://Scenes/GameManager.tscn"
 
 [display]
 
