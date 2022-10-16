@@ -2,7 +2,7 @@ extends ColorRect
 
 
 # Size in pixels / units to go over the window size
-export var bleed_size = 50
+export var bleed_size: int = 50
 
 
 # Called when the node enters the scene tree for the first time.

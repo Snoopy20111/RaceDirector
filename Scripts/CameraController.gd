@@ -1,21 +1,20 @@
 extends Camera2D
 
 const myEnums = preload("res://Scripts/myEnums.gd")
-
-var zoomCurve = preload("res://Curves/Zoom_Curve.tres")
+const zoomCurve = preload("res://Curves/Zoom_Curve.tres")
 
 # Declare member variables here. Examples:
-var mouse_start_pos
-var screen_start_position
+var mouse_start_pos: Vector2
+var screen_start_position: Vector2
 var movement_type
-var last_mouse_pos
+var last_mouse_pos: Vector2
 
-var scroll_step = 0.34
-var max_zoom = 10
-var min_zoom = 0.1
-var drag_zoom_div = 200
+var scroll_step: float = 0.34
+var max_zoom: float = 10
+var min_zoom: float = 0.1
+var drag_zoom_div: float = 200
 
-var dragging = false
+var dragging: bool = false
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton:

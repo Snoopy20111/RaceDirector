@@ -4,14 +4,19 @@ extends Node2D
 # Driver names, driver standings, Race data, Series info, etc.
 # Here ideally is where you can balance and change most things regarding the race as well
 
-var currentTrack
-var carCount
-var raceType
-var raceLaps
-var raceMaxLength
-var raceTimeElapsed
+var currentTrack: String
+var carCount: int
+var raceType: String
+var raceLaps: int
+var raceLength: float
+var raceMaxLength: int
+var raceTimeElapsed: int
 
-var default_race_options := {
+# audio variables
+var hasInitializedAudio: bool = false
+
+
+var default_race_options: Dictionary = {
 	"track": "Hungaroring",
 	"carCount": 8,
 	"raceType": "Circuit",
@@ -19,3 +24,17 @@ var default_race_options := {
 	"raceMaxLength": 10.0,
 }
 
+func _init_FMOD():
+	if (hasInitializedAudio == false):
+		
+		# set up FMOD
+		#print("FMOD Setup")
+		Fmod.set_software_format(0, Fmod.FMOD_SPEAKERMODE_STEREO, 0)
+		Fmod.init(1024, Fmod.FMOD_STUDIO_INIT_LIVEUPDATE, Fmod.FMOD_INIT_NORMAL)
+	
+		# Load default FMOD banks
+		Fmod.load_bank("res://Audio/Banks/Desktop/Master.strings.bank", Fmod.FMOD_STUDIO_LOAD_BANK_NORMAL)
+		Fmod.load_bank("res://Audio/Banks/Desktop/Master.bank", Fmod.FMOD_STUDIO_LOAD_BANK_NORMAL)
+		
+		# And make sure we can't do this twice
+		hasInitializedAudio = true
