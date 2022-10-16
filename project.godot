@@ -45,7 +45,7 @@ _global_script_class_icons={
 [application]
 
 config/name="RaceDirector"
-run/main_scene="res://Scenes/UI Scenes/Boot.tscn"
+run/main_scene="res://Scenes/UI_Scenes/Boot.tscn"
 config/icon="res://Sprites/icon.png"
 
 [autoload]

@@ -16,8 +16,6 @@ export var fade_value = myEnums.FADE_STATE.PAUSE
 export var FadeIn_Length = .5
 export var FadeOut_Length = .5
 
-signal LogoParade_Death
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	StartTimer = $StartTimer
