@@ -5,10 +5,10 @@ const LogoFade_Curve = preload("res://Curves/LogoFade_Curve.tres")
 
 # Declare member variables here. Examples:
 
-var StartTimer
-var FreezeTimer
-var EndTimer
-var LogoAnim
+var StartTimer: Timer
+var FreezeTimer: Timer
+var EndTimer: Timer
+var LogoAnim: AnimatedSprite
 
 var FadeCounter = 0
 export var fade_value = myEnums.FADE_STATE.PAUSE
@@ -18,10 +18,10 @@ export var FadeOut_Length = .5
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	StartTimer = $StartTimer
-	FreezeTimer = $FreezeTimer
-	EndTimer = $EndTimer
-	LogoAnim = $CenterContainer/LogoAnim
+	StartTimer = $StartTimer as Timer
+	FreezeTimer = $FreezeTimer as Timer
+	EndTimer = $EndTimer as Timer
+	LogoAnim = $CenterContainer/LogoAnim as AnimatedSprite
 	StartTimer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -59,5 +59,5 @@ func _on_FreezeTimer_timeout():
 	fade_value = myEnums.FADE_STATE.OUT
 
 func _on_EndTimer_timeout():
-	SceneManager.change_scene("res://Scenes/Tracks/StartYourEngines.tscn")
+	SceneManager.change_scene("res://Scenes/UI_Scenes/MainMenu.tscn")
 	pass

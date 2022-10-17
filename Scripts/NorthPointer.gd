@@ -16,4 +16,3 @@ func _process(_delta):
 
 func pointNorth():
 	rotation = parentNode.rotation * -1
-	pass
