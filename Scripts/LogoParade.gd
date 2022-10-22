@@ -7,8 +7,8 @@ const LogoFade_Curve = preload("res://Curves/LogoFade_Curve.tres")
 
 var StartTimer: Timer
 var FreezeTimer: Timer
-var EndTimer: Timer
 var LogoAnim: AnimatedSprite
+var NameLabel: Label
 
 var FadeCounter = 0
 export var fade_value = myEnums.FADE_STATE.PAUSE
@@ -16,16 +16,20 @@ export var fade_value = myEnums.FADE_STATE.PAUSE
 export var FadeIn_Length = .5
 export var FadeOut_Length = .5
 
+var transitioning : bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	StartTimer = $StartTimer as Timer
 	FreezeTimer = $FreezeTimer as Timer
-	EndTimer = $EndTimer as Timer
 	LogoAnim = $CenterContainer/LogoAnim as AnimatedSprite
+	NameLabel = $Name as Label
 	StartTimer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+	
 	match (fade_value):
 		myEnums.FADE_STATE.IN:
 			# add to alpha value, and run fade counter value through the fade curve
@@ -42,7 +46,9 @@ func _process(delta):
 			# once we pass 1 again, pause the animation (should be invisible) and wait the length of the timer before dying
 			if (FadeCounter >= 1):
 				fade_value = myEnums.FADE_STATE.PAUSE
-				EndTimer.start()
+			if (!transitioning && FadeCounter >= .18):
+				SceneManager.change_scene("res://Scenes/UI_Scenes/MainMenu.tscn")
+				transitioning = true
 
 
 func _on_LogoAnim_finished():
@@ -57,7 +63,3 @@ func _on_StartTimer_timeout():
 
 func _on_FreezeTimer_timeout():
 	fade_value = myEnums.FADE_STATE.OUT
-
-func _on_EndTimer_timeout():
-	SceneManager.change_scene("res://Scenes/UI_Scenes/MainMenu.tscn")
-	pass
