@@ -32,7 +32,9 @@ func _init_FMOD():
 		Fmod.init(1024, Fmod.FMOD_STUDIO_INIT_LIVEUPDATE, Fmod.FMOD_INIT_NORMAL)
 	
 		# Load default FMOD banks
+# warning-ignore:return_value_discarded
 		Fmod.load_bank("res://Audio/Banks/Desktop/Master.strings.bank", Fmod.FMOD_STUDIO_LOAD_BANK_NORMAL)
+# warning-ignore:return_value_discarded
 		Fmod.load_bank("res://Audio/Banks/Desktop/Master.bank", Fmod.FMOD_STUDIO_LOAD_BANK_NORMAL)
 		
 		# Add a listener

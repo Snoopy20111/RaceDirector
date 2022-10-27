@@ -2,10 +2,13 @@ extends Control
 
 
 # Declare member variables here. Examples:
-onready var windowWidth: int = get_viewport_rect().size.x
+onready var windowWidth: float = get_viewport_rect().size.x
 export var extraWidth: int = 50
 onready var totalWidth: int = windowWidth + extraWidth
-var animSpeed: float = 1.0
+export var animSpeed: float = 1.0
+const AnimCurve = preload("res://Curves/MainMenu_Anim_Curve.tres")
+var lockThreshold: float = 30
+var tempLocation: int = 0
 
 enum MOVEMENT_STATE {LEFT, RIGHT, PAUSE}
 var currentMovementState = MOVEMENT_STATE.PAUSE
@@ -37,25 +40,27 @@ func _process(delta):
 			if (self.rect_position.x > totalWidth):
 				currentMovementState = MOVEMENT_STATE.PAUSE
 				self.rect_position.x = totalWidth
-			elif ((self.rect_position.x < 50) and (self.rect_position.x > -50) and (canStopInCenter == true)):
-				print("true")
+			elif ((self.rect_position.x < lockThreshold) and (self.rect_position.x > -lockThreshold) and (canStopInCenter == true)):
 				currentMovementState = MOVEMENT_STATE.PAUSE
 				self.rect_position.x = 0
 				canStopInCenter = false
 			else:
-				self.rect_position.x += animSpeed * delta * totalWidth
+				var temp:= abs(tempLocation - self.rect_position.x) / totalWidth
+				self.rect_position.x += animSpeed * delta * totalWidth * AnimCurve.interpolate(temp)
+				print(temp)
 				
 		MOVEMENT_STATE.RIGHT:
 			if (self.rect_position.x < -totalWidth):
 				currentMovementState = MOVEMENT_STATE.PAUSE
 				self.rect_position.x = -totalWidth
-			elif ((self.rect_position.x < 50) and (self.rect_position.x > -50) and (canStopInCenter == true)):
-				print("true")
+			elif ((self.rect_position.x < lockThreshold) and (self.rect_position.x > -lockThreshold) and (canStopInCenter == true)):
 				currentMovementState = MOVEMENT_STATE.PAUSE
 				self.rect_position.x = 0
 				canStopInCenter = false
 			else:
-				self.rect_position.x -= animSpeed * delta * totalWidth
+				var temp:= abs(tempLocation - self.rect_position.x) / totalWidth
+				self.rect_position.x -= animSpeed * delta * totalWidth * AnimCurve.interpolate(temp)
+				print(temp)
 
 
 func canStopInCenterTimer_ended():
@@ -68,6 +73,7 @@ func set_positions():
 
 func viewport_resized():
 	windowWidth = get_viewport_rect().size.x
+# warning-ignore:narrowing_conversion
 	totalWidth = windowWidth + extraWidth
 	optionsLocation = totalWidth
 	raceDetailsLocation = -totalWidth
@@ -76,10 +82,12 @@ func viewport_resized():
 
 func move_left():
 	currentMovementState = MOVEMENT_STATE.LEFT
+	tempLocation = self.rect_position.x
 	canStopInCenter = false
 	canStopInCenterTimer.start()
 
 func move_right():
 	currentMovementState = MOVEMENT_STATE.RIGHT
+	tempLocation = self.rect_position.x
 	canStopInCenter = false
 	canStopInCenterTimer.start()

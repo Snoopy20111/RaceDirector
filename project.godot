@@ -63,7 +63,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/fmod/plugin.cfg", "res://addons/scene_manager/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/curve_edit/plugin.cfg", "res://addons/fmod/plugin.cfg", "res://addons/scene_manager/plugin.cfg" )
 
 [gui]
 
