@@ -1,11 +1,31 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Scripts/Button_LoadScene.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Prefabs/HorizontalScrollButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/AutoResize_ColorRect.gd" type="Script" id=2]
 [ext_resource path="res://UI/Menu.tres" type="Theme" id=3]
 [ext_resource path="res://UI/Fonts/Title.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Scripts/Button_QuitGame.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/MenuHorizontal.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/Prefabs/SliderWithTextEdit.tscn" type="PackedScene" id=7]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends \"res://Scripts/Button_LoadScene.gd\"
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
 
 [node name="CanvasLayer" type="CanvasLayer"]
 follow_viewport_enable = true
@@ -78,7 +98,7 @@ QuitOptions = {
 "color": Color( 0, 0, 0, 1 ),
 "ease": 1.0,
 "pattern": "fade",
-"speed": 1
+"speed": 2.0
 }
 
 [node name="TextureRect" type="TextureRect" parent="Menus/Main"]
@@ -102,18 +122,18 @@ __meta__ = {
 
 [node name="Options" type="Control" parent="Menus"]
 margin_left = 1920.0
-margin_right = 1960.0
-margin_bottom = 40.0
+margin_right = 3840.0
+margin_bottom = 1080.0
 
 [node name="MarginContainer" type="MarginContainer" parent="Menus/Options"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 635.5
-margin_top = 424.0
-margin_right = 1244.5
-margin_bottom = 798.0
+margin_left = -304.5
+margin_top = -96.0
+margin_right = 304.5
+margin_bottom = 278.0
 theme = ExtResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menus/Options/MarginContainer"]
@@ -131,23 +151,39 @@ rect_min_size = Vector2( 350, 75 )
 theme = ExtResource( 3 )
 text = "Options"
 
-[node name="Options2" type="Button" parent="Menus/Options/MarginContainer/VBoxContainer"]
+[node name="Volume" type="HSplitContainer" parent="Menus/Options/MarginContainer/VBoxContainer"]
 margin_top = 95.0
 margin_right = 609.0
-margin_bottom = 170.0
-rect_min_size = Vector2( 350, 75 )
-theme = ExtResource( 3 )
-text = "Options"
+margin_bottom = 138.0
+split_offset = 10
 
-[node name="HSlider" type="HSlider" parent="Menus/Options/MarginContainer/VBoxContainer"]
-margin_top = 190.0
+[node name="Label" type="Label" parent="Menus/Options/MarginContainer/VBoxContainer/Volume"]
+margin_right = 132.0
+margin_bottom = 43.0
+text = "Volume"
+
+[node name="PanelContainer" type="PanelContainer" parent="Menus/Options/MarginContainer/VBoxContainer/Volume"]
+margin_left = 144.0
 margin_right = 609.0
-margin_bottom = 206.0
+margin_bottom = 43.0
+theme = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menus/Options/MarginContainer/VBoxContainer/Volume/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 458.0
+margin_bottom = 36.0
+alignment = 1
+
+[node name="VolumeSlider" type="HSlider" parent="Menus/Options/MarginContainer/VBoxContainer/Volume/PanelContainer/VBoxContainer"]
+margin_top = 6.0
+margin_right = 451.0
+margin_bottom = 22.0
 
 [node name="Back" type="Button" parent="Menus/Options/MarginContainer/VBoxContainer"]
-margin_top = 226.0
+margin_top = 158.0
 margin_right = 609.0
-margin_bottom = 301.0
+margin_bottom = 233.0
 rect_min_size = Vector2( 350, 75 )
 theme = ExtResource( 3 )
 text = "Back"
@@ -169,50 +205,74 @@ margin_bottom = 798.0
 theme = ExtResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menus/RaceDetails/MarginContainer"]
-margin_right = 609.0
+margin_right = 712.0
 margin_bottom = 374.0
 theme = ExtResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Start" type="Button" parent="Menus/RaceDetails/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Menus/RaceDetails/MarginContainer/VBoxContainer"]
+margin_right = 712.0
+margin_bottom = 57.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Menus/RaceDetails/MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 105.0
+margin_bottom = 57.0
+
+[node name="Label" type="Label" parent="Menus/RaceDetails/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 98.0
+margin_bottom = 50.0
+text = "Track"
+
+[node name="HorizontalScrollButton" parent="Menus/RaceDetails/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource( 1 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 109.0
+margin_top = 0.0
 margin_right = 609.0
+margin_bottom = 57.0
+theme = ExtResource( 3 )
+
+[node name="SliderWithTextEdit" parent="Menus/RaceDetails/MarginContainer/VBoxContainer" instance=ExtResource( 7 )]
+margin_top = 77.0
+margin_right = 712.0
+margin_bottom = 134.0
+leftText = "Cars:"
+minValue = 1
+maxValue = 12
+
+[node name="HSeparator" type="HSeparator" parent="Menus/RaceDetails/MarginContainer/VBoxContainer"]
+margin_top = 154.0
+margin_right = 712.0
+margin_bottom = 158.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menus/RaceDetails/MarginContainer/VBoxContainer"]
+margin_top = 178.0
+margin_right = 712.0
+margin_bottom = 253.0
+
+[node name="Start" type="Button" parent="Menus/RaceDetails/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 350.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 350, 75 )
 theme = ExtResource( 3 )
 text = "Start"
-script = ExtResource( 1 )
-SceneLoadOptions = {
-"animation_name": null,
-"animation_name_enter": null,
-"animation_name_leave": null,
-"color": Color( 0, 0, 0, 1 ),
-"ease": 1.0,
-"ease_enter": 1.0,
-"ease_leave": 1.0,
-"invert": false,
-"invert_on_leave": true,
-"pattern": "fade",
-"skip_fade_in": false,
-"skip_fade_out": false,
-"skip_scene_change": false,
-"speed": 2,
-"wait_time": 0.5
-}
+script = SubResource( 1 )
 
-[node name="Start2" type="Button" parent="Menus/RaceDetails/MarginContainer/VBoxContainer"]
-margin_top = 95.0
-margin_right = 609.0
-margin_bottom = 170.0
-rect_min_size = Vector2( 350, 75 )
-theme = ExtResource( 3 )
-text = "Start"
+[node name="VSeparator" type="VSeparator" parent="Menus/RaceDetails/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 354.0
+margin_right = 358.0
+margin_bottom = 75.0
 
-[node name="Back" type="Button" parent="Menus/RaceDetails/MarginContainer/VBoxContainer"]
-margin_top = 190.0
-margin_right = 609.0
-margin_bottom = 265.0
+[node name="Back" type="Button" parent="Menus/RaceDetails/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 362.0
+margin_right = 712.0
+margin_bottom = 75.0
 rect_min_size = Vector2( 350, 75 )
 theme = ExtResource( 3 )
 text = "Back"
@@ -224,5 +284,5 @@ one_shot = true
 [connection signal="pressed" from="Menus/Main/MarginContainer/VBoxContainer/Start" to="Menus" method="move_left"]
 [connection signal="pressed" from="Menus/Main/MarginContainer/VBoxContainer/Options" to="Menus" method="move_right"]
 [connection signal="pressed" from="Menus/Options/MarginContainer/VBoxContainer/Back" to="Menus" method="move_left"]
-[connection signal="pressed" from="Menus/RaceDetails/MarginContainer/VBoxContainer/Back" to="Menus" method="move_right"]
+[connection signal="pressed" from="Menus/RaceDetails/MarginContainer/VBoxContainer/HBoxContainer/Back" to="Menus" method="move_right"]
 [connection signal="timeout" from="Menus/CanStopInCenterTimer" to="Menus" method="canStopInCenterTimer_ended"]

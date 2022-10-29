@@ -8,12 +8,11 @@ onready var totalWidth: int = windowWidth + extraWidth
 export var animSpeed: float = 1.0
 const AnimCurve = preload("res://Curves/MainMenu_Anim_Curve.tres")
 var lockThreshold: float = 30
-var tempLocation: int = 0
+var tempLocation: float = 0
 
 enum MOVEMENT_STATE {LEFT, RIGHT, PAUSE}
 var currentMovementState = MOVEMENT_STATE.PAUSE
 
-var targetNodeGroup
 onready var Main:= $Main
 var mainLocation: float = 0
 onready var Options:= $Options
@@ -47,7 +46,6 @@ func _process(delta):
 			else:
 				var temp:= abs(tempLocation - self.rect_position.x) / totalWidth
 				self.rect_position.x += animSpeed * delta * totalWidth * AnimCurve.interpolate(temp)
-				print(temp)
 				
 		MOVEMENT_STATE.RIGHT:
 			if (self.rect_position.x < -totalWidth):
@@ -60,7 +58,6 @@ func _process(delta):
 			else:
 				var temp:= abs(tempLocation - self.rect_position.x) / totalWidth
 				self.rect_position.x -= animSpeed * delta * totalWidth * AnimCurve.interpolate(temp)
-				print(temp)
 
 
 func canStopInCenterTimer_ended():
@@ -78,7 +75,6 @@ func viewport_resized():
 	optionsLocation = totalWidth
 	raceDetailsLocation = -totalWidth
 	set_positions()
-	print(windowWidth)
 
 func move_left():
 	currentMovementState = MOVEMENT_STATE.LEFT
