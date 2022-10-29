@@ -1,17 +1,15 @@
 extends Path2D
 
-const myEnums = preload("res://Scripts/myEnums.gd")
-
 
 var carRef
 var pitLaneRef
 var pitEntranceRef
 var pitExitRef
-
-var carCount = 1
-var isPitOpen = true
-var isPitExitOpen = true
 var rejoinPoint
+
+var carCount: int = 1
+var isPitOpen: bool = true
+var isPitExitOpen: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,8 +26,8 @@ func _ready():
 
 func _on_PitEntrance_area_entered(area):
 	if (carRef == area.get_parent()):
-		if ((carRef.willPitNextLap) and (carRef.currentCarState == myEnums.CAR_STATE.ON_TRACK) and (isPitOpen)):
-			carRef.currentCarState = myEnums.CAR_STATE.PITTING
+		if ((carRef.willPitNextLap) and (carRef.currentCarState == MyEnums.CAR_STATE.ON_TRACK) and (isPitOpen)):
+			carRef.currentCarState = MyEnums.CAR_STATE.PITTING
 			carRef.willPitNextLap = false
 			carRef.emit_signal("PittingIntent", false)
 			carRef.offset = 0
@@ -39,8 +37,8 @@ func _on_PitEntrance_area_entered(area):
 
 func _on_PitExit_area_entered(area):
 	if (carRef == area.get_parent()):
-		if ((carRef.currentCarState == myEnums.CAR_STATE.PITTING) and isPitExitOpen):
-			carRef.currentCarState = myEnums.CAR_STATE.ON_TRACK
+		if ((carRef.currentCarState == MyEnums.CAR_STATE.PITTING) and isPitExitOpen):
+			carRef.currentCarState = MyEnums.CAR_STATE.ON_TRACK
 			reparent(carRef, self)
 			carRef.offset = rejoinPoint
 

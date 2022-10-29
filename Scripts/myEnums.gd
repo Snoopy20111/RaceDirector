@@ -1,5 +1,5 @@
-extends Node
-
+extends Reference
+class_name MyEnums
 # Track Enums
 enum WEATHER_STATE {SUNNY, CLOUDY, RAIN, FOG, THUNDERSTORM}
 enum RACE_STATE {GRIDWALK, STARTING, RACING, SAFETY_CAR, RED_FLAG, RACE_ENDED}

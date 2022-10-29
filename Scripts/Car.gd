@@ -1,7 +1,5 @@
 extends PathFollow2D
 
-const myEnums = preload("res://Scripts/myEnums.gd")
-
 # member variables
 var speedMPH = 0
 var maxSpeed = 240
@@ -24,9 +22,9 @@ var fadeMode = 0
 
 var willPitNextLap = false
 var chanceOfMalfunction = 0.0000
-var currentCarState = myEnums.CAR_STATE.RACE_START
-var currentDrivingState = myEnums.DRIVING_STATE.IDLING
-var currentDriverState =  myEnums.DRIVER_STATE.FOCUSED
+var currentCarState = MyEnums.CAR_STATE.RACE_START
+var currentDrivingState = MyEnums.DRIVING_STATE.IDLING
+var currentDriverState =  MyEnums.DRIVER_STATE.FOCUSED
 
 signal SpeedUpdate(speed)
 signal PittingIntent(pitIntentString)
@@ -44,15 +42,15 @@ func _process(delta):
 	# Malfunctions
 #	if (randf() < chanceOfMalfunction):
 #		print("Malfunction!")
-#		currentCarState = myEnums.CAR_STATE.MALFUNCTIONING
-#		currentDrivingState = myEnums.DRIVING_STATE.IDLING
+#		currentCarState = MyEnums.CAR_STATE.MALFUNCTIONING
+#		currentDrivingState = MyEnums.DRIVING_STATE.IDLING
 	
 	# Accelerations
-	if (currentCarState == myEnums.CAR_STATE.ON_TRACK):
+	if (currentCarState == MyEnums.CAR_STATE.ON_TRACK):
 		match(currentDrivingState):
-			myEnums.DRIVING_STATE.ACCELERATING:
+			MyEnums.DRIVING_STATE.ACCELERATING:
 				speedMPH += (delta * accelMult * accelCurve.interpolate(speedMPH / maxSpeed))
-			myEnums.DRIVING_STATE.BRAKING:
+			MyEnums.DRIVING_STATE.BRAKING:
 				if (speedMPH >= currentMinSpeed):
 					speedMPH -= (delta * brakingMult)
 			_:
@@ -74,18 +72,18 @@ func _on_CallToPit_pressed():
 	emit_signal("PittingIntent", willPitNextLap)
 
 func _on_Turn_accelerate():
-	currentDrivingState = myEnums.DRIVING_STATE.ACCELERATING
+	currentDrivingState = MyEnums.DRIVING_STATE.ACCELERATING
 	emit_signal("DrivingState", str(currentDrivingState))
 
 func _on_Turn_decelerate(minimumSpeed):
-	currentDrivingState = myEnums.DRIVING_STATE.BRAKING
+	currentDrivingState = MyEnums.DRIVING_STATE.BRAKING
 	currentMinSpeed = minimumSpeed
 	emit_signal("DrivingState", str(currentDrivingState))
 
 func _on_Race_Start():
 	print("Race Start!")
-	currentCarState = myEnums.CAR_STATE.ON_TRACK
-	currentDrivingState = myEnums.DRIVING_STATE.ACCELERATING
+	currentCarState = MyEnums.CAR_STATE.ON_TRACK
+	currentDrivingState = MyEnums.DRIVING_STATE.ACCELERATING
 	emit_signal("CarState", str(currentCarState))
 	emit_signal("DrivingState", str(currentDrivingState))
 

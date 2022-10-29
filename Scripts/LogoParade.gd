@@ -1,6 +1,5 @@
 extends Control
 
-const myEnums = preload("res://Scripts/myEnums.gd")
 const LogoFade_Curve = preload("res://Curves/LogoFade_Curve.tres")
 
 # Declare member variables here. Examples:
@@ -11,7 +10,7 @@ var LogoAnim: AnimatedSprite
 var NameLabel: Label
 
 var FadeCounter = 0
-export var fade_value = myEnums.FADE_STATE.PAUSE
+export var fade_value = MyEnums.FADE_STATE.PAUSE
 
 export var FadeIn_Length = .5
 export var FadeOut_Length = .5
@@ -31,21 +30,21 @@ func _process(delta):
 	
 	
 	match (fade_value):
-		myEnums.FADE_STATE.IN:
+		MyEnums.FADE_STATE.IN:
 			# add to alpha value, and run fade counter value through the fade curve
 			FadeCounter += delta
 			LogoAnim.modulate.a = LogoFade_Curve.interpolate(FadeCounter / FadeIn_Length)
 			# once we pass 1, pause the animation and reset the counter
 			if (FadeCounter >= 1):
-				fade_value = myEnums.FADE_STATE.PAUSE
+				fade_value = MyEnums.FADE_STATE.PAUSE
 				FadeCounter = 0
-		myEnums.FADE_STATE.OUT:
+		MyEnums.FADE_STATE.OUT:
 			# add to alpha value, and go in reverse down through the fade curve values
 			FadeCounter += delta
 			LogoAnim.modulate.a = LogoFade_Curve.interpolate(1 - (FadeCounter / FadeOut_Length))
 			# once we pass 1 again, pause the animation (should be invisible) and wait the length of the timer before dying
 			if (FadeCounter >= 1):
-				fade_value = myEnums.FADE_STATE.PAUSE
+				fade_value = MyEnums.FADE_STATE.PAUSE
 			if (!transitioning && FadeCounter >= .18):
 				SceneManager.change_scene("res://Scenes/UI_Scenes/MainMenu.tscn")
 				transitioning = true
@@ -54,12 +53,12 @@ func _process(delta):
 func _on_LogoAnim_finished():
 	# pause anim and start Freeze Timer
 	FreezeTimer.start()
-	fade_value = myEnums.FADE_STATE.PAUSE
+	fade_value = MyEnums.FADE_STATE.PAUSE
 
 
 func _on_StartTimer_timeout():
-	fade_value = myEnums.FADE_STATE.IN
+	fade_value = MyEnums.FADE_STATE.IN
 	LogoAnim.play()
 
 func _on_FreezeTimer_timeout():
-	fade_value = myEnums.FADE_STATE.OUT
+	fade_value = MyEnums.FADE_STATE.OUT

@@ -1,10 +1,8 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Scenes/Prefabs/Car.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Track_Backgrounds/Hungary.jpg" type="Texture" id=2]
 [ext_resource path="res://Scripts/TurnData.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/TrackData.gd" type="Script" id=4]
-[ext_resource path="res://Scripts/SmartHUDLabel.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/CameraController.gd" type="Script" id=6]
 
 [sub_resource type="Curve2D" id=1]
@@ -29,7 +27,7 @@ extents = Vector2( 77.5, 32.75 )
 
 [node name="StartYourEngines" type="Node2D"]
 
-[node name="ReferenceSprite" type="Sprite" parent="."]
+[node name="BackgroundSprite" type="Sprite" parent="."]
 scale = Vector2( 5, 5 )
 texture = ExtResource( 2 )
 __meta__ = {
@@ -463,10 +461,6 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Car" parent="Track" instance=ExtResource( 1 )]
-position = Vector2( -2304, 902 )
-rotation = -1.57116
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Timer" type="Timer" parent="CanvasLayer"]
@@ -477,103 +471,9 @@ autostart = true
 [node name="CallToPit" type="Button" parent="CanvasLayer"]
 margin_left = 40.0
 margin_top = 115.0
-margin_right = 113.0
-margin_bottom = 135.0
+margin_right = 262.0
+margin_bottom = 172.0
 text = "Call to Pit"
-
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
-margin_left = 37.0
-margin_top = 51.0
-margin_right = 237.0
-margin_bottom = 80.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/PanelContainer"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 193.0
-margin_bottom = 51.0
-text = "Speed: ..."
-fit_content_height = true
-script = ExtResource( 5 )
-title = "Speed: "
-defaultValue = "..."
-
-[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer"]
-margin_left = 37.0
-margin_top = 81.0
-margin_right = 237.0
-margin_bottom = 110.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/PanelContainer2"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 193.0
-margin_bottom = 139.0
-text = "Pitting Intent: False"
-fit_content_height = true
-script = ExtResource( 5 )
-title = "Pitting Intent: "
-defaultValue = "False"
 
 [connection signal="area_entered" from="Track/PitLane/PitEntrance" to="Track" method="_on_PitEntrance_area_entered" flags=3]
 [connection signal="area_entered" from="Track/PitLane/PitExit" to="Track" method="_on_PitExit_area_entered" flags=3]
-[connection signal="accelerate" from="Track/TrackLocations/Turn01" to="Track/Car" method="_on_Turn_accelerate"]
-[connection signal="decelerate" from="Track/TrackLocations/Turn01" to="Track/Car" method="_on_Turn_decelerate"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn01/Decelerate" to="Track/TrackLocations/Turn01" method="_on_Decelerate_area_entered"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn01/Accelerate" to="Track/TrackLocations/Turn01" method="_on_Accelerate_area_entered"]
-[connection signal="accelerate" from="Track/TrackLocations/Turn02" to="Track/Car" method="_on_Turn_accelerate"]
-[connection signal="decelerate" from="Track/TrackLocations/Turn02" to="Track/Car" method="_on_Turn_decelerate"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn02/Decelerate" to="Track/TrackLocations/Turn02" method="_on_Decelerate_area_entered"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn02/Accelerate" to="Track/TrackLocations/Turn02" method="_on_Accelerate_area_entered"]
-[connection signal="accelerate" from="Track/TrackLocations/Turn03" to="Track/Car" method="_on_Turn_accelerate"]
-[connection signal="decelerate" from="Track/TrackLocations/Turn03" to="Track/Car" method="_on_Turn_decelerate"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn03/Decelerate" to="Track/TrackLocations/Turn03" method="_on_Decelerate_area_entered"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn03/Accelerate" to="Track/TrackLocations/Turn03" method="_on_Accelerate_area_entered"]
-[connection signal="accelerate" from="Track/TrackLocations/Turn04" to="Track/Car" method="_on_Turn_accelerate"]
-[connection signal="decelerate" from="Track/TrackLocations/Turn04" to="Track/Car" method="_on_Turn_decelerate"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn04/Decelerate" to="Track/TrackLocations/Turn04" method="_on_Decelerate_area_entered"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn04/Accelerate" to="Track/TrackLocations/Turn04" method="_on_Accelerate_area_entered"]
-[connection signal="accelerate" from="Track/TrackLocations/Turn05" to="Track/Car" method="_on_Turn_accelerate"]
-[connection signal="decelerate" from="Track/TrackLocations/Turn05" to="Track/Car" method="_on_Turn_decelerate"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn05/Decelerate" to="Track/TrackLocations/Turn05" method="_on_Decelerate_area_entered"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn05/Accelerate" to="Track/TrackLocations/Turn05" method="_on_Accelerate_area_entered"]
-[connection signal="accelerate" from="Track/TrackLocations/Turn06" to="Track/Car" method="_on_Turn_accelerate"]
-[connection signal="decelerate" from="Track/TrackLocations/Turn06" to="Track/Car" method="_on_Turn_decelerate"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn06/Decelerate" to="Track/TrackLocations/Turn06" method="_on_Decelerate_area_entered"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn06/Accelerate" to="Track/TrackLocations/Turn06" method="_on_Accelerate_area_entered"]
-[connection signal="accelerate" from="Track/TrackLocations/Turn07" to="Track/Car" method="_on_Turn_accelerate"]
-[connection signal="decelerate" from="Track/TrackLocations/Turn07" to="Track/Car" method="_on_Turn_decelerate"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn07/Decelerate" to="Track/TrackLocations/Turn07" method="_on_Decelerate_area_entered"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn07/Accelerate" to="Track/TrackLocations/Turn07" method="_on_Accelerate_area_entered"]
-[connection signal="accelerate" from="Track/TrackLocations/Turn08" to="Track/Car" method="_on_Turn_accelerate"]
-[connection signal="decelerate" from="Track/TrackLocations/Turn08" to="Track/Car" method="_on_Turn_decelerate"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn08/Decelerate" to="Track/TrackLocations/Turn08" method="_on_Decelerate_area_entered"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn08/Accelerate" to="Track/TrackLocations/Turn08" method="_on_Accelerate_area_entered"]
-[connection signal="accelerate" from="Track/TrackLocations/Turn09" to="Track/Car" method="_on_Turn_accelerate"]
-[connection signal="decelerate" from="Track/TrackLocations/Turn09" to="Track/Car" method="_on_Turn_decelerate"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn09/Decelerate" to="Track/TrackLocations/Turn09" method="_on_Decelerate_area_entered"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn09/Accelerate" to="Track/TrackLocations/Turn09" method="_on_Accelerate_area_entered"]
-[connection signal="accelerate" from="Track/TrackLocations/Turn10" to="Track/Car" method="_on_Turn_accelerate"]
-[connection signal="decelerate" from="Track/TrackLocations/Turn10" to="Track/Car" method="_on_Turn_decelerate"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn10/Decelerate" to="Track/TrackLocations/Turn10" method="_on_Decelerate_area_entered"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn10/Accelerate" to="Track/TrackLocations/Turn10" method="_on_Accelerate_area_entered"]
-[connection signal="accelerate" from="Track/TrackLocations/Turn11" to="Track/Car" method="_on_Turn_accelerate"]
-[connection signal="decelerate" from="Track/TrackLocations/Turn11" to="Track/Car" method="_on_Turn_decelerate"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn11/Decelerate" to="Track/TrackLocations/Turn11" method="_on_Decelerate_area_entered"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn11/Accelerate" to="Track/TrackLocations/Turn11" method="_on_Accelerate_area_entered"]
-[connection signal="accelerate" from="Track/TrackLocations/Turn12" to="Track/Car" method="_on_Turn_accelerate"]
-[connection signal="decelerate" from="Track/TrackLocations/Turn12" to="Track/Car" method="_on_Turn_decelerate"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn12/Decelerate" to="Track/TrackLocations/Turn12" method="_on_Decelerate_area_entered"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn12/Accelerate" to="Track/TrackLocations/Turn12" method="_on_Accelerate_area_entered"]
-[connection signal="accelerate" from="Track/TrackLocations/Turn13" to="Track/Car" method="_on_Turn_accelerate"]
-[connection signal="decelerate" from="Track/TrackLocations/Turn13" to="Track/Car" method="_on_Turn_decelerate"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn13/Decelerate" to="Track/TrackLocations/Turn13" method="_on_Decelerate_area_entered"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn13/Accelerate" to="Track/TrackLocations/Turn13" method="_on_Accelerate_area_entered"]
-[connection signal="accelerate" from="Track/TrackLocations/Turn14" to="Track/Car" method="_on_Turn_accelerate"]
-[connection signal="decelerate" from="Track/TrackLocations/Turn14" to="Track/Car" method="_on_Turn_decelerate"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn14/Decelerate" to="Track/TrackLocations/Turn14" method="_on_Decelerate_area_entered"]
-[connection signal="area_entered" from="Track/TrackLocations/Turn14/Accelerate" to="Track/TrackLocations/Turn14" method="_on_Accelerate_area_entered"]
-[connection signal="PittingIntent" from="Track/Car" to="CanvasLayer/PanelContainer2/RichTextLabel" method="_on_Update"]
-[connection signal="SpeedUpdate" from="Track/Car" to="CanvasLayer/PanelContainer/RichTextLabel" method="_on_Update"]
-[connection signal="timeout" from="CanvasLayer/Timer" to="Track/Car" method="_on_Race_Start"]
-[connection signal="pressed" from="CanvasLayer/CallToPit" to="Track/Car" method="_on_CallToPit_pressed"]

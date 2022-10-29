@@ -15,16 +15,16 @@ var raceTimeElapsed: int
 # audio variables
 var hasInitializedAudio: bool = false
 
-
 var default_race_options: Dictionary = {
-	"track": "Hungaroring",
-	"carCount": 8,
+	"track": "Default_Circuit",
+	"carCount": 4,
 	"raceType": "Circuit",
 	"raceLaps": 15,
 	"raceMaxLength": 10.0,
 }
 
 func _init_FMOD():
+	
 	if (hasInitializedAudio == false):
 		
 		# set up FMOD
