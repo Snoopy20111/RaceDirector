@@ -42,7 +42,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "TrackDataMapping",
 "language": "GDScript",
-"path": "res://TrackDataMapping.gd"
+"path": "res://Scripts/TrackDataMapping.gd"
 } ]
 _global_script_class_icons={
 "FmodNative": "",

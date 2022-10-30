@@ -3,26 +3,26 @@ class_name TrackDataMapping
 
 # Individual Tracks
 const Default_Track: Dictionary = {
-	"name": "Default Track",
+	"display_name": "Default Track",
 	"path": "res://Scenes/Tracks/StartYourEngines.tscn",
 	"maxCars": 6,
 	"isListed": false
 }
 const Hungaroring: Dictionary = {
-	"name": "Hungaroring",
+	"display_name": "Hungaroring",
 	"path": "res://Scenes/Tracks/StartYourEngines.tscn",
 	"maxCars": 12,
 	"isListed": true
 }
 const Silverstone: Dictionary = {
-	"name": "Silverstone",
+	"display_name": "Silverstone",
 	"path": "res://Scenes/Tracks/StartYourEngines.tscn",
 	"maxCars": 12,
 	"isListed": true
 }
 
 # Collected Dictionary
-const list: Dictionary = {
+const full_list: Dictionary = {
 	"Default_Track": Default_Track,
 	"Hungaroring": Hungaroring,
 	"Silverstone": Silverstone
@@ -30,17 +30,25 @@ const list: Dictionary = {
 
 # Getter functions
 static func _get_track_data(trackName: String) -> Dictionary:
-	return list.get(trackName)
+	return full_list.get(trackName)
 
 static func _get_name(trackName: String) -> String:
-	return list.get(trackName).get("name")
+	return full_list.get(trackName).get("display_name")
 
 static func _get_path(trackName: String) -> String:
-	return list.get(trackName).get("path")
+	return full_list.get(trackName).get("path")
 
 static func _get_maxCars(trackName: String) -> int:
-	return list.get(trackName).get("maxCars")
+	return full_list.get(trackName).get("maxCars")
 
 static func _get_isListed(trackName: String) -> bool:
-	return list.get(trackName).get("isListed")
+	return full_list.get(trackName).get("isListed")
 
+static func _get_playable_list() -> Array:
+	var clean_list = full_list
+	var clean_array = clean_list.keys()
+	for i in clean_array:
+		#filter out the ones we don't want
+		if (!clean_list[i]["isListed"]):
+			clean_list.erase(i)
+	return clean_list.keys()
