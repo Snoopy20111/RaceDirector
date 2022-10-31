@@ -46,7 +46,6 @@ margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 6 )
 extraWidth = 100
-animSpeed = 1.1
 
 [node name="Main" type="Control" parent="Menus"]
 margin_right = 40.0
@@ -239,7 +238,7 @@ margin_top = 77.0
 margin_right = 712.0
 margin_bottom = 134.0
 leftText = "Cars:"
-minValue = 1
+minValue = 2
 maxValue = 12
 
 [node name="HSeparator" type="HSeparator" parent="Menus/RaceDetails/MarginContainer/VBoxContainer"]
@@ -280,5 +279,6 @@ one_shot = true
 [connection signal="pressed" from="Menus/Main/MarginContainer/VBoxContainer/Start" to="Menus" method="move_left"]
 [connection signal="pressed" from="Menus/Main/MarginContainer/VBoxContainer/Options" to="Menus" method="move_right"]
 [connection signal="pressed" from="Menus/Options/MarginContainer/VBoxContainer/Back" to="Menus" method="move_left"]
+[connection signal="NewTrackRange" from="Menus/RaceDetails/MarginContainer/VBoxContainer/TrackSelect/HorizontalTrackSelect" to="Menus/RaceDetails/MarginContainer/VBoxContainer/SliderWithTextEdit" method="_on_new_Range"]
 [connection signal="pressed" from="Menus/RaceDetails/MarginContainer/VBoxContainer/HBoxContainer/Back" to="Menus" method="move_right"]
 [connection signal="timeout" from="Menus/CanStopInCenterTimer" to="Menus" method="canStopInCenterTimer_ended"]

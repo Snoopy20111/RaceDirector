@@ -5,7 +5,7 @@ extends Control
 onready var windowWidth: float = get_viewport_rect().size.x
 export var extraWidth: int = 50
 onready var totalWidth: int = windowWidth + extraWidth
-export var animSpeed: float = 1.0
+export var animSpeed: float = 1.05
 const AnimCurve = preload("res://Curves/MainMenu_Anim_Curve.tres")
 var lockThreshold: float = 30
 var tempLocation: float = 0

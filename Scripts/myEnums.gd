@@ -1,3 +1,4 @@
+extends Reference
 class_name MyEnums
 
 # Track Enums

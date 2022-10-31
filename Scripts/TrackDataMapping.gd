@@ -17,7 +17,7 @@ const Hungaroring: Dictionary = {
 const Silverstone: Dictionary = {
 	"display_name": "Silverstone",
 	"path": "res://Scenes/Tracks/StartYourEngines.tscn",
-	"maxCars": 12,
+	"maxCars": 8,
 	"isListed": true
 }
 
@@ -45,10 +45,11 @@ static func _get_isListed(trackName: String) -> bool:
 	return full_list.get(trackName).get("isListed")
 
 static func _get_playable_list() -> Array:
-	var clean_list = full_list
-	var clean_array = clean_list.keys()
+	var clean_list := full_list
+	var clean_array := clean_list.keys()
 	for i in clean_array:
 		#filter out the ones we don't want
 		if (!clean_list[i]["isListed"]):
+# warning-ignore:return_value_discarded
 			clean_list.erase(i)
 	return clean_list.keys()
