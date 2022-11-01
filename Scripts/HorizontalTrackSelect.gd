@@ -18,6 +18,7 @@ func _ready():
 		label.text = trackList[0]
 	else:
 		label.text = "Default_Track"
+		GameManager._prerace_set_track(trackList[0])
 
 
 func _on_Left_pressed():
@@ -28,6 +29,7 @@ func _on_Left_pressed():
 	label.text = trackList[currentTrack]
 	emit_signal("NewTrackSelected", trackList[currentTrack])
 	emit_signal("NewTrackRange", 2, TrackDataMapping._get_maxCars(trackList[currentTrack]))
+	GameManager._prerace_set_track(trackList[currentTrack])
 
 
 func _on_Right_pressed():
@@ -38,6 +40,7 @@ func _on_Right_pressed():
 	label.text = trackList[currentTrack]
 	emit_signal("NewTrackSelected", trackList[currentTrack])
 	emit_signal("NewTrackRange", 2, TrackDataMapping._get_maxCars(trackList[currentTrack]))
+	GameManager._prerace_set_track(trackList[currentTrack])
 
 
 func isInBounds(value: int) -> bool:

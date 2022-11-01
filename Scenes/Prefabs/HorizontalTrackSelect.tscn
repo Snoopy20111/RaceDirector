@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/HorizontalTrackSelect.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/RightArrow/RightArrow_Hover.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/RightArrow/RightArrow_Pressed.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/RightArrow/RightArrow_Normal.png" type="Texture" id=4]
+
+[node name="Panel" type="Panel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 584.0
+margin_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource( 1 )
+
+[node name="LeftTextureButton" type="TextureButton" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 4.0
+margin_top = -21.5
+margin_right = 36.0
+margin_bottom = 21.5
+rect_min_size = Vector2( 32, 40 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 2 )
+expand = true
+flip_h = true
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -97.5
+margin_top = -21.5
+margin_right = 97.5
+margin_bottom = 21.5
+text = "Track Name"
+align = 1
+valign = 1
+
+[node name="RightTextureButton" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -36.0
+margin_top = -21.5
+margin_right = -4.0
+margin_bottom = 21.5
+rect_min_size = Vector2( 32, 40 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 2 )
+expand = true
+
+[connection signal="pressed" from="LeftTextureButton" to="." method="_on_Left_pressed"]
+[connection signal="pressed" from="RightTextureButton" to="." method="_on_Right_pressed"]

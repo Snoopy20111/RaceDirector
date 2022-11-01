@@ -24,6 +24,7 @@ func _ready():
 	myLineEdit.placeholder_text = String(maxValue)
 	mySlider.tick_count = int((abs(abs(maxValue+1)-abs(minValue))) / tickDivider)
 
+
 func _on_Slider_value_changed(value) -> void:
 	Count = int(value)
 	emit_signal("CountUpdated", Count)

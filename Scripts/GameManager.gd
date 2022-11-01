@@ -15,13 +15,15 @@ var raceTimeElapsed: int
 # audio variables
 var hasInitializedAudio: bool = false
 
-var default_race_options: Dictionary = {
-	"track": "Default_Circuit",
+var defaultRaceOptions: Dictionary = {
+	"track": "Default_Track",
 	"carCount": 4,
 	"raceType": "Circuit",
 	"raceLaps": 15,
 	"raceMaxLength": 10.0,
 }
+
+var currentRaceOptions: Dictionary = defaultRaceOptions
 
 func _init_FMOD():
 	
@@ -42,3 +44,21 @@ func _init_FMOD():
 		
 		# And make sure we can't do this twice
 		hasInitializedAudio = true
+
+func _prerace_set_track(newTrack: String) -> void:
+	currentRaceOptions.track = newTrack
+
+func _prerace_set_carCount(newValue: int) -> void:
+	currentRaceOptions.carCount = newValue
+
+func _prerace_set_raceType(newRaceType: String) -> void:
+	currentRaceOptions.raceType = newRaceType
+
+func _prerace_set_raceLaps(newLapCount: int) -> void:
+	currentRaceOptions.raceLaps = newLapCount
+
+func _prerace_set_raceMaxLength(newMaxLength: float) -> void:
+	currentRaceOptions.raceMaxLength = newMaxLength
+
+func _reset_race_options() -> void:
+	currentRaceOptions = defaultRaceOptions
