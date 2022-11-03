@@ -81,11 +81,10 @@ shape = SubResource( 3 )
 [node name="TrackLocations" type="Node2D" parent="Track"]
 
 [node name="FinishLine" type="Area2D" parent="Track/TrackLocations"]
-position = Vector2( -2227, 908 )
+position = Vector2( -2304, 908 )
 scale = Vector2( 11, 0.76 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Track/TrackLocations/FinishLine"]
-position = Vector2( -7.00002, 2 )
 shape = SubResource( 4 )
 
 [node name="Turn01" type="Node2D" parent="Track/TrackLocations"]
@@ -460,6 +459,9 @@ shape = SubResource( 5 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="Grid Positions" type="Node2D" parent="Track/TrackLocations"]
+position = Vector2( -2304, 693 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

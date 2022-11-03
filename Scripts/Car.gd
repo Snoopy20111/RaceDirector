@@ -1,40 +1,45 @@
 extends PathFollow2D
+class_name Car
 
 # member variables
-var speedMPH = 0
-var maxSpeed = 240
-var speedMult = 6
-var currentMinSpeed = 100
-var brakingMult = 200
-var idleMult = .1
-var accelMult = 90
-var vOffsetAdder = 0
-var vOffsetSpeedMult = 7
-var vOffsetMagMult = 7
+var carID: int
+
+var speedMPH: float = 0
+var maxSpeed: float = 240
+var speedMult: float = 6
+var currentMinSpeed: float = 100
+var brakingMult: float = 200
+var idleMult: float = .1
+var accelMult: float = 90
+var vOffsetAdder: float = 0
+var vOffsetSpeedMult: float = 7
+var vOffsetMagMult: float = 7
 
 var accelCurve = preload("res://Curves/Acceleration_Curve.tres")
 var brakingCurve = preload("res://Curves/Braking_Curve.tres")
 
-var teamName = "Williams"
-var driverFirstName = "Nicholas"
-var driverLastName = "GOATifi"
-var fadeMode = 0
+var teamName: String = "Williams"
+var driverFirstName: String = "Nicholas"
+var driverLastName: String = "GOATifi"
 
 var willPitNextLap = false
 var chanceOfMalfunction = 0.0000
-var currentCarState = MyEnums.CAR_STATE.RACE_START
-var currentDrivingState = MyEnums.DRIVING_STATE.IDLING
-var currentDriverState =  MyEnums.DRIVER_STATE.FOCUSED
+var currentCarState: int = Enums.CAR_STATE.RACE_START
+var currentDrivingState: int = Enums.DRIVING_STATE.IDLING
+var currentDriverState =  Enums.DRIVER_STATE.FOCUSED
 
 signal SpeedUpdate(speed)
 signal PittingIntent(pitIntentString)
 signal CarState(raceStateString)
 signal DrivingState(drivingStateString)
-# signal DriverState(driverStateString)
 
 # Called when the node enters the scene tree for the first time.
 # func _ready():
 # 	pass
+
+func _init_car(newID: int):
+	carID = newID
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,15 +47,15 @@ func _process(delta):
 	# Malfunctions
 #	if (randf() < chanceOfMalfunction):
 #		print("Malfunction!")
-#		currentCarState = MyEnums.CAR_STATE.MALFUNCTIONING
-#		currentDrivingState = MyEnums.DRIVING_STATE.IDLING
+#		currentCarState = RaceEnums.CAR_STATE.MALFUNCTIONING
+#		currentDrivingState = RaceEnums.DRIVING_STATE.IDLING
 	
 	# Accelerations
-	if (currentCarState == MyEnums.CAR_STATE.ON_TRACK):
+	if (currentCarState == Enums.CAR_STATE.ON_TRACK):
 		match(currentDrivingState):
-			MyEnums.DRIVING_STATE.ACCELERATING:
+			Enums.DRIVING_STATE.ACCELERATING:
 				speedMPH += (delta * accelMult * accelCurve.interpolate(speedMPH / maxSpeed))
-			MyEnums.DRIVING_STATE.BRAKING:
+			Enums.DRIVING_STATE.BRAKING:
 				if (speedMPH >= currentMinSpeed):
 					speedMPH -= (delta * brakingMult)
 			_:
@@ -60,8 +65,6 @@ func _process(delta):
 	offset += (speedMPH * delta * speedMult)
 	vOffsetAdder = vOffsetAdder + delta
 	v_offset = sin(vOffsetAdder * vOffsetSpeedMult) * vOffsetMagMult * (speedMPH / maxSpeed)
-	
-	updateUI()
 
 
 func _on_CallToPit_pressed():
@@ -72,20 +75,17 @@ func _on_CallToPit_pressed():
 	emit_signal("PittingIntent", willPitNextLap)
 
 func _on_Turn_accelerate():
-	currentDrivingState = MyEnums.DRIVING_STATE.ACCELERATING
+	currentDrivingState = Enums.DRIVING_STATE.ACCELERATING
 	emit_signal("DrivingState", str(currentDrivingState))
 
 func _on_Turn_decelerate(minimumSpeed):
-	currentDrivingState = MyEnums.DRIVING_STATE.BRAKING
+	currentDrivingState = Enums.DRIVING_STATE.BRAKING
 	currentMinSpeed = minimumSpeed
 	emit_signal("DrivingState", str(currentDrivingState))
 
 func _on_Race_Start():
-	print("Race Start!")
-	currentCarState = MyEnums.CAR_STATE.ON_TRACK
-	currentDrivingState = MyEnums.DRIVING_STATE.ACCELERATING
+	print("Go!")
+	currentCarState = Enums.CAR_STATE.ON_TRACK
+	currentDrivingState = Enums.DRIVING_STATE.ACCELERATING
 	emit_signal("CarState", str(currentCarState))
 	emit_signal("DrivingState", str(currentDrivingState))
-
-func updateUI():
-	pass

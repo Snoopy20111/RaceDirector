@@ -20,23 +20,23 @@ func _unhandled_input(event):
 		if event.is_pressed():
 			match event.button_index:
 				1, 3:  #left or middle mouse
-					movement_type = MyEnums.CAM_MOVE_STATE.DRAG
+					movement_type = Enums.CAM_MOVE_STATE.DRAG
 					mouse_start_pos = event.position
 					screen_start_position = position
 					dragging = true
 				2:    #right mouse
-					movement_type = MyEnums.CAM_MOVE_STATE.ZOOM
+					movement_type = Enums.CAM_MOVE_STATE.ZOOM
 					mouse_start_pos = event.position
 					screen_start_position = position
 					dragging = true
 					last_mouse_pos = event.position
 				4:    #scroll up
-					movement_type = MyEnums.CAM_MOVE_STATE.SCROLL
+					movement_type = Enums.CAM_MOVE_STATE.SCROLL
 					zoom.x -= scroll_step * zoomCurve.interpolate(zoom.x / max_zoom)
 					zoom.y -= scroll_step * zoomCurve.interpolate(zoom.y / max_zoom)
 					limitZoom()
 				5:    #scroll down
-					movement_type = MyEnums.CAM_MOVE_STATE.SCROLL
+					movement_type = Enums.CAM_MOVE_STATE.SCROLL
 					zoom.x += scroll_step * zoomCurve.interpolate(zoom.x / max_zoom)
 					zoom.y += scroll_step * zoomCurve.interpolate(zoom.y / max_zoom)
 					limitZoom()
@@ -44,10 +44,10 @@ func _unhandled_input(event):
 			dragging = false
 	elif event is InputEventMouseMotion and dragging:
 		match movement_type:
-			MyEnums.CAM_MOVE_STATE.DRAG:
+			Enums.CAM_MOVE_STATE.DRAG:
 				position = zoom * (mouse_start_pos - event.position) + screen_start_position
 				limitView()
-			MyEnums.CAM_MOVE_STATE.ZOOM:
+			Enums.CAM_MOVE_STATE.ZOOM:
 				var temp = -(last_mouse_pos.y - event.position.y) / drag_zoom_div
 				var zoom_distance = temp * zoomCurve.interpolate(temp)
 				zoom.x += zoom_distance

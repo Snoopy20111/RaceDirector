@@ -4,13 +4,7 @@ extends Node2D
 # Driver names, driver standings, Race data, Series info, etc.
 # Here ideally is where you can balance and change most things regarding the race as well
 
-var currentTrack: String
-var carCount: int
-var raceType: String
-var raceLaps: int
-var raceLength: float
-var raceMaxLength: int
-var raceTimeElapsed: int
+var raceTimeElapsed: float
 
 # audio variables
 var hasInitializedAudio: bool = false
@@ -18,8 +12,9 @@ var hasInitializedAudio: bool = false
 var defaultRaceOptions: Dictionary = {
 	"track": "Default_Track",
 	"carCount": 4,
-	"raceType": "Circuit",
+	"raceType": Enums.RACE_TYPE.CIRCUIT,
 	"raceLaps": 15,
+	"raceLength": 6.0,
 	"raceMaxLength": 10.0,
 }
 
@@ -51,11 +46,15 @@ func _prerace_set_track(newTrack: String) -> void:
 func _prerace_set_carCount(newValue: int) -> void:
 	currentRaceOptions.carCount = newValue
 
-func _prerace_set_raceType(newRaceType: String) -> void:
+func _prerace_set_raceType(newRaceType: int) -> void:
+	#Only to be used with RaceType enum values
 	currentRaceOptions.raceType = newRaceType
 
 func _prerace_set_raceLaps(newLapCount: int) -> void:
 	currentRaceOptions.raceLaps = newLapCount
+
+func _prerace_set_raceLength(newLength: float) -> void:
+	currentRaceOptions.raceLength = newLength
 
 func _prerace_set_raceMaxLength(newMaxLength: float) -> void:
 	currentRaceOptions.raceMaxLength = newMaxLength

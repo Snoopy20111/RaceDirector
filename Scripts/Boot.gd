@@ -4,7 +4,6 @@ extends Node2D
 export var LogoParade: bool = true
 export var LoadDebugLevel: bool = false
 export var DebugWindowSize: bool = false
-export var DebugLevel: Resource
 export var DebugLevelPath: String = "res://Scenes/Tracks/StartYourEngines.tscn"
 export var DebugWindowDimentions: Vector2 = Vector2(1280, 720)
 
@@ -23,9 +22,7 @@ func _ready():
 	if (LogoParade):
 		SceneManager.change_scene("res://Scenes/UI_Scenes/LogoParade.tscn")
 	elif (LoadDebugLevel):
-		if (DebugLevel != null):
-			SceneManager.change_scene(DebugLevel)
-		elif (DebugLevelPath != null):
+		if (DebugLevelPath != null):
 			SceneManager.change_scene(DebugLevelPath)
 	else:
 		SceneManager.change_scene("res://Scenes/UI_Scenes/MainMenu.tscn")

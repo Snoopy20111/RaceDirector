@@ -10,7 +10,7 @@ var LogoAnim: AnimatedSprite
 var NameLabel: Label
 
 var FadeCounter = 0
-export var fade_value = MyEnums.FADE_STATE.PAUSE
+export var fade_value = Enums.FADE_STATE.PAUSE
 
 export var FadeIn_Length = .5
 export var FadeOut_Length = .5
@@ -30,7 +30,7 @@ func _process(delta):
 	
 	
 	match (fade_value):
-		MyEnums.FADE_STATE.IN:
+		Enums.FADE_STATE.IN:
 			# add to alpha value, and run fade counter value through the fade curve
 			FadeCounter += delta
 			LogoAnim.modulate.a = LogoFade_Curve.interpolate(FadeCounter / FadeIn_Length)
@@ -38,7 +38,7 @@ func _process(delta):
 			if (FadeCounter >= 1):
 				fade_value = MyEnums.FADE_STATE.PAUSE
 				FadeCounter = 0
-		MyEnums.FADE_STATE.OUT:
+		Enums.FADE_STATE.OUT:
 			# add to alpha value, and go in reverse down through the fade curve values
 			FadeCounter += delta
 			LogoAnim.modulate.a = LogoFade_Curve.interpolate(1 - (FadeCounter / FadeOut_Length))

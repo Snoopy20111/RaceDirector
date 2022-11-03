@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "PathFollow2D",
+"class": "Car",
+"language": "GDScript",
+"path": "res://Scripts/Car.gd"
+}, {
+"base": "Reference",
+"class": "Enums",
+"language": "GDScript",
+"path": "res://Scripts/myEnums.gd"
+}, {
 "base": "",
 "class": "FmodNative",
 "language": "NativeScript",
@@ -18,11 +28,6 @@ _global_script_classes=[ {
 "class": "Knob",
 "language": "GDScript",
 "path": "res://addons/knob/Knob.gd"
-}, {
-"base": "Reference",
-"class": "MyEnums",
-"language": "GDScript",
-"path": "res://Scripts/myEnums.gd"
 }, {
 "base": "Object",
 "class": "SceneManagerConstants",
@@ -45,9 +50,10 @@ _global_script_classes=[ {
 "path": "res://Scripts/TrackDataMapping.gd"
 } ]
 _global_script_class_icons={
+"Car": "",
+"Enums": "",
 "FmodNative": "",
 "Knob": "res://addons/knob/icon_knob.svg",
-"MyEnums": "",
 "SceneManagerConstants": "",
 "ShakeCamera": "",
 "ShakeCamera2D": "",

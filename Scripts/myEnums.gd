@@ -1,5 +1,8 @@
 extends Reference
-class_name MyEnums
+class_name Enums
+
+# Race Setup Enums
+enum RACE_TYPE {CIRCUIT, TIMED}
 
 # Track Enums
 enum WEATHER_STATE {SUNNY, CLOUDY, RAIN, FOG, THUNDERSTORM}
