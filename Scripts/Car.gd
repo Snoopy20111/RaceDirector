@@ -84,7 +84,6 @@ func _on_Turn_decelerate(minimumSpeed):
 	emit_signal("DrivingState", str(currentDrivingState))
 
 func _on_Race_Start():
-	print("Go!")
 	currentCarState = Enums.CAR_STATE.ON_TRACK
 	currentDrivingState = Enums.DRIVING_STATE.ACCELERATING
 	emit_signal("CarState", str(currentCarState))

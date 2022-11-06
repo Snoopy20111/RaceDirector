@@ -471,11 +471,19 @@ one_shot = true
 autostart = true
 
 [node name="CallToPit" type="Button" parent="CanvasLayer"]
-margin_left = 40.0
-margin_top = 115.0
-margin_right = 262.0
-margin_bottom = 172.0
+margin_left = 98.0
+margin_top = 177.0
+margin_right = 320.0
+margin_bottom = 234.0
 text = "Call to Pit"
+
+[node name="Start Race" type="Button" parent="CanvasLayer"]
+margin_left = 98.0
+margin_top = 104.0
+margin_right = 320.0
+margin_bottom = 161.0
+text = "Start Race"
 
 [connection signal="area_entered" from="Track/PitLane/PitEntrance" to="Track" method="_on_PitEntrance_area_entered" flags=3]
 [connection signal="area_entered" from="Track/PitLane/PitExit" to="Track" method="_on_PitExit_area_entered" flags=3]
+[connection signal="pressed" from="CanvasLayer/Start Race" to="Track" method="_on_Race_Start"]

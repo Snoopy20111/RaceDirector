@@ -5,7 +5,7 @@ const zoomCurve = preload("res://Curves/Zoom_Curve.tres")
 # Declare member variables here. Examples:
 var mouse_start_pos: Vector2
 var screen_start_position: Vector2
-var movement_type
+var movement_type: int
 var last_mouse_pos: Vector2
 
 var scroll_step: float = 0.34

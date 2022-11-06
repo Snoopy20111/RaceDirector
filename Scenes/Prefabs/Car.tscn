@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Car.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/icon.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/NorthPointer.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/CarNameLabel.gd" type="Script" id=4]
+[ext_resource path="res://UI/Fonts/Menu_Tiny.tres" type="DynamicFont" id=5]
+[ext_resource path="res://UI/Menu.tres" type="Theme" id=6]
 
 [sub_resource type="CapsuleShape2D" id=5]
 radius = 25.0037
@@ -40,7 +42,6 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="NorthPointer"]
-visible = false
 margin_left = 28.0
 margin_top = 30.0
 margin_right = 128.0
@@ -49,14 +50,28 @@ rect_scale = Vector2( 4, 4 )
 color = Color( 0, 0, 0, 1 )
 script = ExtResource( 4 )
 
-[node name="Label" type="Label" parent="NorthPointer/ColorRect"]
+[node name="ReferenceRect" type="ReferenceRect" parent="NorthPointer/ColorRect"]
+margin_left = 1.0
+margin_right = 104.0
+margin_bottom = 85.0
+
+[node name="Label" type="Label" parent="NorthPointer/ColorRect/ReferenceRect"]
 anchor_right = 1.0
-anchor_bottom = 1.0
+margin_bottom = 50.0
+theme = ExtResource( 6 )
+custom_fonts/font = ExtResource( 5 )
 text = "Nicholas Goatifi"
 align = 1
-valign = 1
 autowrap = true
 clip_text = true
+
+[node name="CallToPit" type="Button" parent="NorthPointer/ColorRect/ReferenceRect"]
+margin_left = 0.5
+margin_top = 55.0
+margin_right = 101.5
+margin_bottom = 84.0
+custom_fonts/font = ExtResource( 5 )
+text = "Call to Pit"
 
 [connection signal="mouse_entered" from="MouseDetector" to="NorthPointer/ColorRect" method="_on_MouseDetector_mouse_entered"]
 [connection signal="mouse_exited" from="MouseDetector" to="NorthPointer/ColorRect" method="_on_MouseDetector_mouse_exited"]

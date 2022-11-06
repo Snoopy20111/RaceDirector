@@ -39,6 +39,9 @@ func _init_FMOD():
 		
 		# And make sure we can't do this twice
 		hasInitializedAudio = true
+	
+
+### Utilities ###
 
 func _prerace_set_track(newTrack: String) -> void:
 	currentRaceOptions.track = newTrack

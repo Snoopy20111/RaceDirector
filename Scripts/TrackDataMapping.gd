@@ -3,7 +3,7 @@ class_name TrackDataMapping
 
 # Individual Tracks
 const Default_Track: Dictionary = {
-	"display_name": "Default Track",
+	"display_name": "Default_Track",
 	"path": "res://Scenes/Tracks/StartYourEngines.tscn",
 	"maxCars": 6,
 	"isListed": false
@@ -53,3 +53,13 @@ static func _get_playable_list() -> Array:
 # warning-ignore:return_value_discarded
 			clean_list.erase(i)
 	return clean_list.keys()
+
+static func _get_trackName_from_path(path: String) -> String:
+	var returnVal: String
+	for i in full_list:
+		if (path == full_list[i].path):
+			returnVal = full_list[i].display_name
+	if (returnVal != "" or null):
+		return returnVal
+	else:
+		return "trackName not found"

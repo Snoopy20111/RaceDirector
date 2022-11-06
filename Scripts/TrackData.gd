@@ -6,13 +6,23 @@ var carRef: Array
 onready var pitLaneRef = $PitLane
 onready var pitEntranceRef = $PitLane/PitEntrance
 onready var pitExitRef = $PitLane/PitExit
-var rejoinPoint
+
+# rejoin at closest offset to the last point of the pit lane
+onready var rejoinPoint: float = self.curve.get_closest_offset(pitLaneRef.curve.get_point_position(pitLaneRef.curve.get_point_count() - 1))
 
 var isPitOpen: bool = true
 var isPitExitOpen: bool = true
+export var trackNameString: String
 
-# Called when the node enters the scene tree for the first time.
+var gridPosition: Array
+var gridPositionOffset: float = 60
+
+
 func _ready():
+	
+	gridPosition.resize(TrackDataMapping._get_maxCars(GameManager.currentRaceOptions.get("track")))
+	for i in gridPosition.size():
+		gridPosition[i] = -i * gridPositionOffset
 	
 	#Instantiate number of cars, each carying a unique ID
 	carRef.resize(GameManager.currentRaceOptions.get("carCount"))
@@ -20,10 +30,7 @@ func _ready():
 		carRef[i] = carScene.instance()
 		carRef[i]._init_car(i)
 		add_child(carRef[i])
-		
-	
-	# unholy calculation to get the offset of the last point on the Pit Lane
-	rejoinPoint = self.curve.get_closest_offset(pitLaneRef.curve.get_point_position(pitLaneRef.curve.get_point_count() - 1))
+		carRef[i].offset = gridPosition[i]
 
 
 func _on_PitEntrance_area_entered(area):
@@ -47,6 +54,11 @@ func _on_PitExit_area_entered(area):
 		reparent(carRef[carID], self)
 		carRef[carID].offset = rejoinPoint
 
+
+func _on_Race_Start():
+	# For each active car, set to accelerating
+	for i in carRef.size():
+		carRef[i]._on_Race_Start() as Car
 
 ########### Utility Functions ###########
 

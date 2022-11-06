@@ -2,8 +2,8 @@ extends ColorRect
 
 
 # Declare member variables here. Examples:
-var isCarMoused
-var isSelfMoused
+var isCarMoused: bool
+var isSelfMoused: bool
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
