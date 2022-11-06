@@ -15,6 +15,17 @@ var vOffsetAdder: float = 0
 var vOffsetSpeedMult: float = 7
 var vOffsetMagMult: float = 7
 
+var rng = RandomNumberGenerator.new()
+
+var maxSpeedVariance: float
+var maxSpeedVarianceRange: float = 10
+var currentMinSpeedVariance: float
+var currentMinSpeedVarianceRange: float = 4
+var brakingMultVariance: float
+var brakingMultVarianceRange: float = 10
+var accelMultVariance: float
+var accelMultVarianceRange: float = 5
+
 var accelCurve = preload("res://Curves/Acceleration_Curve.tres")
 var brakingCurve = preload("res://Curves/Braking_Curve.tres")
 
@@ -39,7 +50,8 @@ signal DrivingState(drivingStateString)
 
 func _init_car(newID: int):
 	carID = newID
-	pass
+	rng.randomize()
+	randomize_CarStats()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -56,7 +68,7 @@ func _process(delta):
 			Enums.DRIVING_STATE.ACCELERATING:
 				speedMPH += (delta * accelMult * accelCurve.interpolate(speedMPH / maxSpeed))
 			Enums.DRIVING_STATE.BRAKING:
-				if (speedMPH >= currentMinSpeed):
+				if (speedMPH >= (currentMinSpeed)):
 					speedMPH -= (delta * brakingMult)
 			_:
 				pass
@@ -67,24 +79,45 @@ func _process(delta):
 	v_offset = sin(vOffsetAdder * vOffsetSpeedMult) * vOffsetMagMult * (speedMPH / maxSpeed)
 
 
-func _on_CallToPit_pressed():
+func _on_CallToPit_pressed() -> void:
 	if (willPitNextLap == true):
 		willPitNextLap = false
 	elif (willPitNextLap == false):
 		willPitNextLap = true
+	
 	emit_signal("PittingIntent", willPitNextLap)
 
-func _on_Turn_accelerate():
+func _on_Turn_accelerate() -> void:
 	currentDrivingState = Enums.DRIVING_STATE.ACCELERATING
+	
 	emit_signal("DrivingState", str(currentDrivingState))
 
-func _on_Turn_decelerate(minimumSpeed):
+func _on_Turn_decelerate(minimumSpeed) -> void:
 	currentDrivingState = Enums.DRIVING_STATE.BRAKING
-	currentMinSpeed = minimumSpeed
+	
+	currentMinSpeedVariance += rng.randf_range(-currentMinSpeedVarianceRange, currentMinSpeedVarianceRange)
+	currentMinSpeed = minimumSpeed + currentMinSpeedVariance
+	
 	emit_signal("DrivingState", str(currentDrivingState))
 
-func _on_Race_Start():
+func _on_Race_Start() -> void:
 	currentCarState = Enums.CAR_STATE.ON_TRACK
 	currentDrivingState = Enums.DRIVING_STATE.ACCELERATING
+	
 	emit_signal("CarState", str(currentCarState))
 	emit_signal("DrivingState", str(currentDrivingState))
+
+
+func randomize_CarStats():
+	# adds random variance to Max Speed, current Min Speed, Braking Mult, Accel Mult, Chance of Malfunction
+	maxSpeedVariance += rng.randf_range(-maxSpeedVarianceRange, maxSpeedVarianceRange)
+	maxSpeed += maxSpeedVariance
+	
+	currentMinSpeedVariance += rng.randf_range(-currentMinSpeedVarianceRange, currentMinSpeedVarianceRange)
+	currentMinSpeed += currentMinSpeedVariance
+	
+	brakingMultVariance += rng.randf_range(-brakingMultVarianceRange, brakingMultVarianceRange)
+	brakingMult += brakingMultVariance
+	
+	accelMultVariance += rng.randf_range(-accelMultVarianceRange, accelMultVarianceRange)
+	accelMult += accelMultVariance

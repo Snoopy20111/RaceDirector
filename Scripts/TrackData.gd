@@ -60,6 +60,14 @@ func _on_Race_Start():
 	for i in carRef.size():
 		carRef[i]._on_Race_Start() as Car
 
+
+func on_turn_decelerate(identifier, minimumSpeed):
+	carRef[identifier]._on_Turn_decelerate(minimumSpeed)
+
+func on_turn_accelerate(identifier):
+	carRef[identifier]._on_Turn_accelerate()
+
+
 ########### Utility Functions ###########
 
 func reparent(child: Node, new_parent: Node):

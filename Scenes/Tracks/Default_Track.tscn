@@ -34,19 +34,6 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="InRaceCamera" type="Camera2D" parent="."]
-position = Vector2( -1, 0 )
-current = true
-zoom = Vector2( 5, 5 )
-limit_left = -7000
-limit_top = -7000
-limit_right = 7000
-limit_bottom = 7000
-limit_smoothed = true
-smoothing_enabled = true
-smoothing_speed = 10.0
-script = ExtResource( 6 )
-
 [node name="Track" type="Path2D" parent="."]
 curve = SubResource( 1 )
 script = ExtResource( 4 )
@@ -460,8 +447,18 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Grid Positions" type="Node2D" parent="Track/TrackLocations"]
-position = Vector2( -2304, 693 )
+[node name="InRaceCamera" type="Camera2D" parent="."]
+position = Vector2( -1, 0 )
+current = true
+zoom = Vector2( 5, 5 )
+limit_left = -7000
+limit_top = -7000
+limit_right = 7000
+limit_bottom = 7000
+limit_smoothed = true
+smoothing_enabled = true
+smoothing_speed = 10.0
+script = ExtResource( 6 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -486,4 +483,32 @@ text = "Start Race"
 
 [connection signal="area_entered" from="Track/PitLane/PitEntrance" to="Track" method="_on_PitEntrance_area_entered" flags=3]
 [connection signal="area_entered" from="Track/PitLane/PitExit" to="Track" method="_on_PitExit_area_entered" flags=3]
+[connection signal="accelerate" from="Track/TrackLocations/Turn01" to="Track" method="on_turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn01" to="Track" method="on_turn_decelerate"]
+[connection signal="accelerate" from="Track/TrackLocations/Turn02" to="Track" method="on_turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn02" to="Track" method="on_turn_decelerate"]
+[connection signal="accelerate" from="Track/TrackLocations/Turn03" to="Track" method="on_turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn03" to="Track" method="on_turn_decelerate"]
+[connection signal="accelerate" from="Track/TrackLocations/Turn04" to="Track" method="on_turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn04" to="Track" method="on_turn_decelerate"]
+[connection signal="accelerate" from="Track/TrackLocations/Turn05" to="Track" method="on_turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn05" to="Track" method="on_turn_decelerate"]
+[connection signal="accelerate" from="Track/TrackLocations/Turn06" to="Track" method="on_turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn06" to="Track" method="on_turn_decelerate"]
+[connection signal="accelerate" from="Track/TrackLocations/Turn07" to="Track" method="on_turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn07" to="Track" method="on_turn_decelerate"]
+[connection signal="accelerate" from="Track/TrackLocations/Turn08" to="Track" method="on_turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn08" to="Track" method="on_turn_decelerate"]
+[connection signal="accelerate" from="Track/TrackLocations/Turn09" to="Track" method="on_turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn09" to="Track" method="on_turn_decelerate"]
+[connection signal="accelerate" from="Track/TrackLocations/Turn10" to="Track" method="on_turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn10" to="Track" method="on_turn_decelerate"]
+[connection signal="accelerate" from="Track/TrackLocations/Turn11" to="Track" method="on_turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn11" to="Track" method="on_turn_decelerate"]
+[connection signal="accelerate" from="Track/TrackLocations/Turn12" to="Track" method="on_turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn12" to="Track" method="on_turn_decelerate"]
+[connection signal="accelerate" from="Track/TrackLocations/Turn13" to="Track" method="on_turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn13" to="Track" method="on_turn_decelerate"]
+[connection signal="accelerate" from="Track/TrackLocations/Turn14" to="Track" method="on_turn_accelerate"]
+[connection signal="decelerate" from="Track/TrackLocations/Turn14" to="Track" method="on_turn_decelerate"]
 [connection signal="pressed" from="CanvasLayer/Start Race" to="Track" method="_on_Race_Start"]

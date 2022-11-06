@@ -35,13 +35,11 @@ rotation = 1.5708
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseDetector"]
 shape = SubResource( 6 )
 
-[node name="NorthPointer" type="Node2D" parent="."]
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
 
-[node name="ColorRect" type="ColorRect" parent="NorthPointer"]
+[node name="ColorRect" type="ColorRect" parent="Control"]
 margin_left = 28.0
 margin_top = 30.0
 margin_right = 128.0
@@ -50,12 +48,12 @@ rect_scale = Vector2( 4, 4 )
 color = Color( 0, 0, 0, 1 )
 script = ExtResource( 4 )
 
-[node name="ReferenceRect" type="ReferenceRect" parent="NorthPointer/ColorRect"]
+[node name="ReferenceRect" type="ReferenceRect" parent="Control/ColorRect"]
 margin_left = 1.0
 margin_right = 104.0
 margin_bottom = 85.0
 
-[node name="Label" type="Label" parent="NorthPointer/ColorRect/ReferenceRect"]
+[node name="Label" type="Label" parent="Control/ColorRect/ReferenceRect"]
 anchor_right = 1.0
 margin_bottom = 50.0
 theme = ExtResource( 6 )
@@ -65,7 +63,7 @@ align = 1
 autowrap = true
 clip_text = true
 
-[node name="CallToPit" type="Button" parent="NorthPointer/ColorRect/ReferenceRect"]
+[node name="CallToPit" type="Button" parent="Control/ColorRect/ReferenceRect"]
 margin_left = 0.5
 margin_top = 55.0
 margin_right = 101.5
@@ -73,5 +71,11 @@ margin_bottom = 84.0
 custom_fonts/font = ExtResource( 5 )
 text = "Call to Pit"
 
-[connection signal="mouse_entered" from="MouseDetector" to="NorthPointer/ColorRect" method="_on_MouseDetector_mouse_entered"]
-[connection signal="mouse_exited" from="MouseDetector" to="NorthPointer/ColorRect" method="_on_MouseDetector_mouse_exited"]
+[node name="NorthPointer" type="Node2D" parent="."]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[connection signal="mouse_entered" from="MouseDetector" to="Control/ColorRect" method="_on_MouseDetector_mouse_entered"]
+[connection signal="mouse_exited" from="MouseDetector" to="Control/ColorRect" method="_on_MouseDetector_mouse_exited"]
