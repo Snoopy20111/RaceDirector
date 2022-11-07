@@ -70,8 +70,6 @@ func _process(delta):
 			Enums.DRIVING_STATE.BRAKING:
 				if (speedMPH >= (currentMinSpeed)):
 					speedMPH -= (delta * brakingMult)
-			_:
-				pass
 
 	emit_signal("SpeedUpdate", speedMPH)
 	offset += (speedMPH * delta * speedMult)
@@ -84,26 +82,24 @@ func _on_CallToPit_pressed() -> void:
 		willPitNextLap = false
 	elif (willPitNextLap == false):
 		willPitNextLap = true
-	
 	emit_signal("PittingIntent", willPitNextLap)
+
 
 func _on_Turn_accelerate() -> void:
 	currentDrivingState = Enums.DRIVING_STATE.ACCELERATING
-	
 	emit_signal("DrivingState", str(currentDrivingState))
+
 
 func _on_Turn_decelerate(minimumSpeed) -> void:
 	currentDrivingState = Enums.DRIVING_STATE.BRAKING
-	
 	currentMinSpeedVariance += rng.randf_range(-currentMinSpeedVarianceRange, currentMinSpeedVarianceRange)
 	currentMinSpeed = minimumSpeed + currentMinSpeedVariance
-	
 	emit_signal("DrivingState", str(currentDrivingState))
+
 
 func _on_Race_Start() -> void:
 	currentCarState = Enums.CAR_STATE.ON_TRACK
 	currentDrivingState = Enums.DRIVING_STATE.ACCELERATING
-	
 	emit_signal("CarState", str(currentCarState))
 	emit_signal("DrivingState", str(currentDrivingState))
 

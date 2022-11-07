@@ -58,7 +58,7 @@ func _on_PitExit_area_entered(area):
 func _on_Race_Start():
 	# For each active car, set to accelerating
 	for i in carRef.size():
-		carRef[i]._on_Race_Start() as Car
+		carRef[i]._on_Race_Start()
 
 
 func on_turn_decelerate(identifier, minimumSpeed):
