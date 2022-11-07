@@ -4,19 +4,19 @@ class_name TrackDataMapping
 # Individual Tracks
 const Default_Track: Dictionary = {
 	"display_name": "Default_Track",
-	"path": "res://Scenes/Tracks/StartYourEngines.tscn",
+	"path": "res://Scenes/Tracks/Default_Track.tscn",
 	"maxCars": 6,
 	"isListed": false
 }
 const Hungaroring: Dictionary = {
 	"display_name": "Hungaroring",
-	"path": "res://Scenes/Tracks/StartYourEngines.tscn",
+	"path": "res://Scenes/Tracks/Default_Track.tscn",
 	"maxCars": 12,
 	"isListed": true
 }
 const Silverstone: Dictionary = {
 	"display_name": "Silverstone",
-	"path": "res://Scenes/Tracks/StartYourEngines.tscn",
+	"path": "res://Scenes/Tracks/Default_Track.tscn",
 	"maxCars": 8,
 	"isListed": true
 }

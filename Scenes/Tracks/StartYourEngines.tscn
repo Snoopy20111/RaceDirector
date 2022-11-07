@@ -500,9 +500,9 @@ defaultValue = "..."
 
 [node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer"]
 margin_left = 37.0
-margin_top = 81.0
+margin_top = 175.0
 margin_right = 237.0
-margin_bottom = 110.0
+margin_bottom = 321.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/PanelContainer2"]
 margin_left = 7.0
@@ -512,6 +512,9 @@ margin_bottom = 139.0
 text = "Pitting Intent: False"
 fit_content_height = true
 script = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
 title = "Pitting Intent: "
 defaultValue = "False"
 

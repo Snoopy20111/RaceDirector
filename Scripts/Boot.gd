@@ -4,7 +4,7 @@ extends Node2D
 export var LogoParade: bool = true
 export var LoadDebugLevel: bool = false
 export var DebugWindowSize: bool = false
-export var DebugLevelPath: String = "res://Scenes/Tracks/StartYourEngines.tscn"
+export var DebugLevelPath: String = "res://Scenes/Tracks/Default_Track.tscn"
 export var DebugWindowDimentions: Vector2 = Vector2(1280, 720)
 
 # Called when the node enters the scene tree for the first time.
