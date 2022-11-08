@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{f81a0735-e459-4b56-9c3e-112c9eeb138c}">
+		<property name="assetPath">
+			<value>Temp/Kenny_Interface/toggle_003.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.13931972789115646</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{981f374c-d9d3-440f-ae9e-89c04c359ad0}</destination>
+		</relationship>
+	</object>
+</objects>

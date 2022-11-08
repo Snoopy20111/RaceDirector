@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{15fe74e2-f746-4863-8ee1-c067c7677b83}">
+		<property name="assetPath">
+			<value>Temp/Kenny_Interface/confirmation_003.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.32201814058956918</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{981f374c-d9d3-440f-ae9e-89c04c359ad0}</destination>
+		</relationship>
+	</object>
+</objects>
