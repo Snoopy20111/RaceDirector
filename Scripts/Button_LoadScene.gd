@@ -39,4 +39,4 @@ func _ready():
 		TrimmedLoadOptions.erase("animation_name")
 
 func _pressed():
-	SceneManager.change_scene("res://Scenes/Tracks/StartYourEngines.tscn", TrimmedLoadOptions)
+	SceneManager.change_scene(SceneString, TrimmedLoadOptions)

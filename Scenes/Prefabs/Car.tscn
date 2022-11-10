@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Car.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/icon.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scripts/CarNameLabel.gd" type="Script" id=4]
 [ext_resource path="res://UI/Fonts/Menu_Tiny.tres" type="DynamicFont" id=5]
 [ext_resource path="res://UI/Menu.tres" type="Theme" id=6]
+[ext_resource path="res://Scenes/Prefabs/NorthPointerControl.gd" type="Script" id=7]
 
 [sub_resource type="CapsuleShape2D" id=5]
 radius = 25.0037
@@ -37,6 +38,7 @@ shape = SubResource( 6 )
 [node name="Control" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
+script = ExtResource( 7 )
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
 margin_left = 28.0

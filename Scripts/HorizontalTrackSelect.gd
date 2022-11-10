@@ -16,6 +16,7 @@ signal NewTrackRange(newMin, newMax)
 func _ready():
 	if (!trackList.empty()):
 		label.text = trackList[0]
+		GameManager._prerace_set_track(trackList[0])
 	else:
 		label.text = "Default_Track"
 		GameManager._prerace_set_track(trackList[0])

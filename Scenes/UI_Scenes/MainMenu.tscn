@@ -70,7 +70,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Start" type="Button" parent="Menus/Main/MarginContainer/VBoxContainer"]
+[node name="Race" type="Button" parent="Menus/Main/MarginContainer/VBoxContainer"]
 margin_right = 609.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 350, 75 )
@@ -257,6 +257,7 @@ rect_min_size = Vector2( 350, 75 )
 theme = ExtResource( 3 )
 text = "Start"
 script = SubResource( 1 )
+SceneString = "res://Scenes/Tracks/Default_Track.tscn"
 
 [node name="VSeparator" type="VSeparator" parent="Menus/RaceDetails/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 354.0
@@ -275,7 +276,7 @@ text = "Back"
 wait_time = 0.2
 one_shot = true
 
-[connection signal="pressed" from="Menus/Main/MarginContainer/VBoxContainer/Start" to="Menus" method="move_left"]
+[connection signal="pressed" from="Menus/Main/MarginContainer/VBoxContainer/Race" to="Menus" method="move_left"]
 [connection signal="pressed" from="Menus/Main/MarginContainer/VBoxContainer/Options" to="Menus" method="move_right"]
 [connection signal="pressed" from="Menus/Options/MarginContainer/VBoxContainer/Back" to="Menus" method="move_left"]
 [connection signal="pressed" from="Menus/RaceDetails/MarginContainer/VBoxContainer/HBoxContainer/Back" to="Menus" method="move_right"]
