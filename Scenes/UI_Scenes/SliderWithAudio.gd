@@ -10,9 +10,6 @@ func _ready():
 	connect("value_changed", self, "onSliderMove")
 
 
-func _on_GridContainer_CountUpdated(newCount):
-	value = float(newCount)
-
 func onSliderMove(_value: float):
 	Fmod.play_one_shot(sliderMove_FMOD_path, self)
 	print("slider move")

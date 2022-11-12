@@ -23,7 +23,12 @@ export var SceneLoadOptions: Dictionary = {
 	"animation_name_leave": null
 }
 
+export var hovered_FMOD_path: String = "event:/UI/Nav_Mouseover"
+export var unhovered_FMOD_path: String = ""
+export var pressed_FMOD_path: String = "event:/UI/Nav_Accept"
+
 onready var TrimmedLoadOptions = SceneLoadOptions
+
 
 func _ready():
 	if (SharedEasing == true):
@@ -37,6 +42,18 @@ func _ready():
 		TrimmedLoadOptions.erase("animation_name_leave")
 	else:
 		TrimmedLoadOptions.erase("animation_name")
+		
+	self.connect("pressed", self, "onPressed")
+	self.connect("mouse_entered", self, "onHovered")
+	self.connect("mouse_exited", self, "onUnhovered")
+
 
 func _pressed():
 	SceneManager.change_scene(SceneString, TrimmedLoadOptions)
+	Fmod.play_one_shot(pressed_FMOD_path, self)
+
+func onHovered():
+	Fmod.play_one_shot(hovered_FMOD_path, self)
+
+func onUnhovered():
+	Fmod.play_one_shot(unhovered_FMOD_path, self)

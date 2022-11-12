@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/Prefabs/HorizontalTrackSelect.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/AutoResize_ColorRect.gd" type="Script" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Scripts/Button_QuitGame.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/MenuHorizontal.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/Prefabs/SliderWithTextEdit.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/UI_Scenes/ButtonWithSound.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/UI_Scenes/SliderWithAudio.gd" type="Script" id=9]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends \"res://Scripts/Button_LoadScene.gd\"
@@ -48,18 +50,20 @@ script = ExtResource( 6 )
 extraWidth = 100
 
 [node name="Main" type="Control" parent="Menus"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Menus/Main"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 635.5
-margin_top = 424.0
-margin_right = 1244.5
-margin_bottom = 798.0
+margin_left = -304.5
+margin_top = -96.0
+margin_right = 304.5
+margin_bottom = 278.0
+mouse_filter = 1
 theme = ExtResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menus/Main/MarginContainer"]
@@ -76,6 +80,7 @@ margin_bottom = 75.0
 rect_min_size = Vector2( 350, 75 )
 theme = ExtResource( 3 )
 text = "Race"
+script = ExtResource( 8 )
 
 [node name="Options" type="Button" parent="Menus/Main/MarginContainer/VBoxContainer"]
 margin_top = 95.0
@@ -84,6 +89,7 @@ margin_bottom = 170.0
 rect_min_size = Vector2( 350, 75 )
 theme = ExtResource( 3 )
 text = "Options"
+script = ExtResource( 8 )
 
 [node name="Quit" type="Button" parent="Menus/Main/MarginContainer/VBoxContainer"]
 margin_top = 190.0
@@ -103,9 +109,9 @@ QuitOptions = {
 [node name="TextureRect" type="TextureRect" parent="Menus/Main"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = 174.0
+margin_left = -766.0
 margin_top = 151.0
-margin_right = 1706.0
+margin_right = 766.0
 margin_bottom = 333.0
 
 [node name="Label" type="Label" parent="Menus/Main/TextureRect"]
@@ -123,6 +129,7 @@ __meta__ = {
 margin_left = 1920.0
 margin_right = 3840.0
 margin_bottom = 1080.0
+mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Menus/Options"]
 anchor_left = 0.5
@@ -133,6 +140,7 @@ margin_left = -304.5
 margin_top = -96.0
 margin_right = 304.5
 margin_bottom = 278.0
+mouse_filter = 1
 theme = ExtResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menus/Options/MarginContainer"]
@@ -149,6 +157,7 @@ margin_bottom = 75.0
 rect_min_size = Vector2( 350, 75 )
 theme = ExtResource( 3 )
 text = "Options"
+script = ExtResource( 8 )
 
 [node name="Volume" type="HSplitContainer" parent="Menus/Options/MarginContainer/VBoxContainer"]
 margin_top = 95.0
@@ -178,6 +187,7 @@ alignment = 1
 margin_top = 6.0
 margin_right = 451.0
 margin_bottom = 22.0
+script = ExtResource( 9 )
 
 [node name="Back" type="Button" parent="Menus/Options/MarginContainer/VBoxContainer"]
 margin_top = 158.0
@@ -186,21 +196,23 @@ margin_bottom = 233.0
 rect_min_size = Vector2( 350, 75 )
 theme = ExtResource( 3 )
 text = "Back"
+script = ExtResource( 8 )
 
 [node name="RaceDetails" type="Control" parent="Menus"]
 margin_left = -1920.0
-margin_right = -1880.0
-margin_bottom = 40.0
+margin_bottom = 1080.0
+mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Menus/RaceDetails"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 635.5
-margin_top = 424.0
-margin_right = 1244.5
-margin_bottom = 798.0
+margin_left = -304.5
+margin_top = -96.0
+margin_right = 407.5
+margin_bottom = 278.0
+mouse_filter = 1
 theme = ExtResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menus/RaceDetails/MarginContainer"]
@@ -218,6 +230,7 @@ margin_bottom = 57.0
 [node name="PanelContainer" type="PanelContainer" parent="Menus/RaceDetails/MarginContainer/VBoxContainer/TrackSelect"]
 margin_right = 105.0
 margin_bottom = 57.0
+mouse_filter = 1
 
 [node name="Label" type="Label" parent="Menus/RaceDetails/MarginContainer/VBoxContainer/TrackSelect/PanelContainer"]
 margin_left = 7.0
@@ -231,6 +244,7 @@ margin_left = 109.0
 margin_top = 0.0
 margin_right = 712.0
 margin_bottom = 57.0
+mouse_filter = 1
 
 [node name="SliderWithTextEdit" parent="Menus/RaceDetails/MarginContainer/VBoxContainer" instance=ExtResource( 7 )]
 margin_top = 77.0
@@ -271,6 +285,7 @@ margin_bottom = 75.0
 rect_min_size = Vector2( 350, 75 )
 theme = ExtResource( 3 )
 text = "Back"
+script = ExtResource( 8 )
 
 [node name="CanStopInCenterTimer" type="Timer" parent="Menus"]
 wait_time = 0.2
