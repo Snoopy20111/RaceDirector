@@ -7,7 +7,7 @@
 [ext_resource path="res://Scripts/Button_QuitGame.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/MenuHorizontal.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/Prefabs/SliderWithTextEdit.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/UI_Scenes/ButtonWithSound.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/ButtonWithSound.gd" type="Script" id=8]
 [ext_resource path="res://Scenes/UI_Scenes/SliderWithAudio.gd" type="Script" id=9]
 
 [sub_resource type="GDScript" id=1]
@@ -79,6 +79,7 @@ margin_right = 609.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 350, 75 )
 theme = ExtResource( 3 )
+action_mode = 0
 text = "Race"
 script = ExtResource( 8 )
 
@@ -88,6 +89,7 @@ margin_right = 609.0
 margin_bottom = 170.0
 rect_min_size = Vector2( 350, 75 )
 theme = ExtResource( 3 )
+action_mode = 0
 text = "Options"
 script = ExtResource( 8 )
 
@@ -97,6 +99,7 @@ margin_right = 609.0
 margin_bottom = 265.0
 rect_min_size = Vector2( 350, 75 )
 theme = ExtResource( 3 )
+action_mode = 0
 text = "Quit"
 script = ExtResource( 5 )
 QuitOptions = {
@@ -156,6 +159,7 @@ margin_right = 609.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 350, 75 )
 theme = ExtResource( 3 )
+action_mode = 0
 text = "Options"
 script = ExtResource( 8 )
 
@@ -195,8 +199,10 @@ margin_right = 609.0
 margin_bottom = 233.0
 rect_min_size = Vector2( 350, 75 )
 theme = ExtResource( 3 )
+action_mode = 0
 text = "Back"
 script = ExtResource( 8 )
+pressed_FMOD_path = "event:/UI/Nav_Back"
 
 [node name="RaceDetails" type="Control" parent="Menus"]
 margin_left = -1920.0
@@ -269,6 +275,7 @@ margin_right = 350.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 350, 75 )
 theme = ExtResource( 3 )
+action_mode = 0
 text = "Start"
 script = SubResource( 1 )
 SceneString = "res://Scenes/Tracks/Default_Track.tscn"
@@ -284,8 +291,10 @@ margin_right = 712.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 350, 75 )
 theme = ExtResource( 3 )
+action_mode = 0
 text = "Back"
 script = ExtResource( 8 )
+pressed_FMOD_path = "event:/UI/Nav_Back"
 
 [node name="CanStopInCenterTimer" type="Timer" parent="Menus"]
 wait_time = 0.2

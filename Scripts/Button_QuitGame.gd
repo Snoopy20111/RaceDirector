@@ -23,14 +23,17 @@ func _ready():
 
 
 func onHovered():
-	Fmod.play_one_shot(hovered_FMOD_path, self)
+	if (Fmod.check_event_path(hovered_FMOD_path)):
+		Fmod.play_one_shot(hovered_FMOD_path, self)
 
 func onUnhovered():
-	Fmod.play_one_shot(unhovered_FMOD_path, self)
+	if (Fmod.check_event_path(unhovered_FMOD_path)):
+		Fmod.play_one_shot(unhovered_FMOD_path, self)
 
 
 func _pressed():
-	Fmod.play_one_shot(pressed_FMOD_path, self)
+	if (Fmod.check_event_path(pressed_FMOD_path)):
+		Fmod.play_one_shot(pressed_FMOD_path, self)
 	
 	yield (SceneManager.fade_out(QuitOptions), "completed")
 	yield(get_tree().create_timer(timeAfterFade), "timeout")

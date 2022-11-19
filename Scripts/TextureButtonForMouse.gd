@@ -19,13 +19,13 @@ func _ready():
 #	pass
 
 func onPressed():
-	Fmod.play_one_shot(pressed_FMOD_path, self)
-	print("pressed")
+	if (Fmod.check_event_path(pressed_FMOD_path)):
+		Fmod.play_one_shot(pressed_FMOD_path, self)
 
 func onHovered():
-	Fmod.play_one_shot(hovered_FMOD_path, self)
-	print("hovered")
+	if (Fmod.check_event_path(hovered_FMOD_path)):
+		Fmod.play_one_shot(hovered_FMOD_path, self)
 
 func onUnhovered():
-	Fmod.play_one_shot(unhovered_FMOD_path, self)
-	print("unhovered")
+	if (Fmod.check_event_path(unhovered_FMOD_path)):
+		Fmod.play_one_shot(unhovered_FMOD_path, self)

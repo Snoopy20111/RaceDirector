@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{b3cb2887-f2e5-4e1d-97d7-39b5322a11c0}">
+		<property name="assetPath">
+			<value>Temp/Cars/LoopSet/loop_5.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.62956916099773241</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{981f374c-d9d3-440f-ae9e-89c04c359ad0}</destination>
+		</relationship>
+	</object>
+</objects>

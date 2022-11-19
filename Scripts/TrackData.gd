@@ -16,6 +16,7 @@ export var trackNameString: String
 
 var gridPosition: Array
 var gridPositionOffset: float = 60
+var gridPositionStartOffset: float = 30
 
 
 func _ready():
@@ -26,7 +27,6 @@ func _ready():
 	
 	#Instantiate number of cars, each carying a unique ID
 	carRef.resize(GameManager.currentRaceOptions.get("carCount"))
-	print(GameManager.currentRaceOptions.get("carCount"))
 	for i in carRef.size():
 		carRef[i] = carScene.instance()
 		carRef[i]._init_car(i)

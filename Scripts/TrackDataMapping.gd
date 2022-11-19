@@ -40,9 +40,7 @@ static func _get_path(trackName: String) -> String:
 
 static func _get_maxCars(trackName: String) -> int:
 	var temp = full_list.get(trackName)
-	print (temp)
 	var temp02 = temp.get("maxCars")
-	print (temp02)
 	return temp02
 
 static func _get_isListed(trackName: String) -> bool:

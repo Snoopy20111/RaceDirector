@@ -3,7 +3,7 @@ extends Control
 
 # Declare member variables here. Examples:
 onready var parentNode = get_parent()
-var startingRotation: float = 90
+var startingRotation: float = 180
 
 
 # Called when the node enters the scene tree for the first time.
@@ -17,4 +17,3 @@ func _process(_delta):
 
 func pointNorth():
 	self.rect_rotation = (-1 * parentNode.rotation) + startingRotation
-	print (rect_rotation)

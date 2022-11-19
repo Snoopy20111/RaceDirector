@@ -4,15 +4,19 @@ extends GridContainer
 # Declare member variables here. Examples:
 var Count: int = 2
 
-signal CountUpdated(newCount)
+
+signal CountUpdatedFromSlider(newCount)
+signal CountUpdatedFromText(newCount)
 
 export var leftText: String = "Text"
 export var minValue: int = 0
 export var maxValue: int = 99
 export var tickDivider: int = 1
 
+export var sliderMove_FMOD_path: String = "event:/UI/Nav_Slider"
+
 onready var leftTextBox = $PanelContainer02/Label
-onready var mySlider: HSlider = $PanelContainer/VBoxContainer/Slider
+onready var mySlider = $PanelContainer/VBoxContainer/Slider
 onready var myLineEdit = $LineEdit
 
 # Called when the node enters the scene tree for the first time.
@@ -27,12 +31,17 @@ func _ready():
 
 func _on_Slider_value_changed(value) -> void:
 	Count = int(value)
-	emit_signal("CountUpdated", Count)
+	if (mySlider.init_sound == false):
+		Fmod.play_one_shot(sliderMove_FMOD_path, self)
+	else:
+		mySlider.init_sound = false
+	emit_signal("CountUpdatedFromSlider", Count)
 
 
 func _on_LineEdit_text_entered(new_text) -> void:
 	Count = int(new_text)
-	emit_signal("CountUpdated", Count)
+	mySlider.gridContainerWasUpdated = true
+	emit_signal("CountUpdatedFromText", Count)
 
 
 func _on_new_MaxValue(value) -> void:

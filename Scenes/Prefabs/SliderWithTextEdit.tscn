@@ -76,8 +76,8 @@ valign = 1
 autowrap = true
 script = ExtResource( 6 )
 
-[connection signal="CountUpdated" from="." to="PanelContainer/VBoxContainer/Slider" method="_on_GridContainer_CountUpdated"]
-[connection signal="CountUpdated" from="." to="LineEdit" method="_on_GridContainer_CountUpdated"]
+[connection signal="CountUpdatedFromSlider" from="." to="LineEdit" method="_on_GridContainer_CountUpdated"]
+[connection signal="CountUpdatedFromText" from="." to="PanelContainer/VBoxContainer/Slider" method="_on_GridContainer_CountUpdated"]
 [connection signal="value_changed" from="PanelContainer/VBoxContainer/Slider" to="." method="_on_Slider_value_changed"]
 [connection signal="text_changed" from="LineEdit" to="LineEdit/Label" method="_on_LineEdit_text_changed"]
 [connection signal="text_entered" from="LineEdit" to="." method="_on_LineEdit_text_entered"]

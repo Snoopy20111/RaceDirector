@@ -41,7 +41,7 @@ func _init_FMOD():
 		hasInitializedAudio = true
 	
 
-### Utilities ###
+### Race Options Utilities ###
 
 func _prerace_set_track(newTrack: String) -> void:
 	currentRaceOptions.track = newTrack

@@ -25,7 +25,7 @@ extents = Vector2( 77.5, 32.75 )
 
 [sub_resource type="RectangleShape2D" id=5]
 
-[node name="StartYourEngines" type="Node2D"]
+[node name="Default_Track" type="Node2D"]
 
 [node name="BackgroundSprite" type="Sprite" parent="."]
 scale = Vector2( 5, 5 )
@@ -460,18 +460,13 @@ smoothing_enabled = true
 smoothing_speed = 10.0
 script = ExtResource( 6 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="InRaceHUD" type="CanvasLayer" parent="."]
 
-[node name="Timer" type="Timer" parent="CanvasLayer"]
-wait_time = 2.0
-one_shot = true
-autostart = true
-
-[node name="Start Race" type="Button" parent="CanvasLayer"]
+[node name="Start Race" type="Button" parent="InRaceHUD"]
 margin_left = 98.0
 margin_top = 104.0
-margin_right = 320.0
-margin_bottom = 161.0
+margin_right = 276.0
+margin_bottom = 153.0
 text = "Start Race"
 
 [connection signal="area_entered" from="Track/PitLane/PitEntrance" to="Track" method="_on_PitEntrance_area_entered" flags=3]
@@ -532,4 +527,4 @@ text = "Start Race"
 [connection signal="decelerate" from="Track/TrackLocations/Turn14" to="Track" method="on_turn_decelerate"]
 [connection signal="area_entered" from="Track/TrackLocations/Turn14/Decelerate" to="Track/TrackLocations/Turn14" method="_on_Decelerate_area_entered"]
 [connection signal="area_entered" from="Track/TrackLocations/Turn14/Accelerate" to="Track/TrackLocations/Turn14" method="_on_Accelerate_area_entered"]
-[connection signal="pressed" from="CanvasLayer/Start Race" to="Track" method="_on_Race_Start"]
+[connection signal="pressed" from="InRaceHUD/Start Race" to="Track" method="_on_Race_Start"]

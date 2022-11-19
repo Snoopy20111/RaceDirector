@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{431f10b1-dc13-4019-8e16-4c468d0a9038}">
+		<property name="assetPath">
+			<value>Temp/Cars/LoopSet/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{981f374c-d9d3-440f-ae9e-89c04c359ad0}</destination>
+		</relationship>
+	</object>
+</objects>

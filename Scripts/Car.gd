@@ -34,7 +34,7 @@ var driverFirstName: String = "Nicholas"
 var driverLastName: String = "GOATifi"
 
 var willPitNextLap = false
-var chanceOfMalfunction = 0.0000
+var chanceOfMalfunction := 0.0000
 var currentCarState: int = Enums.CAR_STATE.RACE_START
 var currentDrivingState: int = Enums.DRIVING_STATE.IDLING
 var currentDriverState =  Enums.DRIVER_STATE.FOCUSED
