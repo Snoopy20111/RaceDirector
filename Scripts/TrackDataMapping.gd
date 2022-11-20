@@ -5,7 +5,7 @@ class_name TrackDataMapping
 const Default_Track: Dictionary = {
 	"display_name": "Default_Track",
 	"path": "res://Scenes/Tracks/Default_Track.tscn",
-	"maxCars": 6,
+	"maxCars": 12,
 	"isListed": false
 }
 const Hungaroring: Dictionary = {

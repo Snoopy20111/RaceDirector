@@ -29,9 +29,10 @@ var accelMultVarianceRange: float = 5
 var accelCurve = preload("res://Curves/Acceleration_Curve.tres")
 var brakingCurve = preload("res://Curves/Braking_Curve.tres")
 
-var teamName: String = "Williams"
 var driverFirstName: String = "Nicholas"
 var driverLastName: String = "GOATifi"
+var carColor: Color = Color.black
+onready var carColorSprite: Sprite = $CarSprite/RaceCarColor
 
 var willPitNextLap = false
 var chanceOfMalfunction := 0.0000
@@ -45,11 +46,15 @@ signal CarState(raceStateString)
 signal DrivingState(drivingStateString)
 
 # Called when the node enters the scene tree for the first time.
-# func _ready():
-# 	pass
+func _ready():
+		carColorSprite.set_modulate(carColor)
+		print("Ready!")
+		print("Car Color set: " + String(carColorSprite.get_modulate()))
 
-func _init_car(newID: int):
+func _init_car(newID: int, newCarColor : Color = carColorSprite.get_modulate()):
 	carID = newID
+	carColor = newCarColor
+	print("Car Init: " + String(carID))
 	rng.randomize()
 	randomize_CarStats()
 

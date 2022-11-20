@@ -12,27 +12,50 @@ height = 21.9902
 extents = Vector2( 40, 40 )
 
 [node name="Car" type="PathFollow2D"]
-lookahead = 6.0
+cubic_interp = false
+lookahead = 74.809
 script = ExtResource( 1 )
 
 [node name="CarSprite" type="Sprite" parent="."]
+position = Vector2( 1.15, 0 )
 rotation = 1.5708
-scale = Vector2( 0.105918, 0.105918 )
+scale = Vector2( 0.186, 0.2 )
 texture = ExtResource( 2 )
 
 [node name="RaceCarColor" type="Sprite" parent="CarSprite"]
-modulate = Color( 0.372549, 0.172549, 0.172549, 1 )
-z_index = -1
+modulate = Color( 0.772549, 0.0235294, 0.0235294, 1 )
+show_behind_parent = true
+use_parent_material = true
+rotation = 2.27374e-13
 texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CarWatcher" type="Area2D" parent="."]
+visible = false
 rotation = 1.5708
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CarWatcher"]
+visible = false
 shape = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="MouseDetector" type="Area2D" parent="."]
+visible = false
 rotation = 1.5708
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseDetector"]
+visible = false
 shape = SubResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}

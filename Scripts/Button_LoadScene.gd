@@ -2,7 +2,7 @@ extends Button
 
 
 # Declare member variables here. Examples:
-export var SceneString: String = "res://Scenes/Tracks/StartYourEngines.tscn"
+export var SceneString: String = "res://Scenes/Tracks/Default_Track.tscn"
 export var SharedEasing: bool = true
 export var SharedAnimName: bool = true
 export var SceneLoadOptions: Dictionary = {
@@ -43,12 +43,14 @@ func _ready():
 	else:
 		TrimmedLoadOptions.erase("animation_name")
 		
-	self.connect("pressed", self, "onPressed")
+# warning-ignore:return_value_discarded
 	self.connect("mouse_entered", self, "onHovered")
+# warning-ignore:return_value_discarded
 	self.connect("mouse_exited", self, "onUnhovered")
 
 
 func _pressed():
+	print("Changing to Scene: " + SceneString)
 	SceneManager.change_scene(SceneString, TrimmedLoadOptions)
 	if (Fmod.check_event_path(pressed_FMOD_path)):
 		Fmod.play_one_shot(pressed_FMOD_path, self)

@@ -11,7 +11,7 @@ var hasInitializedAudio: bool = false
 
 var defaultRaceOptions: Dictionary = {
 	"track": "Default_Track",
-	"carCount": 4,
+	"carCount": 6,
 	"raceType": Enums.RACE_TYPE.CIRCUIT,
 	"raceLaps": 15,
 	"raceLength": 6.0,

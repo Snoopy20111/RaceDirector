@@ -16,6 +16,8 @@ func _ready():
 	
 	GameManager._init_FMOD()
 	
+	randomize()
+	
 	if (LogoParade):
 		SceneManager.change_scene("res://Scenes/UI_Scenes/LogoParade.tscn")
 	elif ((LoadDebugLevel) and (DebugLevelPath != null)):

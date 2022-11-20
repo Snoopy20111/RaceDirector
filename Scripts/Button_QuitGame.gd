@@ -17,8 +17,9 @@ export var pressed_FMOD_path: String = "event:/UI/Nav_Accept"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.connect("pressed", self, "onPressed")
+# warning-ignore:return_value_discarded
 	self.connect("mouse_entered", self, "onHovered")
+# warning-ignore:return_value_discarded
 	self.connect("mouse_exited", self, "onUnhovered")
 
 

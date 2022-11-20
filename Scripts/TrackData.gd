@@ -15,7 +15,7 @@ var isPitExitOpen: bool = true
 export var trackNameString: String
 
 var gridPosition: Array
-var gridPositionOffset: float = 60
+var gridPositionOffset: float = 75
 var gridPositionStartOffset: float = 30
 
 
@@ -27,11 +27,40 @@ func _ready():
 	
 	#Instantiate number of cars, each carying a unique ID
 	carRef.resize(GameManager.currentRaceOptions.get("carCount"))
+	print("Number of Cars: " + String(GameManager.currentRaceOptions.get("carCount")))
+	
+	var carColors: PoolColorArray; carColors.resize(carRef.size())
+	var possibleCarColors: Array; possibleCarColors.resize(255)
+	var hueRadius = 10
+	for i in possibleCarColors.size():
+		possibleCarColors[i] = i
+	
 	for i in carRef.size():
 		carRef[i] = carScene.instance()
-		carRef[i]._init_car(i)
+		
+		#generate custom colors with random Hue and random in range saturation
+		# and brightness, with no duplicates
+		var tempRand := randi() % possibleCarColors.size()
+		print("tempRand Cell: " + String(tempRand) + " and tempRand Value: " + String(possibleCarColors[tempRand]))
+		carColors[i] = Color.from_hsv(float(possibleCarColors[tempRand]) / 255, 1, rand_range(0.6, .9))
+		print("Car Color: " + String(carColors[i]))
+		
+		carRef[i]._init_car(i, carColors[i])
 		add_child(carRef[i])
 		carRef[i].offset = gridPosition[i]
+		
+		#remove used color(s) from pool by slicing and splicing the given range out
+		var tempRandLocation := possibleCarColors.find(tempRand)
+		var lowerSlice: Array
+		var upperSlice: Array
+		
+		if (tempRandLocation >= hueRadius):
+			lowerSlice = possibleCarColors.slice(0, tempRandLocation - hueRadius, 1, false)
+		if ((tempRandLocation + hueRadius) < possibleCarColors.size()):
+			upperSlice = possibleCarColors.slice(tempRandLocation + hueRadius, possibleCarColors.size(), 1, false)
+			
+		lowerSlice.append_array(upperSlice)
+		possibleCarColors = lowerSlice
 
 
 func _on_PitEntrance_area_entered(area):
