@@ -36,12 +36,14 @@ func _on_Slider_value_changed(value) -> void:
 	else:
 		mySlider.init_sound = false
 	emit_signal("CountUpdatedFromSlider", Count)
+	GameManager._prerace_set_carCount(Count)
 
 
 func _on_LineEdit_text_entered(new_text) -> void:
 	Count = int(new_text)
 	mySlider.gridContainerWasUpdated = true
 	emit_signal("CountUpdatedFromText", Count)
+	GameManager._prerace_set_carCount(Count)
 
 
 func _on_new_MaxValue(value) -> void:

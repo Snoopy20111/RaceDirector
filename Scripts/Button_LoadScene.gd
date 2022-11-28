@@ -51,9 +51,9 @@ func _ready():
 
 func _pressed():
 	print("Changing to Scene: " + SceneString)
-	SceneManager.change_scene(SceneString, TrimmedLoadOptions)
 	if (Fmod.check_event_path(pressed_FMOD_path)):
 		Fmod.play_one_shot(pressed_FMOD_path, self)
+	SceneManager.change_scene(SceneString, TrimmedLoadOptions)
 
 func onHovered():
 	if (Fmod.check_event_path(hovered_FMOD_path)):
