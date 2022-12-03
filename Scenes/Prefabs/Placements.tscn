@@ -4,16 +4,16 @@
 [ext_resource path="res://UI/Fonts/Menu_Bold.tres" type="DynamicFont" id=4]
 
 [node name="PanelContainer" type="PanelContainer"]
-margin_right = 80.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 80, 100 )
+margin_right = 40.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 40, 50 )
 theme = ExtResource( 3 )
 
 [node name="Placement" type="Label" parent="."]
 margin_left = 7.0
-margin_top = 12.0
-margin_right = 73.0
-margin_bottom = 88.0
+margin_top = 10.0
+margin_right = 33.0
+margin_bottom = 39.0
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "1)"

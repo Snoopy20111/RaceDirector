@@ -20,7 +20,7 @@ var defaultRaceOptions: Dictionary = {
 
 var currentRaceOptions: Dictionary = defaultRaceOptions
 
-var driverArray: PoolStringArray
+var driverNameArray: PoolStringArray
 var carColors: PoolColorArray
 
 func _init_FMOD():
@@ -108,9 +108,9 @@ func _generate_car_colors() -> void:
 		possibleCarColors = lowerSlice
 
 func _generate_driver_names() -> void:
-	driverArray.resize(currentRaceOptions.carCount)
-	for i in driverArray.size():
-		driverArray[i] = "Firstname LastName"
+	driverNameArray.resize(currentRaceOptions.carCount)
+	for i in driverNameArray.size():
+		driverNameArray[i] = "Driver Lastname " + String(i)
 
 ### Utilities ###
 func reparent(child: Node, new_parent: Node):
