@@ -23,7 +23,7 @@ func _on_Accelerate_area_entered(area):
 		var contactedCar = area.get_parent() as Car
 		var identifier = contactedCar.carID
 		emit_signal("accelerate", identifier)
-		print ("Car " + str(identifier) + " accelerating out of " + str(name))
+		#print ("Car " + str(identifier) + " accelerating out of " + str(name))
 
 
 func _on_Decelerate_area_entered(area):
@@ -31,4 +31,4 @@ func _on_Decelerate_area_entered(area):
 		var contactedCar = area.get_parent() as Car
 		var identifier = contactedCar.carID
 		emit_signal("decelerate", identifier, minimumSpeed)
-		print ("Car " + str(identifier) + " braking into " + str(name))
+		#print ("Car " + str(identifier) + " braking into " + str(name))

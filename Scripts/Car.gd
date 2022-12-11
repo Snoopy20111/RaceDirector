@@ -48,8 +48,8 @@ signal DrivingState(drivingStateString)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 		carColorSprite.set_modulate(carColor)
-		print("Ready!")
-		print("Car Color set: " + String(carColorSprite.get_modulate()))
+		#print("Ready!")
+		#print("Car Color set: " + String(carColorSprite.get_modulate()))
 
 func _init_car(newID: int, newCarColor : Color = carColorSprite.get_modulate()):
 	carID = newID

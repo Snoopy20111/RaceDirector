@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/knob/Knob.gd"
 }, {
+"base": "Area2D",
+"class": "PitBox",
+"language": "GDScript",
+"path": "res://Scripts/PitBox.gd"
+}, {
 "base": "Object",
 "class": "SceneManagerConstants",
 "language": "GDScript",
@@ -54,6 +59,7 @@ _global_script_class_icons={
 "Enums": "",
 "FmodNative": "",
 "Knob": "res://addons/knob/icon_knob.svg",
+"PitBox": "",
 "SceneManagerConstants": "",
 "ShakeCamera": "",
 "ShakeCamera2D": "",

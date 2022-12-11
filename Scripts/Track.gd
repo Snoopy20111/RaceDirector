@@ -6,10 +6,13 @@ var carScene = preload("res://Scenes/Prefabs/Car.tscn")
 var carRef: Array
 
 onready var trackRef = $Track
-onready var pitLaneRef = $Track/PitLane
-onready var pitEntranceRef = $Track/PitLane/PitEntrance
-onready var pitExitRef = $Track/PitLane/PitExit
+onready var pitLaneRef = $PitLane
+onready var pitEntranceRef = $PitLane/PitEntrance
+onready var pitExitRef = $PitLane/PitExit
 onready var driverListRef = $InRaceHUD/DriverList
+
+var pitBox: Array
+var pitBox_id: Array
 
 # rejoin at closest offset to the last point of the pit lane
 onready var rejoinPoint: float = trackRef.curve.get_closest_offset(pitLaneRef.curve.get_point_position(pitLaneRef.curve.get_point_count() - 1))
@@ -42,6 +45,24 @@ func _ready():
 		carRef[i].offset = gridPosition[i]
 	
 	driverListRef.init_driver_list(carRef.size(), GameManager.carColors)
+	
+	print ("Pit Box ID array size: " + String(pitBox_id.size()))
+	
+	#assign colors to pit boxes
+	#for each car we're starting with
+	for i in GameManager.currentRaceOptions.get("carCount"):
+		#go through the pitBox ID list
+		for j in pitBox_id.size():
+			#and if it's i (our driver ID), assign the corresponding car color
+			if (pitBox_id[j] == i + 1):
+				pitBox[j]._set_pitbox_color(GameManager.carColors[i])
+				break
+			
+				
+
+func _register_PitBox(pitboxRef: PitBox, pitBoxID: int) -> void:
+	pitBox.append(pitboxRef)
+	pitBox_id.append(pitBoxID)
 
 
 func _on_PitEntrance_area_entered(area):
@@ -54,7 +75,7 @@ func _on_PitEntrance_area_entered(area):
 		carRef[carID].emit_signal("PittingIntent", false, carID)
 		carRef[carID].offset = 0
 		
-		reparent(carRef[carID], $PitLane)
+		reparent(carRef[carID], pitLaneRef)
 
 
 func _on_PitExit_area_entered(area):
@@ -74,9 +95,19 @@ func _on_turn_decelerate(identifier, minimumSpeed):
 	carRef[identifier]._on_Turn_decelerate(minimumSpeed)
 
 
+func _on_Pitbox_area_entered(area, pitBoxID):
+	var tempCar = area.get_parent() as Car
+	var carID: int = tempCar.carID
+	if (carRef[carID].currentCarState == Enums.CAR_STATE.PITTING) && (carID == pitBoxID):
+		carRef[carID].currentCarState = Enums.CAR_STATE.IN_PITBOX
+		yield(get_tree().create_timer(rand_range(4.0, 8.0)), "timeout")
+		carRef[carID].currentCarState = Enums.CAR_STATE.PITTING
+
+
 func _on_FinishLine_area_entered(area):
 	var tempCar = area.get_parent() as Car
 	var carID: int = tempCar.carID
+	print ("Car " + String(carID) + " crossed the finish line!")
 
 
 func _on_Race_Start():
@@ -90,4 +121,3 @@ func reparent(child: Node, new_parent: Node):
 	var old_parent = child.get_parent()
 	old_parent.remove_child(child)
 	new_parent.add_child(child)
-

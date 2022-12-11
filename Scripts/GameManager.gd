@@ -90,7 +90,7 @@ func _generate_car_colors() -> void:
 		#generate custom colors with random Hue and random in range saturation
 		# and brightness, with no duplicates
 		var tempRand := randi() % possibleCarColors.size()
-		print("tempRand Cell: " + String(tempRand) + " and tempRand Value: " + String(possibleCarColors[tempRand]))
+		#print("tempRand Cell: " + String(tempRand) + " and tempRand Value: " + String(possibleCarColors[tempRand]))
 		carColors[i] = Color.from_hsv(float(possibleCarColors[tempRand]) / 255, 1, rand_range(0.6, .9))
 		print("Car Color: " + String(carColors[i]))
 		
@@ -117,3 +117,9 @@ func reparent(child: Node, new_parent: Node):
 	var old_parent = child.get_parent()
 	old_parent.remove_child(child)
 	new_parent.add_child(child)
+
+func findByClass(node: Node, className : String, result : Array) -> void:
+	if node.is_class(className):
+		result.push_back(node)
+	for child in node.get_children():
+		findByClass(child, className, result)
