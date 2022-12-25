@@ -33,14 +33,18 @@ func print_time():
 		hours_string = String(hours)
 
 #seconds calculation, done last because it depends on minutes & hours
-	var seconds: int = int(time_in_seconds) - (minutes * 60) - (hours * 360)
+#also can be a float if we're showing the full time
+	var seconds
+	if (is_showing_full_time):
+		seconds = int(time_in_seconds) - (minutes * 60) - (hours * 360)
+	else:
+		seconds = time_in_seconds - float(minutes * 60) - float(hours * 360)
 	var seconds_string: String
 	if (seconds < 10):
 		seconds_string = "0" + String(seconds)
 	else:
 		seconds_string = String(seconds)
 
-	#var seconds: float = time_in_seconds - float(minutes * 60) - float(hours * 360)
 	time_text_ref.text = String(hours_string) + ":" + String(minutes_string) + ":" + String(seconds_string)
 
 func unpause_timer():
