@@ -10,6 +10,8 @@ onready var pitLaneRef = $PitLane
 onready var pitEntranceRef = $PitLane/PitEntrance
 onready var pitExitRef = $PitLane/PitExit
 onready var driverListRef = $InRaceHUD/DriverList
+onready var flag_panel_ref = $InRaceHUD/VBoxContainer/FlagPanel
+onready var race_timer_ref = $InRaceHUD/VBoxContainer/RaceTimer
 
 var pitBox: Array
 var pitBox_id: Array
@@ -114,6 +116,9 @@ func _on_Race_Start():
 	# For each active car, set to accelerating
 	for i in carRef.size():
 		carRef[i]._on_Race_Start()
+	# And change the flag to Green
+	flag_panel_ref.set_flag_color(Enums.FLAG_STATE.GREEN)
+	race_timer_ref.unpause_timer()
 
 ########### Utility Functions ###########
 
