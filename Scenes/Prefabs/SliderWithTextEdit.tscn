@@ -44,6 +44,7 @@ alignment = 1
 margin_top = 13.0
 margin_right = 412.0
 margin_bottom = 29.0
+mouse_default_cursor_shape = 2
 max_value = 99.0
 value = 99.0
 tick_count = 11

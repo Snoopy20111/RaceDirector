@@ -3,19 +3,31 @@
 [ext_resource path="res://UI/Fonts/Menu_Condensed.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Sprites/icon.png" type="Texture" id=2]
 [ext_resource path="res://UI/Menu.tres" type="Theme" id=3]
-[ext_resource path="res://Scripts/DriverListItem.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/DriverListItem.gd" type="Script" id=5]
 
-[node name="HBoxContainer" type="HBoxContainer"]
+[node name="DriverListItem" type="Control"]
 margin_right = 375.0
 margin_bottom = 50.0
-script = ExtResource( 4 )
+rect_min_size = Vector2( 375, 50 )
+script = ExtResource( 5 )
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="DriverBox" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 275.0
+margin_bottom = 50.0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/DriverBox"]
 margin_right = 40.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 40, 50 )
+mouse_default_cursor_shape = 2
 
-[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/DriverBox/ColorRect"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -25,10 +37,11 @@ margin_top = -20.0
 margin_right = 45.0
 margin_bottom = 44.0
 rect_scale = Vector2( 0.6, 0.6 )
+mouse_default_cursor_shape = 2
 texture = ExtResource( 2 )
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="VBoxContainer/DriverBox"]
 margin_left = 44.0
 margin_top = 10.0
 margin_right = 275.0
@@ -40,3 +53,28 @@ custom_fonts/font = ExtResource( 1 )
 text = "Firstname Lastname"
 valign = 1
 uppercase = true
+
+[node name="OptionsBox" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
+margin_left = 10.0
+margin_top = 54.0
+margin_right = 293.0
+margin_bottom = 105.0
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/OptionsBox"]
+margin_right = 148.0
+margin_bottom = 51.0
+text = "Penalty"
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/OptionsBox"]
+margin_left = 152.0
+margin_right = 156.0
+margin_bottom = 51.0
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/OptionsBox"]
+margin_left = 160.0
+margin_right = 283.0
+margin_bottom = 51.0
+text = "Pit"
+
+[connection signal="gui_input" from="VBoxContainer/DriverBox" to="." method="_on_DriverBox_gui_input"]

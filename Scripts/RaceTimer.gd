@@ -32,18 +32,20 @@ func print_time():
 	else:
 		hours_string = String(hours)
 
-#seconds calculation, done last because it depends on minutes & hours
-#also can be a float if we're showing the full time
-	var seconds
-	if (is_showing_full_time):
-		seconds = int(time_in_seconds) - (minutes * 60) - (hours * 360)
-	else:
-		seconds = time_in_seconds - float(minutes * 60) - float(hours * 360)
+#seconds calculation, done last because it depends on minutes & hours and may be float/int
+	var seconds_float: float = time_in_seconds - float(minutes * 60) - float(hours * 360)
+	var seconds_int: int = int(seconds_float)
 	var seconds_string: String
-	if (seconds < 10):
-		seconds_string = "0" + String(seconds)
+	
+	#messy junk to define the string we need w/decimals and/or leading zero
+	if (!is_showing_full_time && (seconds_int < 10)):
+		seconds_string = "0" + String(seconds_int)
+	elif (!is_showing_full_time):
+		seconds_string = String(seconds_int)
+	elif (seconds_float < 10):
+		seconds_string = "0" + String(seconds_float)
 	else:
-		seconds_string = String(seconds)
+		seconds_string = String(seconds_float)
 
 	time_text_ref.text = String(hours_string) + ":" + String(minutes_string) + ":" + String(seconds_string)
 
