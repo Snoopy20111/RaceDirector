@@ -10,12 +10,7 @@ onready var driversVBox_ref = $Panel/DriversVBox
 var placesArray: Array
 var driverListItemArray: Array
 
-
-# Called when the node enters the scene tree for the first time.
-#func _ready():
-#	pass # Replace with function body.
-
-func init_driver_list(count: int, color: PoolColorArray):
+func init_driver_list(count: int, racerDataArray: Array):
 	
 	placesArray.resize(count)
 	driverListItemArray.resize(count)
@@ -33,10 +28,13 @@ func init_driver_list(count: int, color: PoolColorArray):
 		driverListItemArray[i] = driverListItem.instance()
 		driversVBox_ref.add_child(driverListItemArray[i])
 		
-		driverListItemArray[i].set_color(color[i])
+		driverListItemArray[i].set_color(racerDataArray[i].car_color)
 
 func update_driver_list():
 	#get the current standings, who's in what order
 	#sort the nodes in the tree accordingly
 	#update the spacing of the numbers accordingly
+	
+	#this will rely a lot on the move_child function
+	#from the Node class!
 	pass

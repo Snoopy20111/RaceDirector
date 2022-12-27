@@ -21,6 +21,7 @@ var defaultRaceOptions: Dictionary = {
 var currentRaceOptions: Dictionary = defaultRaceOptions
 
 var racerDataArray: Array
+var racerStandingArray: PoolIntArray
 
 var driverNameArray: PoolStringArray
 var carColors: PoolColorArray
@@ -88,7 +89,9 @@ func _generate_racer_data() -> void:
 func _generate_car_colors() -> void:
 	
 	#If we already have car colors, get rid of them!
-	carColors.resize(currentRaceOptions.carCount)
+	for i in racerDataArray.size():
+		racerDataArray[i].reset_color()
+	
 	var possibleCarColors: Array; possibleCarColors.resize(255)
 	var hueRadius = 15
 	for i in possibleCarColors.size():
@@ -100,8 +103,9 @@ func _generate_car_colors() -> void:
 		# and brightness, with no duplicates
 		var tempRand := randi() % possibleCarColors.size()
 		#print("tempRand Cell: " + String(tempRand) + " and tempRand Value: " + String(possibleCarColors[tempRand]))
-		carColors[i] = Color.from_hsv(float(possibleCarColors[tempRand]) / 255, 1, rand_range(0.6, .9))
-		print("Car Color: " + String(carColors[i]))
+		racerDataArray[i].car_color = Color.from_hsv(float(possibleCarColors[tempRand]) / 255, 1, rand_range(0.6, .9))
+		#carColors[i] = Color.from_hsv(float(possibleCarColors[tempRand]) / 255, 1, rand_range(0.6, .9))
+		print("Car Color: " + String(racerDataArray[i].car_color))
 		
 		#remove used color(s) from pool by slicing and splicing the given range out
 		var tempRandLocation := possibleCarColors.find(tempRand)
@@ -124,8 +128,13 @@ func _generate_driver_names() -> void:
 func _race_car_lap_completed(carID: int = 0) -> void:
 	racerDataArray[carID].current_lap += 1
 
-func _get_driver_standings() -> void:
-	pass
+func _sort_driver_standings() -> void:
+	#This should return a sorted array of carID integers
+	
+	#resize and fill our array with junk
+	racerStandingArray.resize(racerDataArray.size())
+	racerStandingArray.fill(0)
+	
 
 ### Utilities ###
 func reparent(child: Node, new_parent: Node):

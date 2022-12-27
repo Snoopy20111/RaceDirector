@@ -47,26 +47,23 @@ func _ready():
 		carRef[i].offset = gridPosition[i]
 	
 	#Set up the list on the UI panel
-	driverListRef.init_driver_list(GameManager.racerDataArray.size(), GameManager.carColors)
+	driverListRef.init_driver_list(GameManager.racerDataArray.size(), GameManager.racerDataArray)
 	
 	print ("Pit Box ID array size: " + String(pitBox_id.size()))
 	
 	#assign colors to pit boxes
 	#for each car we're starting with
-	for i in GameManager.currentRaceOptions.get("carCount"):
+	for i in carRef.size():
 		#go through the pitBox ID list
 		for j in pitBox_id.size():
 			#and if it's i (our driver ID), assign the corresponding car color
 			if (pitBox_id[j] == i + 1):
-				pitBox[j]._set_pitbox_color(GameManager.carColors[i])
+				pitBox[j]._set_pitbox_color(GameManager.racerDataArray[i].car_color)
 				break
-			
-				
 
 func _register_PitBox(pitboxRef: PitBox, pitBoxID: int) -> void:
 	pitBox.append(pitboxRef)
 	pitBox_id.append(pitBoxID)
-
 
 func _on_PitEntrance_area_entered(area):
 	var tempCar = area.get_parent() as Car
@@ -80,7 +77,6 @@ func _on_PitEntrance_area_entered(area):
 		
 		reparent(carRef[carID], pitLaneRef)
 
-
 func _on_PitExit_area_entered(area):
 	var tempCar = area.get_parent() as Car
 	var carID: int = tempCar.carID
@@ -89,14 +85,11 @@ func _on_PitExit_area_entered(area):
 		reparent(carRef[carID], trackRef)
 		carRef[carID].offset = rejoinPoint
 
-
 func _on_turn_accelerate(identifier):
 	carRef[identifier]._on_Turn_accelerate()
 
-
 func _on_turn_decelerate(identifier, minimumSpeed):
 	carRef[identifier]._on_Turn_decelerate(minimumSpeed)
-
 
 func _on_Pitbox_area_entered(area, pitBoxID):
 	if (area.get_parent().get_class() == "Car"):
@@ -107,13 +100,11 @@ func _on_Pitbox_area_entered(area, pitBoxID):
 			yield(get_tree().create_timer(rand_range(4.0, 8.0)), "timeout")
 			carRef[carID].currentCarState = Enums.CAR_STATE.PITTING
 
-
 func _on_FinishLine_area_entered(area):
 	if (area.get_parent().get_class() == "Car"):
 		var tempCar = area.get_parent() as Car
 		var carID: int = tempCar.carID
 		print ("Car " + String(carID) + " crossed the finish line!")
-	
 
 
 func _on_Race_Start():
@@ -123,6 +114,8 @@ func _on_Race_Start():
 	# And change the flag to Green
 	flag_panel_ref.set_flag_color(Enums.FLAG_STATE.GREEN)
 	race_timer_ref.unpause_timer()
+
+
 
 ########### Utility Functions ###########
 
