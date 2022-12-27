@@ -1,3 +1,8 @@
+## | Deprecated in favor of Track.gd,  |##
+## | it still exists because I don't   |##
+## | wanna delete some other stuff yet |##
+
+
 extends Path2D
 
 var carScene = preload("res://Scenes/Prefabs/Car.tscn")

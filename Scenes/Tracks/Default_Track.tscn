@@ -10,6 +10,7 @@
 [ext_resource path="res://Scenes/Prefabs/FlagPanel.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 16.8182, 10 )
 
 [sub_resource type="RectangleShape2D" id=6]
 
@@ -55,6 +56,8 @@ position = Vector2( -2304, 845 )
 scale = Vector2( 11, 0.76 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TrackLocations/FinishLine"]
+position = Vector2( 6.81819, 0 )
+scale = Vector2( 1, 1 )
 shape = SubResource( 4 )
 
 [node name="Turn01" type="Node2D" parent="TrackLocations"]
@@ -737,6 +740,7 @@ margin_bottom = 20.0
 color = Color( 1, 1, 1, 0 )
 
 [node name="Track" type="Path2D" parent="."]
+visible = false
 self_modulate = Color( 0.501961, 0.6, 1, 0.619608 )
 curve = SubResource( 1 )
 

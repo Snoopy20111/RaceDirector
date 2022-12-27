@@ -15,6 +15,9 @@ var vOffsetAdder: float = 0
 var vOffsetSpeedMult: float = 7
 var vOffsetMagMult: float = 7
 
+var tire_type = Enums.TIRE_TYPE.MEDIUM
+var tire_wear: float = 0.0
+
 var rng = RandomNumberGenerator.new()
 
 var maxSpeedVariance: float
@@ -26,7 +29,7 @@ var brakingMultVarianceRange: float = 10
 var accelMultVariance: float
 var accelMultVarianceRange: float = 5
 
-var accelCurve = preload("res://Curves/Acceleration_Curve.tres")
+var accelCurve 	= preload("res://Curves/Acceleration_Curve.tres")
 var brakingCurve = preload("res://Curves/Braking_Curve.tres")
 
 var driverFirstName: String = "Nicholas"

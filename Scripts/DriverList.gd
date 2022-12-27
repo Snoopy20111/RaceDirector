@@ -34,3 +34,9 @@ func init_driver_list(count: int, color: PoolColorArray):
 		driversVBox_ref.add_child(driverListItemArray[i])
 		
 		driverListItemArray[i].set_color(color[i])
+
+func update_driver_list():
+	#get the current standings, who's in what order
+	#sort the nodes in the tree accordingly
+	#update the spacing of the numbers accordingly
+	pass

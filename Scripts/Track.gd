@@ -28,16 +28,16 @@ var gridPositionStartOffset: float = 30
 
 
 func _ready():
-	
 	gridPosition.resize(TrackDataMapping._get_maxCars(GameManager.currentRaceOptions.get("track")))
 	for i in gridPosition.size():
 		gridPosition[i] = -i * gridPositionOffset
 	
+	# Get the Game Manager to make the racer list
+	GameManager._generate_racer_data()
+	
 	#Instantiate number of cars, each carying a unique ID
-	carRef.resize(GameManager.currentRaceOptions.get("carCount"))
-	print("Number of Cars: " + String(GameManager.currentRaceOptions.get("carCount")))
-	GameManager._generate_car_colors()
-	GameManager._generate_driver_names()
+	carRef.resize(GameManager.racerDataArray.size())
+	print("Number of Cars: " + String(carRef.size()))
 	
 	#Assign Cars
 	for i in carRef.size():
@@ -46,7 +46,8 @@ func _ready():
 		trackRef.add_child(carRef[i])
 		carRef[i].offset = gridPosition[i]
 	
-	driverListRef.init_driver_list(carRef.size(), GameManager.carColors)
+	#Set up the list on the UI panel
+	driverListRef.init_driver_list(GameManager.racerDataArray.size(), GameManager.carColors)
 	
 	print ("Pit Box ID array size: " + String(pitBox_id.size()))
 	
@@ -98,18 +99,21 @@ func _on_turn_decelerate(identifier, minimumSpeed):
 
 
 func _on_Pitbox_area_entered(area, pitBoxID):
-	var tempCar = area.get_parent() as Car
-	var carID: int = tempCar.carID
-	if (carRef[carID].currentCarState == Enums.CAR_STATE.PITTING) && (carID == pitBoxID):
-		carRef[carID].currentCarState = Enums.CAR_STATE.IN_PITBOX
-		yield(get_tree().create_timer(rand_range(4.0, 8.0)), "timeout")
-		carRef[carID].currentCarState = Enums.CAR_STATE.PITTING
+	if (area.get_parent().get_class() == "Car"):
+		var tempCar = area.get_parent() as Car
+		var carID: int = tempCar.carID
+		if (carRef[carID].currentCarState == Enums.CAR_STATE.PITTING) && (carID == pitBoxID):
+			carRef[carID].currentCarState = Enums.CAR_STATE.IN_PITBOX
+			yield(get_tree().create_timer(rand_range(4.0, 8.0)), "timeout")
+			carRef[carID].currentCarState = Enums.CAR_STATE.PITTING
 
 
 func _on_FinishLine_area_entered(area):
-	var tempCar = area.get_parent() as Car
-	var carID: int = tempCar.carID
-	print ("Car " + String(carID) + " crossed the finish line!")
+	if (area.get_parent().get_class() == "Car"):
+		var tempCar = area.get_parent() as Car
+		var carID: int = tempCar.carID
+		print ("Car " + String(carID) + " crossed the finish line!")
+	
 
 
 func _on_Race_Start():

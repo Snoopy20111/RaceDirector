@@ -13,12 +13,14 @@ var defaultRaceOptions: Dictionary = {
 	"track": "Default_Track",
 	"carCount": 6,
 	"raceType": Enums.RACE_TYPE.CIRCUIT,
-	"raceLaps": 15,
-	"raceLength": 6.0,
-	"raceMaxLength": 10.0,
+	"raceLaps": 10,
+	"raceLengthMinutes": 6.0,
+	"raceMaxLengthMinutes": 10.0,
 }
 
 var currentRaceOptions: Dictionary = defaultRaceOptions
+
+var racerDataArray: Array
 
 var driverNameArray: PoolStringArray
 var carColors: PoolColorArray
@@ -42,7 +44,6 @@ func _init_FMOD():
 		
 		# And make sure we can't do this twice
 		hasInitializedAudio = true
-	
 
 ### Race Options Utilities ###
 
@@ -63,19 +64,27 @@ func _prerace_set_raceLaps(newLapCount: int) -> void:
 	currentRaceOptions.raceLaps = newLapCount
 	print ("RaceLaps updated to " + String(currentRaceOptions.raceLaps))
 
-func _prerace_set_raceLength(newLength: float) -> void:
-	currentRaceOptions.raceLength = newLength
-	print ("RaceLength updated to " + String(currentRaceOptions.raceLength))
+func _prerace_set_raceLengthMinutes(newLength: float) -> void:
+	currentRaceOptions.raceLengthMinutes = newLength
+	print ("RaceLength updated to " + String(currentRaceOptions.raceLengthMinutes))
 
-func _prerace_set_raceMaxLength(newMaxLength: float) -> void:
-	currentRaceOptions.raceMaxLength = newMaxLength
-	print ("RaceMaxLength updated to " + String(currentRaceOptions.raceMaxLength))
+func _prerace_set_raceMaxLengthMinutes(newMaxLength: float) -> void:
+	currentRaceOptions.raceMaxLengthMinutes = newMaxLength
+	print ("RaceMaxLength updated to " + String(currentRaceOptions.raceMaxLengthMinutes))
 
 func _reset_race_options() -> void:
 	currentRaceOptions = defaultRaceOptions
 	print ("Race Options reset")
 
 ### Cars, colors, drivers, etc ###
+func _generate_racer_data() -> void:
+	racerDataArray.resize(currentRaceOptions.carCount)
+	for i in racerDataArray.size():
+		racerDataArray[i] = RacerData.new()
+		racerDataArray[i].init_racer_data(i)
+	_generate_car_colors()
+	_generate_driver_names()
+
 func _generate_car_colors() -> void:
 	
 	#If we already have car colors, get rid of them!
@@ -111,6 +120,12 @@ func _generate_driver_names() -> void:
 	driverNameArray.resize(currentRaceOptions.carCount)
 	for i in driverNameArray.size():
 		driverNameArray[i] = "Driver Lastname " + String(i)
+
+func _race_car_lap_completed(carID: int = 0) -> void:
+	racerDataArray[carID].current_lap += 1
+
+func _get_driver_standings() -> void:
+	pass
 
 ### Utilities ###
 func reparent(child: Node, new_parent: Node):
