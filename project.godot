@@ -35,11 +35,6 @@ _global_script_classes=[ {
 "path": "res://Scripts/PitBox.gd"
 }, {
 "base": "Reference",
-"class": "RacePlacementObject",
-"language": "GDScript",
-"path": "res://Scripts/RacePlacementObject.gd"
-}, {
-"base": "Reference",
 "class": "RacerData",
 "language": "GDScript",
 "path": "res://Scripts/RacerData.gd"
@@ -70,7 +65,6 @@ _global_script_class_icons={
 "FmodNative": "",
 "Knob": "res://addons/knob/icon_knob.svg",
 "PitBox": "",
-"RacePlacementObject": "",
 "RacerData": "",
 "SceneManagerConstants": "",
 "ShakeCamera": "",

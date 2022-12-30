@@ -30,7 +30,7 @@ var gridPositionStartOffset: float = 30
 func _ready():
 	gridPosition.resize(TrackDataMapping._get_maxCars(GameManager.currentRaceOptions.get("track")))
 	for i in gridPosition.size():
-		gridPosition[i] = -i * gridPositionOffset
+		gridPosition[i] = -gridPositionStartOffset + (-i * gridPositionOffset)
 	
 	# Get the Game Manager to make the racer list
 	GameManager._generate_racer_data()
@@ -42,7 +42,8 @@ func _ready():
 	#Assign Cars
 	for i in carRef.size():
 		carRef[i] = carScene.instance()
-		carRef[i]._init_car(i, GameManager.carColors[i])
+		#carRef[i]._init_car(i, GameManager.carColors[i])
+		carRef[i]._init_car(i, GameManager.racerDataArray[i].car_color)
 		trackRef.add_child(carRef[i])
 		carRef[i].offset = gridPosition[i]
 	

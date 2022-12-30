@@ -18,6 +18,8 @@ var defaultRaceOptions: Dictionary = {
 	"raceMaxLengthMinutes": 10.0,
 }
 
+var intervalUpdateTimer: Timer
+
 var currentRaceOptions: Dictionary = defaultRaceOptions
 
 var racerDataArray: Array
@@ -85,6 +87,7 @@ func _generate_racer_data() -> void:
 		racerDataArray[i].init_racer_data(i)
 	_generate_car_colors()
 	_generate_driver_names()
+	print ("Racer Data generated")
 
 func _generate_car_colors() -> void:
 	
@@ -125,16 +128,44 @@ func _generate_driver_names() -> void:
 	for i in driverNameArray.size():
 		driverNameArray[i] = "Driver Lastname " + String(i)
 
-func _race_car_lap_completed(carID: int = 0) -> void:
-	racerDataArray[carID].current_lap += 1
+func _start_race() -> void:
+	#Start the interval timer with whatever length feels appropriate. Probably 1 second?
+	#Every time the interval timer 
+	pass
 
-func _sort_driver_standings() -> void:
-	#This should return a sorted array of carID integers
+func _race_car_lap_completed(givenCarID: int = 0) -> void:
+	racerDataArray[givenCarID].current_lap += 1
+	#Can also possibly assume position is zero for split time calculations?
+
+func _race_car_position_update(givenCarID: int, trackPosition: float) -> void:
+	racerDataArray[givenCarID].current_lap_progress = trackPosition
+
+func _get_drivers_ordered() -> PoolIntArray:
+	_sort_driver_standings()
+	return racerStandingArray
+
+func _sort_driver_standings() -> void:	
+	#resize to zero, we'll add our elements in from here
+	racerStandingArray.resize(0)
+	var tempArray = racerDataArray.duplicate()
 	
-	#resize and fill our array with junk
-	racerStandingArray.resize(racerDataArray.size())
-	racerStandingArray.fill(0)
-	
+	#put the currentCarIDs in order based on racerProgresses
+	for i in racerDataArray.size():
+		var carIDFound: int
+		var largestValueFound: float
+		var jValue: int
+		for j in tempArray.size():
+			#Find the largest racerProgress value in the temp set and set largestValueFound to it
+			var racerProgress: float = float(tempArray[j].current_lap) + tempArray[j].current_lap_progress
+			if (racerProgress > largestValueFound):
+				largestValueFound = racerProgress
+				carIDFound = tempArray[j].carID
+				jValue = j
+		#with our new value for largest found, we append the carID to our Standing Array
+		racerStandingArray.append(carIDFound)
+		#and remove that element from tempArray, before doing it all again
+		tempArray.remove(jValue)
+	#by this point, racerStandingArray should be the car IDs in order
 
 ### Utilities ###
 func reparent(child: Node, new_parent: Node):

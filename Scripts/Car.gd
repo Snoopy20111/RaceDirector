@@ -83,9 +83,12 @@ func _process(delta):
 	offset += (speedMPH * delta * speedMult)
 	vOffsetAdder = vOffsetAdder + delta
 	v_offset = sin(vOffsetAdder * vOffsetSpeedMult) * vOffsetMagMult * (speedMPH / maxSpeed)
+	
+	#and then send our info to the Game Manager with the handy little function
+	GameManager._race_car_position_update(carID, unit_offset)
 
 
-func _on_CallToPit_pressed() -> void:
+func _on_CallToPit() -> void:
 	if (willPitNextLap == true):
 		willPitNextLap = false
 	elif (willPitNextLap == false):

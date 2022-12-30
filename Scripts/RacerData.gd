@@ -10,6 +10,7 @@ var current_driver_state =  Enums.DRIVER_STATE.FOCUSED
 
 # Race-specific info
 var current_lap: int = 0
+var current_lap_progress: float = 0.0
 var fastest_lap: float
 
 func init_racer_data(newCarID: int):
