@@ -4,16 +4,6 @@ extends PanelContainer
 # Declare member variables here. Examples:
 onready var rect_ref = $ColorRect
 
-
-# Called when the node enters the scene tree for the first time.
-#func _ready():
-#	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
 func set_flag_color(input_state: int):
 	#Enums.FLAG_STATE
 	match(input_state):

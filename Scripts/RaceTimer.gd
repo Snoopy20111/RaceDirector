@@ -3,13 +3,12 @@ extends PanelContainer
 
 # Declare member variables here. Examples:
 var time_in_seconds: float = 0
-var is_time_paused: bool = true
 var is_showing_full_time: bool = false
 onready var time_text_ref: Label = $VBoxContainer/Time
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if (!is_time_paused):
+	if (GameManager.is_race_active):
 		time_in_seconds += delta
 	print_time()
 	
@@ -50,11 +49,11 @@ func print_time():
 	time_text_ref.text = String(hours_string) + ":" + String(minutes_string) + ":" + String(seconds_string)
 
 func unpause_timer():
-	is_time_paused = false
+	GameManager.is_race_active = true
 
 func pause_timer():
-	is_time_paused = true
+	GameManager.is_race_active = false
 
 func end_race():
-	is_time_paused = true
+	GameManager.is_race_active = false
 	is_showing_full_time = true

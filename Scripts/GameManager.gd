@@ -18,15 +18,16 @@ var defaultRaceOptions: Dictionary = {
 	"raceMaxLengthMinutes": 10.0,
 }
 
-var intervalUpdateTimer: Timer
+var is_paused: bool = false
+var is_race_active: bool = false
 
 var currentRaceOptions: Dictionary = defaultRaceOptions
 
 var racerDataArray: Array
 var racerStandingArray: PoolIntArray
 
-var driverNameArray: PoolStringArray
-var carColors: PoolColorArray
+#var driverNameArray: PoolStringArray
+#var carColors: PoolColorArray
 
 func _init_FMOD():
 	
@@ -124,14 +125,9 @@ func _generate_car_colors() -> void:
 		possibleCarColors = lowerSlice
 
 func _generate_driver_names() -> void:
-	driverNameArray.resize(currentRaceOptions.carCount)
-	for i in driverNameArray.size():
-		driverNameArray[i] = "Driver Lastname " + String(i)
+	for i in racerDataArray.size():
+		racerDataArray[i].driver_name = "Driver Lastname " + String(i)
 
-func _start_race() -> void:
-	#Start the interval timer with whatever length feels appropriate. Probably 1 second?
-	#Every time the interval timer 
-	pass
 
 func _race_car_lap_completed(givenCarID: int = 0) -> void:
 	racerDataArray[givenCarID].current_lap += 1
@@ -142,6 +138,8 @@ func _race_car_position_update(givenCarID: int, trackPosition: float) -> void:
 
 func _get_drivers_ordered() -> PoolIntArray:
 	_sort_driver_standings()
+	#todo: pass this data in a way that is more efficient, because
+	#it has to be unsorted the same way on the other side
 	return racerStandingArray
 
 func _sort_driver_standings() -> void:	
@@ -150,6 +148,7 @@ func _sort_driver_standings() -> void:
 	var tempArray = racerDataArray.duplicate()
 	
 	#put the currentCarIDs in order based on racerProgresses
+	#todo: better sorting algorithm, because this is pretty much brute force
 	for i in racerDataArray.size():
 		var carIDFound: int
 		var largestValueFound: float

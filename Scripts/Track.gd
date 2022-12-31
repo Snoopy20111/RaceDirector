@@ -42,7 +42,6 @@ func _ready():
 	#Assign Cars
 	for i in carRef.size():
 		carRef[i] = carScene.instance()
-		#carRef[i]._init_car(i, GameManager.carColors[i])
 		carRef[i]._init_car(i, GameManager.racerDataArray[i].car_color)
 		trackRef.add_child(carRef[i])
 		carRef[i].offset = gridPosition[i]

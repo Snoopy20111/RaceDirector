@@ -1,12 +1,25 @@
-extends PanelContainer
+extends Panel
 
 
 # Declare member variables here. Examples:
+var default_height: int = 50
+var expanded_height: int = 120
+var item_is_expanded: bool = false
+
 onready var label_ref = $Placement
 
 func set_number(newNumber: int = 0) -> void:
 	label_ref.text = String(newNumber) + ")"
+	
+func set_expanded(new_state: bool) -> void:
+	item_is_expanded = new_state
+	update_height()
 
-func set_vertical_size(new_size: int = 50) -> void:
-	self.rect_size.y = new_size
-	self.rect_min_size.y = new_size
+func update_height() -> void:
+	if (item_is_expanded):
+		self.rect_size.y = expanded_height
+		self.rect_min_size.y = expanded_height
+	else:
+		self.rect_size.y = default_height
+		self.rect_min_size.y = default_height
+	print("item_is_expanded: " + String(item_is_expanded))
