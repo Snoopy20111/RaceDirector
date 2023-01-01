@@ -1,9 +1,10 @@
 extends Control
+class_name DriverListPanel
 
 
 # Declare member variables here. Examples:
-const driverListItem = preload("res://Scenes/Prefabs/DriverListItem.tscn")
-const placementItem = preload("res://Scenes/Prefabs/Placements.tscn")
+const driverListItem = preload("res://Scenes/Prefabs/DriverList_Item.tscn")
+const placementItem = preload("res://Scenes/Prefabs/DriverList_Placement.tscn")
 onready var placementsVBox_ref = $Panel/PlacementsVBox
 onready var driversVBox_ref = $Panel/DriversVBox
 
@@ -13,12 +14,15 @@ var driverListItemArray: Array
 var counter: float = 0
 var updateThreshold = 1
 
+
 func _process(delta):
-	counter += delta
-	if (counter >= updateThreshold):
-		counter = 0
-		if (GameManager.is_race_active):
+	#Every frame, if race is active, refresh driver list every second
+	if (GameManager.is_race_active):
+		counter += delta
+		if (counter >= updateThreshold):
+			counter = 0
 			update_driver_list()
+
 
 func init_driver_list(count: int, racerDataArray: Array) -> void:
 	
@@ -30,10 +34,10 @@ func init_driver_list(count: int, racerDataArray: Array) -> void:
 		placesArray[i] = placementItem.instance()
 		#add as child
 		placementsVBox_ref.add_child(placesArray[i])
-		#set number (dependent on ready function info)
+		#set displayed number (starting from 1st)
 		placesArray[i].set_number(i+1)
 	
-	#For each driver in the list, spawn DriverListItem and give it the corresponding color, name, etc
+	#For each driver in the list, spawn DriverListItem and give it the corresponding color, name, ID, etc
 	for i in driverListItemArray.size():
 		driverListItemArray[i] = driverListItem.instance()
 		driversVBox_ref.add_child(driverListItemArray[i])
@@ -41,6 +45,7 @@ func init_driver_list(count: int, racerDataArray: Array) -> void:
 		driverListItemArray[i].set_color(racerDataArray[i].car_color)
 		driverListItemArray[i].set_name(racerDataArray[i].driver_name)
 		driverListItemArray[i].set_carID(racerDataArray[i].carID)
+
 
 func update_driver_list() -> void:
 	#Get the current standings, who's in what order
@@ -63,6 +68,7 @@ func update_driver_list() -> void:
 	#Update the spacing of the numbers accordingly
 	update_placement_panels()
 	print ("Driver List panel updated!")
+
 
 func update_placement_panels() -> void:
 	for i in driverListItemArray.size():

@@ -32,8 +32,6 @@ var accelMultVarianceRange: float = 5
 var accelCurve 	= preload("res://Curves/Acceleration_Curve.tres")
 var brakingCurve = preload("res://Curves/Braking_Curve.tres")
 
-var driverFirstName: String = "Nicholas"
-var driverLastName: String = "GOATifi"
 var carColor: Color = Color.black
 onready var carColorSprite: Sprite = $CarSprite/RaceCarColor
 

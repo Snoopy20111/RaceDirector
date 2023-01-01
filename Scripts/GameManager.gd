@@ -4,8 +4,6 @@ extends Node2D
 # Driver names, driver standings, Race data, Series info, etc.
 # Here ideally is where you can balance and change most things regarding the race as well
 
-var raceTimeElapsed: float
-
 # audio variables
 var hasInitializedAudio: bool = false
 
@@ -26,8 +24,6 @@ var currentRaceOptions: Dictionary = defaultRaceOptions
 var racerDataArray: Array
 var racerStandingArray: PoolIntArray
 
-#var driverNameArray: PoolStringArray
-#var carColors: PoolColorArray
 
 func _init_FMOD():
 	
@@ -50,7 +46,6 @@ func _init_FMOD():
 		hasInitializedAudio = true
 
 ### Race Options Utilities ###
-
 func _prerace_set_track(newTrack: String) -> void:
 	currentRaceOptions.track = newTrack
 	print ("Track updated to " + String(currentRaceOptions.track))
@@ -129,9 +124,9 @@ func _generate_driver_names() -> void:
 		racerDataArray[i].driver_name = "Driver Lastname " + String(i)
 
 
+### In-Race Updates and data ###
 func _race_car_lap_completed(givenCarID: int = 0) -> void:
 	racerDataArray[givenCarID].current_lap += 1
-	#Can also possibly assume position is zero for split time calculations?
 
 func _race_car_position_update(givenCarID: int, trackPosition: float) -> void:
 	racerDataArray[givenCarID].current_lap_progress = trackPosition
@@ -156,6 +151,7 @@ func _sort_driver_standings() -> void:
 		for j in tempArray.size():
 			#Find the largest racerProgress value in the temp set and set largestValueFound to it
 			var racerProgress: float = float(tempArray[j].current_lap) + tempArray[j].current_lap_progress
+			print ("Racer Progress for car " + String(tempArray[j].carID) + " is " + String(racerProgress))
 			if (racerProgress > largestValueFound):
 				largestValueFound = racerProgress
 				carIDFound = tempArray[j].carID

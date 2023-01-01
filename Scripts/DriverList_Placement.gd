@@ -1,4 +1,5 @@
 extends Panel
+class_name DriverListPlacement
 
 
 # Declare member variables here. Examples:
@@ -22,4 +23,4 @@ func update_height() -> void:
 	else:
 		self.rect_size.y = default_height
 		self.rect_min_size.y = default_height
-	print("item_is_expanded: " + String(item_is_expanded))
+	#print("item_is_expanded: " + String(item_is_expanded))

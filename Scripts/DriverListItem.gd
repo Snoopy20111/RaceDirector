@@ -10,12 +10,18 @@ var carID: int
 onready var colorRect_ref = $VBoxContainer/DriverBox/ColorRect
 onready var optionsBox_ref = $VBoxContainer/OptionsBox
 onready var driverList_ref = self.get_parent().get_parent().get_parent()
+onready var driver_label_ref = $VBoxContainer/DriverBox/Label
+
 
 func set_color(new_Color: Color) -> void:
 	colorRect_ref.color = new_Color
 
 func set_carID(new_CarID: int) -> void:
 	carID = new_CarID
+
+func set_driver_name(new_name: String) -> void:
+	driver_label_ref.text = new_name
+	pass
 
 func _on_DriverBox_gui_input(event) -> void:
 	#If the input event is the left mouse button being pressed
@@ -33,5 +39,5 @@ func update_height() -> void:
 	else:
 		self.rect_size.y = default_height
 		self.rect_min_size.y = default_height
-	print("item_is_expanded: " + String(is_expanded))
+	#print("item_is_expanded: " + String(is_expanded))
 	driverList_ref.update_placement_panels()

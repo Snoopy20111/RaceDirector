@@ -19,6 +19,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/DriverListItem.gd"
 }, {
+"base": "Control",
+"class": "DriverListPanel",
+"language": "GDScript",
+"path": "res://Scripts/DriverList.gd"
+}, {
+"base": "Panel",
+"class": "DriverListPlacement",
+"language": "GDScript",
+"path": "res://Scripts/DriverList_Placement.gd"
+}, {
 "base": "Reference",
 "class": "Enums",
 "language": "GDScript",
@@ -67,6 +77,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Car": "",
 "DriverListItem": "",
+"DriverListPanel": "",
+"DriverListPlacement": "",
 "Enums": "",
 "FmodNative": "",
 "Knob": "res://addons/knob/icon_knob.svg",
