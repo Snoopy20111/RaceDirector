@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "ColorRect",
+"class": "AutoResizeColorRect",
+"language": "GDScript",
+"path": "res://Scripts/AutoResize_ColorRect.gd"
+}, {
+"base": "Node2D",
+"class": "Boot",
+"language": "GDScript",
+"path": "res://Scripts/Boot.gd"
+}, {
 "base": "PathFollow2D",
 "class": "Car",
 "language": "GDScript",
@@ -17,12 +27,12 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "DriverListItem",
 "language": "GDScript",
-"path": "res://Scripts/DriverListItem.gd"
+"path": "res://Scripts/DriverList_Item.gd"
 }, {
 "base": "Control",
 "class": "DriverListPanel",
 "language": "GDScript",
-"path": "res://Scripts/DriverList.gd"
+"path": "res://Scripts/DriverList_Panel.gd"
 }, {
 "base": "Panel",
 "class": "DriverListPlacement",
@@ -43,6 +53,11 @@ _global_script_classes=[ {
 "class": "Knob",
 "language": "GDScript",
 "path": "res://addons/knob/Knob.gd"
+}, {
+"base": "Reference",
+"class": "NameGenerator",
+"language": "GDScript",
+"path": "res://Name_Generator.gd"
 }, {
 "base": "Area2D",
 "class": "PitBox",
@@ -75,6 +90,8 @@ _global_script_classes=[ {
 "path": "res://Scripts/TrackDataMapping.gd"
 } ]
 _global_script_class_icons={
+"AutoResizeColorRect": "",
+"Boot": "",
 "Car": "",
 "DriverListItem": "",
 "DriverListPanel": "",
@@ -82,6 +99,7 @@ _global_script_class_icons={
 "Enums": "",
 "FmodNative": "",
 "Knob": "res://addons/knob/icon_knob.svg",
+"NameGenerator": "",
 "PitBox": "",
 "RacerData": "",
 "SceneManagerConstants": "",

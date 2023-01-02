@@ -1,5 +1,5 @@
 extends ColorRect
-
+class_name AutoResizeColorRect
 
 # Size in pixels / units to go over the window size
 export var bleed_size: int = 50

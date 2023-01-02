@@ -24,6 +24,8 @@ var currentRaceOptions: Dictionary = defaultRaceOptions
 var racerDataArray: Array
 var racerStandingArray: PoolIntArray
 
+onready var name_gen = NameGenerator.new()
+
 
 func _init_FMOD():
 	
@@ -82,6 +84,7 @@ func _generate_racer_data() -> void:
 		racerDataArray[i] = RacerData.new()
 		racerDataArray[i].init_racer_data(i)
 	_generate_car_colors()
+	_generate_driver_nationalities()
 	_generate_driver_names()
 	print ("Racer Data generated")
 
@@ -119,9 +122,16 @@ func _generate_car_colors() -> void:
 		lowerSlice.append_array(upperSlice)
 		possibleCarColors = lowerSlice
 
+func _generate_driver_nationalities() -> void:
+	for i in racerDataArray.size():
+		racerDataArray[i].driver_nationality = name_gen.get_nationality()
+		print("Driver #" + String(i) + " given nationality " + String(racerDataArray[i].driver_nationality))
+
 func _generate_driver_names() -> void:
 	for i in racerDataArray.size():
-		racerDataArray[i].driver_name = "Driver Lastname " + String(i)
+		var nationality = racerDataArray[i].driver_nationality
+		racerDataArray[i].driver_name = name_gen.get_driver_name(nationality)
+		#print("Racer #" + String(i) + " named " + racerDataArray[i].driver_name)
 
 
 ### In-Race Updates and data ###

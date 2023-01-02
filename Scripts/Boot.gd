@@ -1,4 +1,5 @@
 extends Node2D
+class_name Boot
 
 # Debug Options
 export var LogoParade: bool = true

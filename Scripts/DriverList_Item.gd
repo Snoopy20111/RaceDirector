@@ -19,9 +19,8 @@ func set_color(new_Color: Color) -> void:
 func set_carID(new_CarID: int) -> void:
 	carID = new_CarID
 
-func set_driver_name(new_name: String) -> void:
+func set_name(new_name: String) -> void:
 	driver_label_ref.text = new_name
-	pass
 
 func _on_DriverBox_gui_input(event) -> void:
 	#If the input event is the left mouse button being pressed

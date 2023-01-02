@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scripts/DriverList.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/DriverList_Panel.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/RightArrow/RightArrow_Normal.png" type="Texture" id=2]
 
 [node name="DriverList" type="Control"]
