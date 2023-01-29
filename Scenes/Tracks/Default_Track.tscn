@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scenes/Prefabs/DriverList_Panel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Track_Backgrounds/Hungary.jpg" type="Texture" id=2]
 [ext_resource path="res://Scripts/TurnData.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/PitBox.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/RaceStartStop_Button.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/Camera_Controller.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/Track.gd" type="Script" id=7]
 [ext_resource path="res://Scenes/Prefabs/RaceTimer.tscn" type="PackedScene" id=8]
@@ -767,37 +768,25 @@ margin_bottom = 316.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="InRaceHUD/VBoxContainer"]
 margin_right = 255.0
-margin_bottom = 49.0
+margin_bottom = 39.0
 alignment = 1
 
 [node name="Start Race" type="Button" parent="InRaceHUD/VBoxContainer/HBoxContainer"]
-margin_left = 38.0
-margin_right = 216.0
-margin_bottom = 49.0
+margin_left = 56.0
+margin_right = 198.0
+margin_bottom = 39.0
 text = "Start Race"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="InRaceHUD/VBoxContainer"]
-visible = false
-margin_top = 53.0
-margin_right = 255.0
-margin_bottom = 102.0
-alignment = 1
-
-[node name="End Race" type="Button" parent="InRaceHUD/VBoxContainer/HBoxContainer2"]
-margin_left = 46.0
-margin_right = 208.0
-margin_bottom = 49.0
-text = "End Race"
+script = ExtResource( 5 )
 
 [node name="FlagPanel" parent="InRaceHUD/VBoxContainer" instance=ExtResource( 9 )]
-margin_top = 53.0
+margin_top = 43.0
 margin_right = 255.0
-margin_bottom = 103.0
+margin_bottom = 93.0
 
 [node name="RaceTimer" parent="InRaceHUD/VBoxContainer" instance=ExtResource( 8 )]
-margin_top = 107.0
+margin_top = 97.0
 margin_right = 255.0
-margin_bottom = 214.0
+margin_bottom = 186.0
 
 [connection signal="area_entered" from="TrackLocations/FinishLine" to="." method="_on_FinishLine_area_entered"]
 [connection signal="accelerate" from="TrackLocations/Turn01" to="." method="_on_turn_accelerate"]
@@ -874,5 +863,3 @@ margin_bottom = 214.0
 [connection signal="pitbox_area_entered" from="PitLane/Pitbox10" to="." method="_on_Pitbox_area_entered"]
 [connection signal="pitbox_area_entered" from="PitLane/Pitbox11" to="." method="_on_Pitbox_area_entered"]
 [connection signal="pitbox_area_entered" from="PitLane/Pitbox12" to="." method="_on_Pitbox_area_entered"]
-[connection signal="pressed" from="InRaceHUD/VBoxContainer/HBoxContainer/Start Race" to="." method="_on_Race_Start"]
-[connection signal="pressed" from="InRaceHUD/VBoxContainer/HBoxContainer2/End Race" to="." method="_on_Race_Start"]

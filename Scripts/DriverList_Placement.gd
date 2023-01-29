@@ -3,8 +3,8 @@ class_name DriverListPlacement
 
 
 # Declare member variables here. Examples:
-var default_height: int = 50
-var expanded_height: int = 120
+export var default_height: int = 50
+export var expanded_height: int = 120
 var item_is_expanded: bool = false
 
 onready var label_ref = $Placement

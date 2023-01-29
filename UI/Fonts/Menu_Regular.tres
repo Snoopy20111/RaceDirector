@@ -3,6 +3,6 @@
 [ext_resource path="res://UI/Fonts/Bin/Roboto/Roboto-Regular.ttf" type="DynamicFontData" id=1]
 
 [resource]
-size = 36
+size = 28
 use_filter = true
 font_data = ExtResource( 1 )

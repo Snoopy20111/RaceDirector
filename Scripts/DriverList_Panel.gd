@@ -67,7 +67,7 @@ func update_driver_list() -> void:
 	
 	#Update the spacing of the numbers accordingly
 	update_placement_panels()
-	print ("Driver List panel updated!")
+	#print ("Driver List panel updated!")
 
 
 func update_placement_panels() -> void:

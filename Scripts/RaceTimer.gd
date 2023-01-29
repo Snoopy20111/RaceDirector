@@ -6,6 +6,10 @@ var time_in_seconds: float = 0
 var is_showing_full_time: bool = false
 onready var time_text_ref: Label = $VBoxContainer/Time
 
+func _ready():
+	GameManager.connect("race_started", self, "on_Race_Start")
+	GameManager.connect("race_ended", self, "on_Race_End")
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if (GameManager.is_race_active):
@@ -49,11 +53,15 @@ func print_time():
 	time_text_ref.text = String(hours_string) + ":" + String(minutes_string) + ":" + String(seconds_string)
 
 func unpause_timer():
-	GameManager.is_race_active = true
+	pass
 
 func pause_timer():
-	GameManager.is_race_active = false
+	pass
 
-func end_race():
-	GameManager.is_race_active = false
+func on_Race_Start():
+	pass
+
+func on_Race_End():
 	is_showing_full_time = true
+	GameManager.last_recorded_time = time_in_seconds
+	print (time_in_seconds)

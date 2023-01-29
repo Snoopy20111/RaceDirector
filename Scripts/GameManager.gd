@@ -23,8 +23,13 @@ var currentRaceOptions: Dictionary = defaultRaceOptions
 
 var racerDataArray: Array
 var racerStandingArray: PoolIntArray
+var last_recorded_time: float = 0.0
 
 onready var name_gen = NameGenerator.new()
+
+signal race_started
+signal race_ended
+signal event_ended
 
 
 func _init_FMOD():
@@ -125,7 +130,7 @@ func _generate_car_colors() -> void:
 func _generate_driver_nationalities() -> void:
 	for i in racerDataArray.size():
 		racerDataArray[i].driver_nationality = name_gen.get_nationality()
-		print("Driver #" + String(i) + " given nationality " + String(racerDataArray[i].driver_nationality))
+		#print("Driver #" + String(i) + " given nationality " + String(racerDataArray[i].driver_nationality))
 
 func _generate_driver_names() -> void:
 	for i in racerDataArray.size():
@@ -135,17 +140,54 @@ func _generate_driver_names() -> void:
 
 
 ### In-Race Updates and data ###
-func _race_car_lap_completed(givenCarID: int = 0) -> void:
+func _start_race() -> void:
+	emit_signal("race_started")
+	is_race_active = true
+	print ("Race Started!")
+
+func _end_race() -> void:
+	emit_signal("race_ended")
+	is_race_active = false
+	print ("Race Ended!")
+	_end_event()
+	
+
+
+func _end_event() -> void:
+	emit_signal("event_ended")
+	yield(get_tree().create_timer(1.5), "timeout")
+	SceneManager.change_scene("res://Scenes/UI_Scenes/RaceResults.tscn")
+
+
+func _race_car_lap_completed(givenCarID: int) -> void:
+	#increment given car's lap count
 	racerDataArray[givenCarID].current_lap += 1
+	
+	#if it's completed all the laps, that car is done racing
+	if racerDataArray[givenCarID].current_lap > currentRaceOptions.raceLaps:
+		racerDataArray[givenCarID].has_completed_race = true
+
+
+func _has_race_completed() -> void:
+	var drivers_finished: int = 0
+	for i in racerDataArray.size():
+		if (racerDataArray[i].has_completed_race == true):
+			drivers_finished += 1
+	if (drivers_finished >= currentRaceOptions.carCount):
+		print ("Drivers finished: " + String(drivers_finished))
+		_end_race()
 
 func _race_car_position_update(givenCarID: int, trackPosition: float) -> void:
 	racerDataArray[givenCarID].current_lap_progress = trackPosition
 
+
 func _get_drivers_ordered() -> PoolIntArray:
-	_sort_driver_standings()
+	if (is_race_active):
+		_sort_driver_standings()
 	#todo: pass this data in a way that is more efficient, because
 	#it has to be unsorted the same way on the other side
 	return racerStandingArray
+
 
 func _sort_driver_standings() -> void:	
 	#resize to zero, we'll add our elements in from here
@@ -161,7 +203,7 @@ func _sort_driver_standings() -> void:
 		for j in tempArray.size():
 			#Find the largest racerProgress value in the temp set and set largestValueFound to it
 			var racerProgress: float = float(tempArray[j].current_lap) + tempArray[j].current_lap_progress
-			print ("Racer Progress for car " + String(tempArray[j].carID) + " is " + String(racerProgress))
+			#print ("Racer Progress for car " + String(tempArray[j].carID) + " is " + String(racerProgress))
 			if (racerProgress > largestValueFound):
 				largestValueFound = racerProgress
 				carIDFound = tempArray[j].carID
@@ -172,8 +214,9 @@ func _sort_driver_standings() -> void:
 		tempArray.remove(jValue)
 	#by this point, racerStandingArray should be the car IDs in order
 
+
 ### Utilities ###
-func reparent(child: Node, new_parent: Node):
+func reparent(child: Node, new_parent: Node) -> void:
 	var old_parent = child.get_parent()
 	old_parent.remove_child(child)
 	new_parent.add_child(child)

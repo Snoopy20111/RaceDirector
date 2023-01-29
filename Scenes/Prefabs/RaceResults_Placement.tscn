@@ -17,7 +17,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="DriverList_Placement" type="Panel"]
+[node name="RaceResults_Placement" type="Panel"]
 margin_right = 40.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 40, 50 )

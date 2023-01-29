@@ -28,6 +28,10 @@ var gridPositionStartOffset: float = 30
 
 
 func _ready():
+	#connect to Game Manager events
+	GameManager.connect("race_started", self, "_on_Race_Start")
+	GameManager.connect("race_ended", self, "_on_Race_End")
+	
 	gridPosition.resize(TrackDataMapping._get_maxCars(GameManager.currentRaceOptions.get("track")))
 	for i in gridPosition.size():
 		gridPosition[i] = -gridPositionStartOffset + (-i * gridPositionOffset)
@@ -37,7 +41,7 @@ func _ready():
 	
 	#Instantiate number of cars, each carying a unique ID
 	carRef.resize(GameManager.racerDataArray.size())
-	print("Number of Cars: " + String(carRef.size()))
+	#print("Number of Cars: " + String(carRef.size()))
 	
 	#Assign Cars
 	for i in carRef.size():
@@ -49,7 +53,7 @@ func _ready():
 	#Set up the list on the UI panel
 	driverListRef.init_driver_list(GameManager.racerDataArray.size(), GameManager.racerDataArray)
 	
-	print ("Pit Box ID array size: " + String(pitBox_id.size()))
+	#print ("Pit Box ID array size: " + String(pitBox_id.size()))
 	
 	#assign colors to pit boxes
 	#for each car we're starting with
@@ -103,8 +107,8 @@ func _on_Pitbox_area_entered(area, pitBoxID):
 func _on_FinishLine_area_entered(area):
 	if (area.get_parent().get_class() == "Car"):
 		var tempCar = area.get_parent() as Car
-		var carID: int = tempCar.carID
-		print ("Car " + String(carID) + " crossed the finish line!")
+		print ("Car " + String(tempCar.carID) + " crossed the line!")
+		GameManager._race_car_lap_completed(tempCar.carID)
 
 
 func _on_Race_Start():
@@ -115,7 +119,8 @@ func _on_Race_Start():
 	flag_panel_ref.set_flag_color(Enums.FLAG_STATE.GREEN)
 	race_timer_ref.unpause_timer()
 
-
+func _on_Race_End():
+	pass
 
 ########### Utility Functions ###########
 

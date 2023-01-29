@@ -13,6 +13,7 @@ var current_lap: int = 0
 var current_lap_progress: float = 0.0
 var lap_times_array: PoolRealArray
 var fastest_lap: float
+var has_completed_race: bool = false
 
 func init_racer_data(newCarID: int):
 	carID = newCarID

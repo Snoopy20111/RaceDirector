@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Prefabs/RaceResults_Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/RaceResults.gd" type="Script" id=2]
+
+[node name="RaceResults" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = 40.0
+margin_right = -30.0
+margin_bottom = -40.0
+script = ExtResource( 2 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+margin_right = 1860.0
+margin_bottom = 1000.0
+scroll_horizontal_enabled = false
+
+[node name="PanelContainer" type="PanelContainer" parent="ScrollContainer"]
+margin_right = 993.0
+margin_bottom = 72.0
+
+[node name="RaceResults_Grid" type="GridContainer" parent="ScrollContainer/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 986.0
+margin_bottom = 65.0
+rect_pivot_offset = Vector2( -163, -94 )
+size_flags_horizontal = 3
+
+[node name="RaceResults_Item" parent="ScrollContainer/PanelContainer/RaceResults_Grid" instance=ExtResource( 1 )]
+margin_right = 979.0
+margin_bottom = 50.0
+
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/PanelContainer/RaceResults_Grid"]
+margin_top = 54.0
+margin_right = 979.0
+margin_bottom = 58.0

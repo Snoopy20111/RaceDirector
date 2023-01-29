@@ -90,73 +90,86 @@ func get_driver_name(input_nationality: String = "United States") -> String:
 			"Felipe", "Gustavo", "Joaquim", "Simon", "Ronaldo", "Henrique"]
 			last_name_table = ["da Silva", "Silva", "dos Santos", "Pereira", "Alves", "Ferreira", "Rodrigues", "de Oliveira", "de Souza", "Gomes", "Santos", "Oliveira", "Ribeiro", "de Jesus", "Soares",
 			"Barbosa", "Lima", "Batista", "Fernandes", "Costa", "da Conceiçao"]
+		
 		#Czech
 		"Czech Republic":
 			first_name_table = ["Jan", "Petr", "Jiří", "Josef", "Pavel", "Martin", "Michal", "František", "Tomas", "Jakub", "Karel", "David", "Lukas", "Roman", "Stanislav", "Filip", "Dominik",
 			"Patrik", "Jindřich", "Miloš"]
 			last_name_table = ["Nováková", "Novák", "Svobodová", "Svoboda", "Novotná", "Ctvrtlik", "Tydlacka", "Dvořáková", "Černá", "Procházková", "Kučera", "Horáková", "Marek", "Pospíšil", "Beneš", "Král"]
-
+		
 		#Danish
 		"Denmark":
 			first_name_table = ["Peter", "Lars", "Jens", "Michael", "Henrik", "Thomas", "Mette", "Jan", "Niels", "Søren", "Jesper", "Hans", "Martin", "Jørgen", "Anders", "Christian", "Erik", "Claus", "Torben",
 			"Flemming", "Carl", "Finn", "Knud", "Kurt", "Kasper", "Jakob", "Tove", "Jonas", "Andreas"]
 			last_name_table = ["Jensen", "Nielsen", "Hansen", "Pedersen", "Andersen", "Christensen", "Larsen", "Sørensen", "Rasmussen", "Jørgensen", "Madsen", "Kristensen", "Olsen", "Thomsen", "Poulsen",
 			"Knudsen", "Møller", "Knudsen", "Lund", "Holm", "Frederiksen", "Schmidt", "Clausen", "Dahl", "Vestergaard", "Jespersen", "Bruun", "Friis", "Bach", "Nørgaard"]
-
+		
 		#Swedish
 		"Sweden":
 			first_name_table = ["Lars", "Karl", "Hans", "Nils", "Sven", "Erik", "Johan", "Anders", "Leif", "Ulf", "Björn", "Kjell", "Rolf", "Fredrik", "Martin", "Magnus", "Claes", "Jens", "Simon",
 			"Göran", "Tomas", "Bernt", "Arne", "Gustav", "Gunnar", "Tobias", "Anton", "Jesper", "Knut", "Rune", "Max", "Oskar", "Markus", "Linus", "Ernst"]
 			last_name_table = ["Johansson", "Andersson", "Karlsson", "Nilsson", "Eriksson", "Larsson", "Olsson", "Pettersson", "Lindberg", "Lindström", "Lindgren", "Magnusson", "Berg", "Jakobsson",
 			"Bergström", "Sandberg", "Forsberg", "Lindqvist", "Eklund", "Sjöberg", "Engström", "Håkansson", "Bergman", "Fransson", "Söderberg"]
-
+		
+		#Finnish
+		"Finland":
+			first_name_table = ["Timo", "Matti", "Juha", "Kari", "Pekka", "Jari", "Jukka", "Markku", "Antti", "Mikko", "Hannu", "Heikki", "Seppo", "Mika", "Ari", "Pentti", "Erkki", "Janne", "Petri",
+			"Jorma", "Marko", "Raimo", "Risto", "Sami", "Harri", "Jarmo", "Pertti", "Reijo", "Eero", "Esko"]
+			last_name_table = ["Korhonen", "Virtanen", "Nieminen", "Mäkinen", "Hämäläinen", "Mäkelä", "Laine", "Heikkinen", "Koskinen", "Lehtonen", "Järvinen", "Lehtinen", "Saarinen", "Salminen", "Heinonen",
+			"Heikkilä", "Niemi", "Salonen", "Laitinen", "Turunen", "Kinnunen", "Salo", "Miettinen", "Mattila", "Karjalainen", "Pitkänen", "Ojala", "Laakso", "Hirvonen"]
 		#Hungarian
 		"Hungary":
 			first_name_table = ["László", "István", "József", "Zoltán", "Sándor", "Peter", "András", "György", "Miklós", "Pál", "Kálmán", "Roland", "Viktor", "Mátyás"]
 			last_name_table = ["Tóth", "Nagy", "Szabó", "Kovács", "Varga", "Horváth", "Molnár", "Németh", "Farkas", "Takács", "Balogh", "Simon", "Szűcs", "Szilágyi", "Mészáros"]
-
+		
 		#Polish
 		"Poland":
 			first_name_table = ["Piotr", "Tomasz", "Marcin", "Krzysztof", "Andrzej", "Grzegorz", "Adam", "Mariusz", "Wojciech", "Jakub", "Jan", "Lukasz", "Daniel", "Jerzy", "Rafal", "Konrad"]
 			last_name_table = ["Nowak", "Kowalski", "Lewandowski", "Kamiński", "Zieliński", "Kozłowski", "Jankowski", "Mazur", "Krawczyk", "Dudek", "Zając", "Sikora"]
-
+		
 		#Russian
 		"Russia":
-			first_name_table = ["Sergey", "Aleksandr", "Andrey", "Vladimir", "Aleksey", "Ivan", "Alexander", "Nikolai", "Mikhail", "Pavel", "Roman", "Igor", "Anton", "Nikita", "Oleg", "Ilya", "Viktor",
+			first_name_table = ["Sergey", "Aleksandr", "Andrey", "Vladimir", "Aleksey", "Ivan", "Nikolai", "Mikhail", "Pavel", "Roman", "Igor", "Anton", "Nikita", "Oleg", "Ilya", "Viktor",
 			"Konstantin", "Artyom", "Yuri", "Vitaliy", "Daniil", "Maxim", "Georgiy", "Grigoriy", "Boris"]
 			last_name_table = ["Ivanov", "Kuznetsov", "Petrov", "Smirnova", "Popov", "Volkova", "Pavlova", "Romanova", "Novikov", "Makarova", "Sergeeva", "Zaytseva", "Stepanova",
 			"Zakharov", "Zhukov", "Savchenko", "Aleksandrovich", "Vasilenko"]
-
+		
 		#Chinese
 		"China":
 			first_name_table = ["Wei", "Yan", "Li", "Ying", "Hui", "Lei", "Hong", "Yu", "Min", "Xin", "Bin", "Yong", "Ming", "Chao", "Xiohong", "Yuan", "Song", "Han", "Lihong", "Jianwei",
 			"Yin", "Wenjie", "Qinghua", "Guo", "Zhang", "Lifang"]
 			last_name_table = ["Wang", "Li", "Zhang", "Liu", "Chen", "Yang", "Huang", "Wu", "Xu", "Zhao", "Zhou", "Lu", "Zhu", "Sun", "He", "Ma", "Yu", "Hu", "Guo", "Jiang", "Luo", "Gao",
 			"Shi", "Wei", "Xie", "Song", "Feng", "Yan", "Deng", "Han", "Cao", "Tan", "Ceng", "Xiao", "Cai", "Cheng", "Bao", "Zhan", "Quio"]
-
+		
 		#Japanese
 		"Japan":
 			first_name_table = ["Kenji", "Hiroshi", "Toshio", "Yoshio", "Akira", "Kiyoshi", "Takashi", "Hideo", "Koji", "Takeshi", "Tadashi", "Shoji", "Hiroyuki", "Isamu", "Takeo", "Yuji", "Kachi",
 			"Tatsuo", "Seiji", "Ichiro", "Toru", "Saburo", "Junichi", "Yoshinori", "Masato", "Shinobu", "Hideaki", "Keiji", "Takayuki", "Jiro", "Sho", "Yuichi", "Tetsuya", "Kazuyuki"]
 			last_name_table = ["Sato", "Suzuki", "Tanaka", "Watanabe", "Takahashi", "Ito", "Yamamoto", "Nakamura", "Kobayashi", "Saito", "Kato", "Yoshida", "Yamada", "Sasaki", "Matsumoto", "Yamaguchi",
 			"Inoue", "Kimura", "Shimizu", "Hayashi", "Abe", "Ono", "Mori", "Nakajima", "Hashimoto", "Yamazaki", "Ishikawa", "Ogawa", "Ishii", "Kawamura", "Kono", "Noguchi", "Takeda", "Ito", "Muraki"]
-
+		
 		#Hindi? India has lots of languages
 		"India":
 			first_name_table = ["Sanjay", "Santosh", "Sunil", "Rajaesh", "Ramesh", "Ashok", "Vijay", "Abdul", "Raju", "Vinod", "Raj", "Dinesh", "Rakesh", "Ajay", "Mukesh", "Shankar", "Ravi", "Ganesh",
 			"Gopal", "Arun", "Prakash", "Rahul", "Mahendra", "Narayan", "Pradip", "Umesh", "Amar", "Sudhir", "Govind", "Jay"]
 			last_name_table = ["Devi", "Singh", "Kumar", "Das", "Kaur", "Ram", "Yadav", "Kumari", "Lal", "Bai", "Khatun", "Mandal", "Ali", "Sharma", "Ray", "Mondal", "Sah", "Patel", "Prasad", "Ghosh",
 			"Sahu", "Raut", "Shaik", "Bauri", "Solanki", "Prakash", "Pandey", "Patal", "Parambil", "Dhananjayan"]
-
+		
 		#Indonesian
 		"Indonesia":
 			first_name_table = ["Muhammad", "Ahmad", "Agus", "Abdul", "Asep", "Slamet", "Edi", "Dede", "Budi", "Ali", "Wayan", "Bambang", "Achmad", "Imam", "Adi", "Iwan", "Moch", "Rudi", "Yusuf", "Irwan"]
 			last_name_table = ["Sari", "Setiawan", "Hidayat", "Lestari", "Saputra", "Wati", "Rahayu", "Dewi", "Kurniawan", "Santoso", "Putra", "Susanti", "Wahyuni", "Ningsih", "Susanto", "Gunawan"]
-
+		
 		#Thai
 		"Thailand":
 			first_name_table = ["Somchai", "Prasoet", "Somsak", "Prasit", "Sombat", "Udom", "Thawi", "Charoen", "Samran", "Wichai", "Somphong", "Pricha", "Wirat", "Somuek", "Wanchai", "Somkiat", "Saman", "Phon"]
 			last_name_table = ["Saetang", "Chen", "Saelim", "Nguyen", "Bunmi", "Sukkasem", "Sangthong", "Chanthara", "Suwan", "Lim", "Sitwat", "Rungrueang", "Ayutthaya", "Sisuk", "Chaichana", "Saelao"]
+		
+		#Default output, which should also print the input string for debugging
+		_:
+			first_name_table = ["NoName"]
+			last_name_table = ["Assigned"]
+			print ("ERROR: Input Nationality [" + input_nationality + "] found no defined names.")
 
 	
 	#The real meat: add a random value from each table together, and voila!
@@ -164,6 +177,7 @@ func get_driver_name(input_nationality: String = "United States") -> String:
 	random_int_02 = randi() % last_name_table.size()
 	
 	#To prevent repeating names like "Li Li" (Chinese) or "Said Said" (Moroccan)
+	#Unlikely to get stuck, but todo: find some version of this that has no chance of looping forever
 	while(first_name_table[random_int_01] == last_name_table[random_int_02]):
 		random_int_02 = randi() % last_name_table.size()
 	

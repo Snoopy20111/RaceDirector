@@ -57,7 +57,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "NameGenerator",
 "language": "GDScript",
-"path": "res://Name_Generator.gd"
+"path": "res://Scripts/Name_Generator.gd"
 }, {
 "base": "Area2D",
 "class": "PitBox",

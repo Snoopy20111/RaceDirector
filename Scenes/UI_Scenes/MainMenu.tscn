@@ -148,37 +148,37 @@ script = ExtResource( 8 )
 [node name="Volume" type="HSplitContainer" parent="Menus/Options/MarginContainer/VBoxContainer"]
 margin_top = 95.0
 margin_right = 609.0
-margin_bottom = 138.0
+margin_bottom = 128.0
 split_offset = 10
 
 [node name="Label" type="Label" parent="Menus/Options/MarginContainer/VBoxContainer/Volume"]
-margin_right = 132.0
-margin_bottom = 43.0
+margin_right = 105.0
+margin_bottom = 33.0
 text = "Volume"
 
 [node name="PanelContainer" type="PanelContainer" parent="Menus/Options/MarginContainer/VBoxContainer/Volume"]
-margin_left = 144.0
+margin_left = 117.0
 margin_right = 609.0
-margin_bottom = 43.0
+margin_bottom = 33.0
 theme = ExtResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menus/Options/MarginContainer/VBoxContainer/Volume/PanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 458.0
-margin_bottom = 36.0
+margin_right = 485.0
+margin_bottom = 26.0
 alignment = 1
 
 [node name="VolumeSlider" type="HSlider" parent="Menus/Options/MarginContainer/VBoxContainer/Volume/PanelContainer/VBoxContainer"]
-margin_top = 6.0
-margin_right = 451.0
-margin_bottom = 22.0
+margin_top = 1.0
+margin_right = 478.0
+margin_bottom = 17.0
 script = ExtResource( 9 )
 
 [node name="Back" type="Button" parent="Menus/Options/MarginContainer/VBoxContainer"]
-margin_top = 158.0
+margin_top = 148.0
 margin_right = 609.0
-margin_bottom = 233.0
+margin_bottom = 223.0
 rect_min_size = Vector2( 350, 75 )
 theme = ExtResource( 3 )
 action_mode = 0
@@ -213,44 +213,44 @@ __meta__ = {
 
 [node name="TrackSelect" type="HBoxContainer" parent="Menus/RaceDetails/MarginContainer/VBoxContainer"]
 margin_right = 712.0
-margin_bottom = 57.0
+margin_bottom = 47.0
 
 [node name="PanelContainer" type="PanelContainer" parent="Menus/RaceDetails/MarginContainer/VBoxContainer/TrackSelect"]
-margin_right = 105.0
-margin_bottom = 57.0
+margin_right = 84.0
+margin_bottom = 47.0
 mouse_filter = 1
 
 [node name="Label" type="Label" parent="Menus/RaceDetails/MarginContainer/VBoxContainer/TrackSelect/PanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 98.0
-margin_bottom = 50.0
+margin_right = 77.0
+margin_bottom = 40.0
 text = "Track"
 
 [node name="HorizontalTrackSelect01" parent="Menus/RaceDetails/MarginContainer/VBoxContainer/TrackSelect" instance=ExtResource( 1 )]
-margin_left = 109.0
+margin_left = 88.0
 margin_top = 0.0
 margin_right = 712.0
-margin_bottom = 57.0
+margin_bottom = 47.0
 mouse_filter = 1
 
 [node name="SliderWithTextEdit" parent="Menus/RaceDetails/MarginContainer/VBoxContainer" instance=ExtResource( 7 )]
-margin_top = 77.0
+margin_top = 67.0
 margin_right = 712.0
-margin_bottom = 134.0
+margin_bottom = 114.0
 leftText = "Cars:"
 minValue = 2
 maxValue = 12
 
 [node name="HSeparator" type="HSeparator" parent="Menus/RaceDetails/MarginContainer/VBoxContainer"]
-margin_top = 154.0
+margin_top = 134.0
 margin_right = 712.0
-margin_bottom = 158.0
+margin_bottom = 138.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Menus/RaceDetails/MarginContainer/VBoxContainer"]
-margin_top = 178.0
+margin_top = 158.0
 margin_right = 712.0
-margin_bottom = 253.0
+margin_bottom = 233.0
 
 [node name="Start" type="Button" parent="Menus/RaceDetails/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_right = 350.0
