@@ -36,7 +36,7 @@ func print_time():
 		hours_string = String(hours)
 
 #seconds calculation, done last because it depends on minutes & hours and may be float/int
-	var seconds_float: float = time_in_seconds - float(minutes * 60) - float(hours * 360)
+	var seconds_float: float = stepify(time_in_seconds - float(minutes * 60) - float(hours * 360),0.001)
 	var seconds_int: int = int(seconds_float)
 	var seconds_string: String
 	
