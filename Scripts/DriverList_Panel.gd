@@ -7,12 +7,18 @@ const driverListItem = preload("res://Scenes/Prefabs/DriverList_Item.tscn")
 const placementItem = preload("res://Scenes/Prefabs/DriverList_Placement.tscn")
 onready var placementsVBox_ref = $Panel/PlacementsVBox
 onready var driversVBox_ref = $Panel/DriversVBox
+onready var lapCounter_ref = $Panel/Lap_Counter
 
 var placesArray: Array
 var driverListItemArray: Array
 
 var counter: float = 0
 var updateThreshold = 1
+
+func _ready():
+# warning-ignore:return_value_discarded
+	GameManager.connect("lap_changed", self, "set_lap_counter")
+	set_lap_counter(0)
 
 
 func _process(delta):
@@ -74,3 +80,7 @@ func update_placement_panels() -> void:
 	for i in driverListItemArray.size():
 		var temp = driversVBox_ref.get_child(i) as DriverListItem
 		placementsVBox_ref.get_child(i).set_expanded(temp.is_expanded)
+
+
+func set_lap_counter(new_lap: int) -> void:
+	lapCounter_ref.text = String(new_lap) + "/" + String(GameManager.currentRaceOptions.raceLaps)

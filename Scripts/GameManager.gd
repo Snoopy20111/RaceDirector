@@ -11,7 +11,7 @@ var defaultRaceOptions: Dictionary = {
 	"track": "Default_Track",
 	"carCount": 6,
 	"raceType": Enums.RACE_TYPE.CIRCUIT,
-	"raceLaps": 10,
+	"raceLaps": 3,
 	"raceLengthMinutes": 6.0,
 	"raceMaxLengthMinutes": 10.0,
 }
@@ -24,12 +24,15 @@ var currentRaceOptions: Dictionary = defaultRaceOptions
 var racerDataArray: Array
 var racerStandingArray: PoolIntArray
 var last_recorded_time: float = 0.0
+var current_flag_state
 
 onready var name_gen = NameGenerator.new()
 
 signal race_started
 signal race_ended
 signal event_ended
+signal flag_changed(new_flag_state)
+signal lap_changed(new_lap)
 
 
 func _init_FMOD():
@@ -141,17 +144,26 @@ func _generate_driver_names() -> void:
 
 ### In-Race Updates and data ###
 func _start_race() -> void:
+	_init_driver_standings()
 	emit_signal("race_started")
 	is_race_active = true
+	emit_signal("flag_changed", Enums.FLAG_STATE.GREEN)
 	print ("Race Started!")
 
 func _end_race() -> void:
-	emit_signal("race_ended")
 	is_race_active = false
-	print ("Race Ended!")
-	_end_event()
-	
+	emit_signal("race_ended")
+	emit_signal("flag_changed", Enums.FLAG_STATE.CHECKERED)
+	print ("Race Ended! Checkered Flag!")
+	#_end_event()
 
+func _end_race_last_lap() -> void:
+	is_race_active = false
+	#todo: find a way of putting the leader on the last lap
+	# and changing everybody's data relative to that
+	for i in racerDataArray.size():
+		racerDataArray[i].current_lap = currentRaceOptions.raceLaps - 1
+	
 
 func _end_event() -> void:
 	emit_signal("event_ended")
@@ -160,11 +172,17 @@ func _end_event() -> void:
 
 
 func _race_car_lap_completed(givenCarID: int) -> void:
+	var new_lap: int = racerDataArray[givenCarID].current_lap + 1
 	#increment given car's lap count
-	racerDataArray[givenCarID].current_lap += 1
+	print("Car " + String(givenCarID) + " now on lap " + String(new_lap))
+	racerDataArray[givenCarID].current_lap = new_lap
+	
+	#if this car was in the lead (last we checked), emit signal with new lap number
+	if (racerStandingArray[0] == givenCarID):
+		emit_signal("lap_changed", new_lap)
 	
 	#if it's completed all the laps, that car is done racing
-	if racerDataArray[givenCarID].current_lap > currentRaceOptions.raceLaps:
+	if (racerDataArray[givenCarID].current_lap > currentRaceOptions.raceLaps):
 		racerDataArray[givenCarID].has_completed_race = true
 
 
@@ -173,9 +191,11 @@ func _has_race_completed() -> void:
 	for i in racerDataArray.size():
 		if (racerDataArray[i].has_completed_race == true):
 			drivers_finished += 1
+	if (drivers_finished >= 1) && (is_race_active == true):
+		_end_race()
 	if (drivers_finished >= currentRaceOptions.carCount):
 		print ("Drivers finished: " + String(drivers_finished))
-		_end_race()
+		_end_event()
 
 func _race_car_position_update(givenCarID: int, trackPosition: float) -> void:
 	racerDataArray[givenCarID].current_lap_progress = trackPosition
@@ -187,6 +207,12 @@ func _get_drivers_ordered() -> PoolIntArray:
 	#todo: pass this data in a way that is more efficient, because
 	#it has to be unsorted the same way on the other side
 	return racerStandingArray
+
+
+func _init_driver_standings() -> void:
+	racerStandingArray.resize(racerDataArray.size())
+	for i in racerStandingArray.size():
+		racerStandingArray[i] = racerDataArray[i].carID
 
 
 func _sort_driver_standings() -> void:	
@@ -203,16 +229,17 @@ func _sort_driver_standings() -> void:
 		for j in tempArray.size():
 			#Find the largest racerProgress value in the temp set and set largestValueFound to it
 			var racerProgress: float = float(tempArray[j].current_lap) + tempArray[j].current_lap_progress
-			#print ("Racer Progress for car " + String(tempArray[j].carID) + " is " + String(racerProgress))
 			if (racerProgress > largestValueFound):
 				largestValueFound = racerProgress
 				carIDFound = tempArray[j].carID
 				jValue = j
+		print ("Race Progress for car " + String(tempArray[jValue].carID) + ": " + String(largestValueFound) + " | Current Lap: " + String(tempArray[jValue].current_lap) + " | Lap Progress: " + String(tempArray[jValue].current_lap_progress))
 		#with our new value for largest found, we append the carID to our Standing Array
 		racerStandingArray.append(carIDFound)
 		#and remove that element from tempArray, before doing it all again
 		tempArray.remove(jValue)
 	#by this point, racerStandingArray should be the car IDs in order
+	print ("-----------------------------------------------")
 
 
 ### Utilities ###

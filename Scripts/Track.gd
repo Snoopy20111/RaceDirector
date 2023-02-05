@@ -10,7 +10,7 @@ onready var pitLaneRef = $PitLane
 onready var pitEntranceRef = $PitLane/PitEntrance
 onready var pitExitRef = $PitLane/PitExit
 onready var driverListRef = $InRaceHUD/DriverList
-onready var flag_panel_ref = $InRaceHUD/VBoxContainer/FlagPanel
+#onready var flag_panel_ref = $InRaceHUD/VBoxContainer/FlagPanel
 onready var race_timer_ref = $InRaceHUD/VBoxContainer/RaceTimer
 
 var pitBox: Array
@@ -24,12 +24,14 @@ var isPitExitOpen: bool = true
 
 var gridPosition: Array
 var gridPositionOffset: float = 75
-var gridPositionStartOffset: float = 30
+var gridPositionStartOffset: float = 75
 
 
 func _ready():
 	#connect to Game Manager events
+# warning-ignore:return_value_discarded
 	GameManager.connect("race_started", self, "_on_Race_Start")
+# warning-ignore:return_value_discarded
 	GameManager.connect("race_ended", self, "_on_Race_End")
 	
 	gridPosition.resize(TrackDataMapping._get_maxCars(GameManager.currentRaceOptions.get("track")))
@@ -105,6 +107,7 @@ func _on_Pitbox_area_entered(area, pitBoxID):
 			carRef[carID].currentCarState = Enums.CAR_STATE.PITTING
 
 func _on_FinishLine_area_entered(area):
+	#print ("parent type of area entered: " + String(area.get_parent().get_class()))
 	if (area.get_parent().get_class() == "Car"):
 		var tempCar = area.get_parent() as Car
 		print ("Car " + String(tempCar.carID) + " crossed the line!")
@@ -116,8 +119,6 @@ func _on_Race_Start():
 	for i in carRef.size():
 		carRef[i]._on_Race_Start()
 	# And change the flag to Green
-	flag_panel_ref.set_flag_color(Enums.FLAG_STATE.GREEN)
-	race_timer_ref.unpause_timer()
 
 func _on_Race_End():
 	pass

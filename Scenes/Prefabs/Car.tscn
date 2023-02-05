@@ -26,35 +26,31 @@ texture = ExtResource( 2 )
 modulate = Color( 0.772549, 0.0235294, 0.0235294, 1 )
 show_behind_parent = true
 use_parent_material = true
-rotation = 2.27374e-13
 texture = ExtResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="CarWatcher" type="Area2D" parent="."]
-visible = false
 rotation = 1.5708
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CarWatcher"]
-visible = false
 shape = SubResource( 5 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="MouseDetector" type="Area2D" parent="."]
-visible = false
 rotation = 1.5708
+monitorable = false
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseDetector"]
-visible = false
 shape = SubResource( 6 )
 __meta__ = {
 "_edit_lock_": true

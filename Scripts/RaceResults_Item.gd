@@ -9,8 +9,8 @@ onready var team_ref = $Team
 onready var time_ref = $Time
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
+#func _ready():
+#	pass
 
 func init_item(placement: int, given_color: Color, given_name: String, given_team: String, given_time: float) -> void:
 	set_placement(placement)

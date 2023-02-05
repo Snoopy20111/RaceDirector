@@ -113,7 +113,7 @@ func _on_Race_Start() -> void:
 	emit_signal("DrivingState", str(currentDrivingState))
 
 
-func randomize_CarStats():
+func randomize_CarStats() -> void:
 	# adds random variance to Max Speed, current Min Speed, Braking Mult, Accel Mult, Chance of Malfunction
 	maxSpeedVariance += rng.randf_range(-maxSpeedVarianceRange, maxSpeedVarianceRange)
 	maxSpeed += maxSpeedVariance
@@ -126,3 +126,11 @@ func randomize_CarStats():
 	
 	accelMultVariance += rng.randf_range(-accelMultVarianceRange, accelMultVarianceRange)
 	accelMult += accelMultVariance
+
+
+########### Utility Functions ###########
+func get_class() -> String:
+	return "Car"
+
+func is_class(value) -> bool:
+	return value == "Car"

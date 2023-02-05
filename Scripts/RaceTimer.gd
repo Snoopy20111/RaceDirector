@@ -7,7 +7,9 @@ var is_showing_full_time: bool = false
 onready var time_text_ref: Label = $VBoxContainer/Time
 
 func _ready():
+# warning-ignore:return_value_discarded
 	GameManager.connect("race_started", self, "on_Race_Start")
+# warning-ignore:return_value_discarded
 	GameManager.connect("race_ended", self, "on_Race_End")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

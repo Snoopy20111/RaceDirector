@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/DriverList_Panel.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/RightArrow/RightArrow_Normal.png" type="Texture" id=2]
+[ext_resource path="res://UI/Menu.tres" type="Theme" id=3]
+[ext_resource path="res://UI/Monospaced.tres" type="Theme" id=4]
 
 [node name="DriverList" type="Control"]
 anchor_left = 1.0
@@ -27,7 +29,7 @@ margin_bottom = 460.5
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 15.0
-margin_top = 15.0
+margin_top = 51.0
 margin_right = -405.0
 margin_bottom = -15.0
 
@@ -35,11 +37,32 @@ margin_bottom = -15.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 60.0
-margin_top = 15.0
+margin_top = 51.0
 margin_right = -15.0
 margin_bottom = -15.0
 
+[node name="Lap_Static" type="Label" parent="Panel"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 77.0
+margin_bottom = 43.0
+theme = ExtResource( 3 )
+text = "Lap:"
+uppercase = true
+
+[node name="Lap_Counter" type="Label" parent="Panel"]
+margin_left = 74.0
+margin_top = 6.0
+margin_right = 142.0
+margin_bottom = 44.0
+theme = ExtResource( 4 )
+text = "0/6"
+align = 1
+valign = 1
+uppercase = true
+
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = 5.0

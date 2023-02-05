@@ -148,12 +148,26 @@ func get_driver_name(input_nationality: String = "United States") -> String:
 			last_name_table = ["Sato", "Suzuki", "Tanaka", "Watanabe", "Takahashi", "Ito", "Yamamoto", "Nakamura", "Kobayashi", "Saito", "Kato", "Yoshida", "Yamada", "Sasaki", "Matsumoto", "Yamaguchi",
 			"Inoue", "Kimura", "Shimizu", "Hayashi", "Abe", "Ono", "Mori", "Nakajima", "Hashimoto", "Yamazaki", "Ishikawa", "Ogawa", "Ishii", "Kawamura", "Kono", "Noguchi", "Takeda", "Ito", "Muraki"]
 		
+		#South African, defaulting to Afrikaans
+		"South Africa":
+			first_name_table = ["Johannes", "David", "John", "Michael", "Sipho", "Bongani", "Jan", "Daniel", "Thabo", "Sibusiso", "Petrus", "Peter", "Simon", "Jacobus", "William", "Hendrik", "Richard",
+			"Thomas", "Nkosinathi", "Jabulani", "Thulani", "Xolani", "Johan", "Andries", "Mandla", "Moses", "Siyabonga", "Sello", "Christopher", "Simon"]
+			last_name_table = ["Dlamini", "Nkosi", "Ndlovu", "Khumalo", "Mahlangu", "Mokoena", "Mkhize", "Mthembu", "Zulu", "Ngcobo", "Gumede", "Naidoo", "Khoza", "Sibiya", "Jacobs", "Mhlongo", "Govender",
+			"Botha", "Pillay", "Radebe", "Ntuli", "Zwane", "Mazibuko", "van Wyk", "Williams", "van der Merwe", "Chauke", "Pretorius"]
+		
 		#Hindi? India has lots of languages
 		"India":
 			first_name_table = ["Sanjay", "Santosh", "Sunil", "Rajaesh", "Ramesh", "Ashok", "Vijay", "Abdul", "Raju", "Vinod", "Raj", "Dinesh", "Rakesh", "Ajay", "Mukesh", "Shankar", "Ravi", "Ganesh",
 			"Gopal", "Arun", "Prakash", "Rahul", "Mahendra", "Narayan", "Pradip", "Umesh", "Amar", "Sudhir", "Govind", "Jay"]
 			last_name_table = ["Devi", "Singh", "Kumar", "Das", "Kaur", "Ram", "Yadav", "Kumari", "Lal", "Bai", "Khatun", "Mandal", "Ali", "Sharma", "Ray", "Mondal", "Sah", "Patel", "Prasad", "Ghosh",
 			"Sahu", "Raut", "Shaik", "Bauri", "Solanki", "Prakash", "Pandey", "Patal", "Parambil", "Dhananjayan"]
+		
+		#Indonesian
+		"Malaysia":
+			first_name_table = ["Muhammad", "Encik", "Ahmad", "Abdul", "Mohammed", "Chee", "Chin", "Ismail", "Boon", "Wei", "Mat", "Abullah", "Syed", "Eng", "Soon", "Ibrahim", "Azman", "Rosli", "Roslan",
+			"Seng", "Zulkifli", "Amirul", "Ali", "Yong", "Zainal", "Amir", "Zakaria", "Saiful"]
+			last_name_table = ["Tam", "Lim", "Lee", "Wong", "Wan", "Ng", "bin Ismail", "bin Abdullah", "bin Ahmad", "Chong", "Rahman", "Chan", "Ong", "Chin", "Nor", "Yap", "Yusof", "Aziz", "Liew", "Salleh",
+			"binti Hassan", "Abidin", "Lau", "Razak", "Nasir", "Chua", "Rashid", "Tang", "Wahab", "Daud", "Ling", "Koh"]
 		
 		#Indonesian
 		"Indonesia":

@@ -4,8 +4,12 @@ extends PanelContainer
 # Declare member variables here. Examples:
 onready var rect_ref = $ColorRect
 
+func _ready():
+# warning-ignore:return_value_discarded
+	GameManager.connect("flag_changed", self, "set_flag_color")
+
 func set_flag_color(input_state: int):
-	#Enums.FLAG_STATE
+	#Enums.FLAG_STATE {GREEN, YELLOW, RED, WHITE, BLACK, CHECKER, MEATBALL, BLUE}
 	match(input_state):
 		#Green
 		0:
@@ -24,7 +28,7 @@ func set_flag_color(input_state: int):
 			rect_ref.color = Color.black
 		#Checker, which will definitely require a texture later
 		5:
-			rect_ref.color = Color.purple
+			rect_ref.color = Color.gray
 		#Meatball, will require a texture later
 		6:
 			rect_ref.color = Color.orange

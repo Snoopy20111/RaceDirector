@@ -21,3 +21,10 @@ func _on_Pitbox_Entered(area):
 func _set_pitbox_color(newColor: Color) -> void:
 	pitColorRef.color = newColor
 	#print ("New Color for Pit Box " + String(pitBoxID))
+
+########### Utility Functions ###########
+func get_class() -> String:
+	return "PitBox"
+
+func is_class(value) -> bool:
+	return value == "PitBox"

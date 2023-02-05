@@ -36,10 +36,9 @@ func _ready():
 		var loc_data: RacerData = racer_data_array[loc_standing]
 		#add item
 		race_results_item[i] = race_results_item_scene.instance()
-		#todo: init item data
+		race_results_grid_ref.add_child(race_results_item[i])
+		#init item data, done after add_child so all the references to child nodes exist in race_result_item
 		#init_item(placement: int, given_color: Color, given_name: String, given_team: String, given_time: float) -> void:
 		race_results_item[i].init_item(i+1, loc_data.car_color, loc_data.driver_name, loc_data.team_name, GameManager.last_recorded_time)
-		
-		race_results_grid_ref.add_child(race_results_item[i])
 		#add seperator
 		race_results_grid_ref.add_child(HSeparator.new())
