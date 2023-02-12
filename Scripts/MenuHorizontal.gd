@@ -30,6 +30,9 @@ func _ready():
 	#Attach the viewport resized event to function viewport_resized()
 # warning-ignore:return_value_discarded
 	get_tree().get_root().connect("size_changed", self, "viewport_resized")
+	
+	#lastly, reset all the game data, in case we're arriving here following a race
+	GameManager._reset_game()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -58,7 +58,6 @@ scale = Vector2( 11, 0.76 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TrackLocations/FinishLine"]
 position = Vector2( 6.81819, -43.6842 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 4 )
 
 [node name="Turn01" type="Node2D" parent="TrackLocations"]

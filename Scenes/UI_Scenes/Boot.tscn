@@ -7,3 +7,4 @@ script = ExtResource( 1 )
 LogoParade = false
 LoadDebugLevel = true
 DebugWindowSize = true
+DebugLevelPath = "res://Scenes/UI_Scenes/RaceResults.tscn"

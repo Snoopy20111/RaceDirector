@@ -24,7 +24,6 @@ var currentRaceOptions: Dictionary = defaultRaceOptions
 var racerDataArray: Array
 var racerStandingArray: PoolIntArray
 var last_recorded_time: float = 0.0
-var current_flag_state
 
 onready var name_gen = NameGenerator.new()
 
@@ -84,6 +83,12 @@ func _prerace_set_raceMaxLengthMinutes(newMaxLength: float) -> void:
 func _reset_race_options() -> void:
 	currentRaceOptions = defaultRaceOptions
 	print ("Race Options reset")
+
+func _reset_game() -> void:
+	_reset_race_options()
+	is_race_active = false
+	racerDataArray.clear()
+	racerStandingArray.resize(0)
 
 ### Cars, colors, drivers, etc ###
 func _generate_racer_data() -> void:
@@ -155,14 +160,9 @@ func _end_race() -> void:
 	emit_signal("race_ended")
 	emit_signal("flag_changed", Enums.FLAG_STATE.CHECKERED)
 	print ("Race Ended! Checkered Flag!")
-	#_end_event()
-
-func _end_race_last_lap() -> void:
-	is_race_active = false
-	#todo: find a way of putting the leader on the last lap
-	# and changing everybody's data relative to that
-	for i in racerDataArray.size():
-		racerDataArray[i].current_lap = currentRaceOptions.raceLaps - 1
+	_sort_driver_standings()
+	currentRaceOptions.raceLaps = racerDataArray[racerStandingArray[0]].current_lap
+	emit_signal("lap_changed", currentRaceOptions.raceLaps)
 	
 
 func _end_event() -> void:
@@ -177,13 +177,15 @@ func _race_car_lap_completed(givenCarID: int) -> void:
 	print("Car " + String(givenCarID) + " now on lap " + String(new_lap))
 	racerDataArray[givenCarID].current_lap = new_lap
 	
+	#if it's completed all the laps, that car is done racing
+	if (racerDataArray[givenCarID].current_lap > currentRaceOptions.raceLaps):
+		racerDataArray[givenCarID].has_completed_race = true
+	
 	#if this car was in the lead (last we checked), emit signal with new lap number
 	if (racerStandingArray[0] == givenCarID):
 		emit_signal("lap_changed", new_lap)
 	
-	#if it's completed all the laps, that car is done racing
-	if (racerDataArray[givenCarID].current_lap > currentRaceOptions.raceLaps):
-		racerDataArray[givenCarID].has_completed_race = true
+	_has_race_completed()
 
 
 func _has_race_completed() -> void:
@@ -191,11 +193,14 @@ func _has_race_completed() -> void:
 	for i in racerDataArray.size():
 		if (racerDataArray[i].has_completed_race == true):
 			drivers_finished += 1
+	if (drivers_finished != 0):
+		print ("Drivers finished: " + String(drivers_finished))
 	if (drivers_finished >= 1) && (is_race_active == true):
 		_end_race()
+		print ("Auto End Race")
 	if (drivers_finished >= currentRaceOptions.carCount):
-		print ("Drivers finished: " + String(drivers_finished))
 		_end_event()
+		print ("Auto End Event")
 
 func _race_car_position_update(givenCarID: int, trackPosition: float) -> void:
 	racerDataArray[givenCarID].current_lap_progress = trackPosition
@@ -215,7 +220,9 @@ func _init_driver_standings() -> void:
 		racerStandingArray[i] = racerDataArray[i].carID
 
 
-func _sort_driver_standings() -> void:	
+func _sort_driver_standings() -> void:
+	if (is_race_active == false):
+		return
 	#resize to zero, we'll add our elements in from here
 	racerStandingArray.resize(0)
 	var tempArray = racerDataArray.duplicate()
@@ -233,13 +240,13 @@ func _sort_driver_standings() -> void:
 				largestValueFound = racerProgress
 				carIDFound = tempArray[j].carID
 				jValue = j
-		print ("Race Progress for car " + String(tempArray[jValue].carID) + ": " + String(largestValueFound) + " | Current Lap: " + String(tempArray[jValue].current_lap) + " | Lap Progress: " + String(tempArray[jValue].current_lap_progress))
+		#print ("Race Progress for car " + String(tempArray[jValue].carID) + ": " + String(largestValueFound) + " | Current Lap: " + String(tempArray[jValue].current_lap) + " | Lap Progress: " + String(tempArray[jValue].current_lap_progress))
 		#with our new value for largest found, we append the carID to our Standing Array
 		racerStandingArray.append(carIDFound)
 		#and remove that element from tempArray, before doing it all again
 		tempArray.remove(jValue)
 	#by this point, racerStandingArray should be the car IDs in order
-	print ("-----------------------------------------------")
+	#print ("-----------------------------------------------")
 
 
 ### Utilities ###

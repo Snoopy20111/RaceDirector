@@ -29,7 +29,7 @@ var brakingMultVarianceRange: float = 10
 var accelMultVariance: float
 var accelMultVarianceRange: float = 5
 
-var accelCurve 	= preload("res://Curves/Acceleration_Curve.tres")
+var accelCurve = preload("res://Curves/Acceleration_Curve.tres")
 var brakingCurve = preload("res://Curves/Braking_Curve.tres")
 
 var carColor: Color = Color.black
@@ -73,6 +73,9 @@ func _process(delta):
 		match(currentDrivingState):
 			Enums.DRIVING_STATE.ACCELERATING:
 				speedMPH += (delta * accelMult * accelCurve.interpolate(speedMPH / maxSpeed))
+			Enums.DRIVING_STATE.IDLING:
+				if (speedMPH > 0):
+					speedMPH -= (delta * idleMult)
 			Enums.DRIVING_STATE.BRAKING:
 				if (speedMPH >= (currentMinSpeed)):
 					speedMPH -= (delta * brakingMult)
