@@ -1,8 +1,9 @@
 extends Node2D
 class_name Boot
 
-# Debug Options
+# Debug and starting Options
 export var LogoParade: bool = true
+export var Fullscreen: bool = false
 export var LoadDebugLevel: bool = false
 export var DebugWindowSize: bool = false
 export var DebugLevelPath: String = "res://Scenes/Tracks/Default_Track.tscn"
@@ -12,9 +13,13 @@ export var DebugWindowDimentions: Vector2 = Vector2(1280, 720)
 func _ready():
 	print("Welcome to Race Director!")
 	
+	
 	if (DebugWindowSize):
 		OS.set_window_size(Vector2(DebugWindowDimentions))
+	else:
+		OS.set_window_fullscreen(Fullscreen)
 	
+	#initialize audio system
 	GameManager._init_FMOD()
 	
 	randomize()
