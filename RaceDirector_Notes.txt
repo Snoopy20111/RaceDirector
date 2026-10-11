@@ -1,0 +1,55 @@
+C:\Users\snoop\Documents\Godot\RaceDirector\fmod.dll
+
+todo:
+Race Results screen
+	+Position, Changes in standings (optional), Nationality, Name, Team, Time
++Remove Pit button
++Record current lap and lap times per driver (in Race Director singleton?)
+
+how to sort:
+	+number of laps
+	+distance along path (track)
+	+Later when DNFs are a thing, can also further sort by the Race Time at which they crashed
+
+Race Direction Barebones:
+	+Load a race on at least one track with a varying number of cars
+	+Each car gets:
+		+a random driver name
+		+a random color
+		+a corresponding pit box
+		+random-in-range car stats
+	+Only one stage: Race
+		+Starting positions random
+		+Race starts with button press
+		+The cars can race but won't interact yet, and will receive a finishing time
+		+The cars can also be given penalties (no reasons communicated yet, but these will be deducted from the car's finishing time)
+		+Basic Podium popup showing winners and driver standings
+	Exits to Main Menu
+
+What do tracks need?
+	+Grid Start positions
+	+Pit Box positions
+		Possibly made the same way the pit lane was done?
+		Or we can keep them on the spot and use a collider to trigger a "lerp right/left" thing, random time range to stop and wait, and then release in reverse
+	+Lap Counter at the finish line
+	+Random Driver names 
+
+
+For later:
+	Methods of calculating time gaps:
+		1) Time gaps when crossing each turn accel/decel
+			+Would be literally accurate
+			+Simple in concept
+			+Basically how it's done in real life with cars, bikes, etc
+			-Wouldn't update all at the same time, unless artificially delayed
+			-Would be hard to balance with _every_ zone, possibly requiring extra timing zones
+		2) Calculation between the first and last place cars, lerp based on locations and speeds somehow
+			+All update at once
+			-More complicated algorithm
+			-Would require tuning to be at-all accurate
+			-Requires known variables like acceleration times, grip, etc
+
+
+Potential Track names:
+	Sapphire Mountain
+	Liberty Hill / Liberty Road
